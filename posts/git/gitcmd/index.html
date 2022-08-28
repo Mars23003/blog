@@ -35,7 +35,7 @@
 <meta name=twitter:description content="git的基本使用指令">
 <meta name=twitter:site content="@ ">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[Git] Git基本指令","item":"https://mars23003.github.io/blog/posts/git/gitcmd/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Git] Git基本指令","name":"[Git] Git基本指令","description":"git的基本使用指令","keywords":["Git","CMD"],"articleBody":"Git版本查詢、更版 確認目前電腦 Git 的版本 git version 更新到最新版 git update-git-for-windows\nGit相關指令 1. git config: $ git config --global user.name \"Mars\"  $ git config --global user.email \"mars@xxx.com\"   2. git init 新建一個local repository\n3. git add 將files加入git\n 單一檔案加入索引：git add  所有檔案加入索引：git add .\n 4. git commit  git commit -m “”\n 5. git status 觀察當前分支相關狀態\n6. git log 瀏覽歷史紀錄\n7. git giff 顯示工作目錄和索引的差異\n8. git show 顯示git修改紀錄\n9. git blame 顯示每一行內容的作者、時間…等資訊\n10. git remote 如果你要觀察本地數據庫跟遠端數據庫的關聯，就得仰賴 git remote 系列指令:\n 加入遠端數據庫：git remote add  “url” 觀看遠端數據庫列表：git remote 觀看遠端數據庫列表(包含 url)：git remote -v 下載遠端數據庫：git clone “url”\n 11. git push 推至remote\n","wordCount":"352","inLanguage":"zh-tw","datePublished":"2022-08-28T07:18:40+08:00","dateModified":"2022-08-28T07:18:40+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/git/gitcmd/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Git] Git基本指令","name":"[Git] Git基本指令","description":"git的基本使用指令","keywords":["Git","CMD"],"articleBody":"Git版本查詢、更版 確認目前電腦 Git 的版本 git version 更新到最新版 git update-git-for-windows\nGit相關指令 1. git config: $ git config --global user.name \"Mars\" $ git config --global user.email \"mars@xxx.com\" 2. git init 新建一個local repository\n3. git add 將files加入git\n 單一檔案加入索引：\n git add   所有檔案加入索引：\n git add . 4. git commit git commit -m \"\" 5. git status 觀察當前分支相關狀態\n6. git log 瀏覽歷史紀錄\n7. git giff 顯示工作目錄和索引的差異\n8. git show 顯示git修改紀錄\n9. git blame 顯示每一行內容的作者、時間…等資訊\n10. git remote 如果你要觀察本地數據庫跟遠端數據庫的關聯，就得仰賴 git remote 系列指令:\n 加入遠端數據庫：git remote add  “url” 觀看遠端數據庫列表：git remote 觀看遠端數據庫列表(包含 url)：git remote -v 下載遠端數據庫：git clone “url”\n 11. git push 推至remote\n","wordCount":"344","inLanguage":"zh-tw","datePublished":"2022-08-28T07:18:40+08:00","dateModified":"2022-08-28T07:18:40+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/git/gitcmd/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -90,23 +90,23 @@ git的基本使用指令
 <h2 id=git相關指令>Git相關指令<a hidden class=anchor aria-hidden=true href=#git相關指令>#</a></h2>
 <h3 id=1-git-config>1. git config:<a hidden class=anchor aria-hidden=true href=#1-git-config>#</a></h3>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$ git config --global user.name &#34;Mars&#34;
-</code></pre></div><blockquote>
-<pre><code>$ git config --global user.email &quot;mars@xxx.com&quot;
-</code></pre>
-</blockquote>
-<h3 id=2-git-init>2. git init<a hidden class=anchor aria-hidden=true href=#2-git-init>#</a></h3>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>$ git config --global user.email &#34;mars@xxx.com&#34;
+</code></pre></div><h3 id=2-git-init>2. git init<a hidden class=anchor aria-hidden=true href=#2-git-init>#</a></h3>
 <p>新建一個local repository</p>
 <h3 id=3-git-add>3. git add<a hidden class=anchor aria-hidden=true href=#3-git-add>#</a></h3>
 <p>將files加入git</p>
 <blockquote>
-<p>單一檔案加入索引：git add &lt;檔案名稱>
-所有檔案加入索引：git add .</p>
+<p>單一檔案加入索引：</p>
 </blockquote>
-<h3 id=4-git-commit>4. git commit<a hidden class=anchor aria-hidden=true href=#4-git-commit>#</a></h3>
-<blockquote>
-<p>git commit -m &ldquo;&lt;填寫版本資訊>&rdquo;</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>git add &lt;檔案名稱&gt;
+</code></pre></div><blockquote>
+<p>所有檔案加入索引：</p>
 </blockquote>
-<h3 id=5-git-status>5. git status<a hidden class=anchor aria-hidden=true href=#5-git-status>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>git add .
+
+</code></pre></div><h3 id=4-git-commit>4. git commit<a hidden class=anchor aria-hidden=true href=#4-git-commit>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>git commit -m &#34;&lt;填寫版本資訊&gt;&#34;
+</code></pre></div><h3 id=5-git-status>5. git status<a hidden class=anchor aria-hidden=true href=#5-git-status>#</a></h3>
 <p>觀察當前分支相關狀態</p>
 <h3 id=6-git-log>6. git log<a hidden class=anchor aria-hidden=true href=#6-git-log>#</a></h3>
 <p>瀏覽歷史紀錄</p>
