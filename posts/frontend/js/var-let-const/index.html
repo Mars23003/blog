@@ -3,8 +3,8 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>[javaScript] 不能不知道的 var、let、const 變數宣告 | Mars's Blog</title>
-<meta name=keywords content="javaScript,變數宣告,var,let,const">
+<title>[JavaScript] 不能不知道的 var、let、const 變數宣告 | Mars's Blog</title>
+<meta name=keywords content="JavaScript,變數宣告,var,let,const">
 <meta name=description content="不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......">
 <meta name=author content>
 <link rel=canonical href=https://mars23003.github.io/blog/posts/frontend/js/var-let-const/>
@@ -24,17 +24,17 @@
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HNR9M4TL13"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="[javaScript] 不能不知道的 var、let、const 變數宣告">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="[JavaScript] 不能不知道的 var、let、const 變數宣告">
 <meta property="og:description" content="不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-09-13T07:18:40+08:00">
 <meta property="article:modified_time" content="2022-09-13T07:18:40+08:00">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="[javaScript] 不能不知道的 var、let、const 變數宣告">
+<meta name=twitter:title content="[JavaScript] 不能不知道的 var、let、const 變數宣告">
 <meta name=twitter:description content="不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[javaScript] 不能不知道的 var、let、const 變數宣告","item":"https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[javaScript] 不能不知道的 var、let、const 變數宣告","name":"[javaScript] 不能不知道的 var、let、const 變數宣告","description":"不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......","keywords":["javaScript","變數宣告","var","let","const"],"articleBody":"在ES6以前並無let、const、block scope(區塊作用域,可以當成{})的概念，當時都是使用var來宣告變數， 雖然這樣宣告起來很方便，但是往往會有忽略宣告變數的層級問題，導致全域環境受到汙染的狀況， 以下將會舉例來作簡單的解釋。\nvar  宣告在function內的var變數只在function(function scope)內有效。\n宣告在function外的話其作用範圍將會是全域作用域(global scope)。\n var i = \"aaa\";//定義一個全域i變數的字串\"aaa\"  for(var i=0; i3; i++){//透過一些區塊語句處理後將會影響到原有的全域變數  console.log(i,\"a\"); } console.log(i);// 3 可以輸入window來檢驗上述所說的， 在function scope以外的地方宣告var變數， 其作用於全域作用域(global scope)，如同上面的例子 當有重複命名或沒規劃好變數作用範圍之類的情況時將會汙染全域環境。\nlet  用let來宣告變數其作用的區域為區塊作用域(block scope)，可以當作大括號{}內的範圍為一個區塊。\n在區塊作用域(大括號{})以外的地方將存取不了該變數，將出現is not defined的錯誤。\n for(let i=0; i3; i++){//區塊內的let i  console.log(i); } //區塊外存取let i console.log(i);// error: i is not defined  let不會產生全域變數且在同一個區塊(block) let不能重複宣告(包含var同名變數宣告也不行)，否則會出錯 Identifier ‘i’ has already been declared  const 具備let所有的特性。 但是除了與let相同以外，const所有的特性又有額外的規範。\n 在宣告時就要為其賦值。 有常數的特性(即不可修改)。  ","wordCount":"662","inLanguage":"zh-tw","datePublished":"2022-09-13T07:18:40+08:00","dateModified":"2022-09-13T07:18:40+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[JavaScript] 不能不知道的 var、let、const 變數宣告","item":"https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[JavaScript] 不能不知道的 var、let、const 變數宣告","name":"[JavaScript] 不能不知道的 var、let、const 變數宣告","description":"不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......","keywords":["JavaScript","變數宣告","var","let","const"],"articleBody":"在ES6以前並無let、const、block scope(區塊作用域,可以當成{})的概念，當時都是使用var來宣告變數， 雖然這樣宣告起來很方便，但是往往會有忽略宣告變數的層級問題，導致全域環境受到汙染的狀況， 以下將會舉例來作簡單的解釋。\nvar  宣告在function內的var變數只在function(function scope)內有效。\n宣告在function外的話其作用範圍將會是全域作用域(global scope)。\n var i = \"aaa\";//定義一個全域i變數的字串\"aaa\"  for(var i=0; i3; i++){//透過一些區塊語句處理後將會影響到原有的全域變數  console.log(i,\"a\"); } console.log(i);// 3 可以輸入window來檢驗上述所說的， 在function scope以外的地方宣告var變數， 其作用於全域作用域(global scope)，如同上面的例子 當有重複命名或沒規劃好變數作用範圍之類的情況時將會汙染全域環境。\nlet  用let來宣告變數其作用的區域為區塊作用域(block scope)，可以當作大括號{}內的範圍為一個區塊。\n在區塊作用域(大括號{})以外的地方將存取不了該變數，將出現is not defined的錯誤。\n for(let i=0; i3; i++){//區塊內的let i  console.log(i); } //區塊外存取let i console.log(i);// error: i is not defined  let不會產生全域變數且在同一個區塊(block) let不能重複宣告(包含var同名變數宣告也不行)，否則會出錯 Identifier ‘i’ has already been declared  const 具備let所有的特性。 但是除了與let相同以外，const所有的特性又有額外的規範。\n 在宣告時就要為其賦值。 有常數的特性(即不可修改)。  ","wordCount":"662","inLanguage":"zh-tw","datePublished":"2022-09-13T07:18:40+08:00","dateModified":"2022-09-13T07:18:40+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -76,7 +76,7 @@
 <header class=post-header>
 <div class=breadcrumbs><a href=https://mars23003.github.io/blog/>首頁</a>&nbsp;»&nbsp;<a href=https://mars23003.github.io/blog/posts/>文章 </a></div>
 <h1 class=post-title>
-[javaScript] 不能不知道的 var、let、const 變數宣告
+[JavaScript] 不能不知道的 var、let、const 變數宣告
 </h1>
 <div class=post-description>
 不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......
@@ -144,7 +144,7 @@
 </div>
 <footer class=post-footer>
 <ul class=post-tags>
-<li><a href=https://mars23003.github.io/blog/tags/javascript/>javaScript</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/javascript/>JavaScript</a></li>
 </ul>
 <nav class=paginav>
 <a class=next href=https://mars23003.github.io/blog/posts/frontend/css/using-css/>
