@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>C# 存取修飾詞筆記 | Mars's Blog</title>
+<title>[C#] 存取修飾詞筆記 | Mars's Blog</title>
 <meta name=keywords content="public,internal,private,protected,protected internal,private protected">
 <meta name=description content="在C#中，我們可以使用不同的存取修飾詞來控制類型或成員的可訪問性。這些存取修飾詞可以影響其他程式碼對類型或成員的存取範圍，以下是各種存取修飾詞及其作用：">
 <meta name=author content="Mars">
@@ -24,17 +24,17 @@
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HNR9M4TL13"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="C# 存取修飾詞筆記">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="[C#] 存取修飾詞筆記">
 <meta property="og:description" content="在C#中，我們可以使用不同的存取修飾詞來控制類型或成員的可訪問性。這些存取修飾詞可以影響其他程式碼對類型或成員的存取範圍，以下是各種存取修飾詞及其作用：">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mars23003.github.io/blog/posts/csharp/accessmodifiers/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2024-05-16T07:18:40+08:00">
 <meta property="article:modified_time" content="2024-05-16T07:18:40+08:00">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="C# 存取修飾詞筆記">
+<meta name=twitter:title content="[C#] 存取修飾詞筆記">
 <meta name=twitter:description content="在C#中，我們可以使用不同的存取修飾詞來控制類型或成員的可訪問性。這些存取修飾詞可以影響其他程式碼對類型或成員的存取範圍，以下是各種存取修飾詞及其作用：">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"C# 存取修飾詞筆記","item":"https://mars23003.github.io/blog/posts/csharp/accessmodifiers/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"C# 存取修飾詞筆記","name":"C# 存取修飾詞筆記","description":"在C#中，我們可以使用不同的存取修飾詞來控制類型或成員的可訪問性。這些存取修飾詞可以影響其他程式碼對類型或成員的存取範圍，以下是各種存取修飾詞及其作用：","keywords":["public","internal","private","protected","protected internal","private protected"],"articleBody":"  public：\n 作用：表示公開，允許任何程式碼存取。 存取範圍：無限制，任何地方都可以存取。    private：\n 作用：表示私有，只允許同一類別內部的程式碼存取。 存取範圍：僅限本身類別可以存取。    protected：\n 作用：表示保護，只允許父類別或衍生自父類別的子類別存取。 存取範圍：父類別或繼承自父類別的子類別。    internal：\n 作用：表示內部，僅限於目前專案（組件）中存取,即為在同一個dll裡面可以存取。 存取範圍：限制於目前專案中。    protected internal：\n 作用：限於目前專案或是繼承自父類別。 存取範圍：目前專案或是繼承自父類別。    private protected：\n 作用：它是在C# 7.2版本中引入的,存取範圍限於目前專案內包含類別或衍生自包含類別的類型。 存取範圍：目前專案內包含類別或衍生自包含類別的類型。    透過以上存取修飾詞的設定，我們可以細緻地控制程式碼的存取範圍，保護類型或成員不受未授權程式碼的存取。這有助於提高程式碼的安全性和模組化。\n以上是在C#中使用不同存取修飾詞來控制類型或成員的可訪問性的介紹。這些存取修飾詞在設計和開發程式碼時扮演著重要的角色，幫助我們確保程式碼的安全性和可維護性。\n microsoft access-modifiers\n ","wordCount":"488","inLanguage":"zh-tw","datePublished":"2024-05-16T07:18:40+08:00","dateModified":"2024-05-16T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/csharp/accessmodifiers/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[C#] 存取修飾詞筆記","item":"https://mars23003.github.io/blog/posts/csharp/accessmodifiers/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[C#] 存取修飾詞筆記","name":"[C#] 存取修飾詞筆記","description":"在C#中，我們可以使用不同的存取修飾詞來控制類型或成員的可訪問性。這些存取修飾詞可以影響其他程式碼對類型或成員的存取範圍，以下是各種存取修飾詞及其作用：","keywords":["public","internal","private","protected","protected internal","private protected"],"articleBody":"  public：\n 作用：表示公開，允許任何程式碼存取。 存取範圍：無限制，任何地方都可以存取。    private：\n 作用：表示私有，只允許同一類別內部的程式碼存取。 存取範圍：僅限本身類別可以存取。    protected：\n 作用：表示保護，只允許父類別或衍生自父類別的子類別存取。 存取範圍：父類別或繼承自父類別的子類別。    internal：\n 作用：表示內部，僅限於目前專案（組件）中存取,即為在同一個dll裡面可以存取。 存取範圍：限制於目前專案中。    protected internal：\n 作用：限於目前專案或是繼承自父類別。 存取範圍：目前專案或是繼承自父類別。    private protected：\n 作用：它是在C# 7.2版本中引入的,存取範圍限於目前專案內包含類別或衍生自包含類別的類型。 存取範圍：目前專案內包含類別或衍生自包含類別的類型。    透過以上存取修飾詞的設定，我們可以細緻地控制程式碼的存取範圍，保護類型或成員不受未授權程式碼的存取。這有助於提高程式碼的安全性和模組化。\n以上是在C#中使用不同存取修飾詞來控制類型或成員的可訪問性的介紹。這些存取修飾詞在設計和開發程式碼時扮演著重要的角色，幫助我們確保程式碼的安全性和可維護性。\n microsoft access-modifiers\n ","wordCount":"488","inLanguage":"zh-tw","datePublished":"2024-05-16T07:18:40+08:00","dateModified":"2024-05-16T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/csharp/accessmodifiers/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -76,7 +76,7 @@
 <header class=post-header>
 <div class=breadcrumbs><a href=https://mars23003.github.io/blog/>首頁</a>&nbsp;»&nbsp;<a href=https://mars23003.github.io/blog/posts/>文章 </a></div>
 <h1 class=post-title>
-C# 存取修飾詞筆記
+[C#] 存取修飾詞筆記
 </h1>
 <div class=post-description>
 在C#中，我們可以使用不同的存取修飾詞來控制類型或成員的可訪問性。這些存取修飾詞可以影響其他程式碼對類型或成員的存取範圍，以下是各種存取修飾詞及其作用：
