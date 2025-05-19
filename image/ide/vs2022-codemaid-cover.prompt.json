@@ -1,0 +1,9 @@
+{
+  "title": "VS2022 使用 CodeMaid 的指南",
+  "description": "文章主題標題，搭配程式碼背景，適合用於 SEO og:image 或文章首圖。建議尺寸 1200x630 px。",
+  "prompt": "以深色程式碼編輯器背景為底，中央以大字體顯示『VS2022 使用 CodeMaid 的指南』，下方可加上 Visual Studio 及 CodeMaid 小圖示，整體風格現代、專業，適合技術部落格封面。文字與背景對比明顯，利於社群分享預覽。",
+  "size": "1200x630",
+  "format": "jpg",
+  "category": "ide",
+  "suggested_filename": "vs2022-codemaid-cover.jpg"
+}
