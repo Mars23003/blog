@@ -1,8 +1,135 @@
+<p>Composite Pattern（組合模式）是一種結構型設計模式，旨在將對象組織成樹狀結構，使客戶端對單個對象和組合對象的處理方式保持一致。</p>
+<h2 id=composite-pattern的四個要素>Composite Pattern的四個要素：</h2>
+<p>四個要素的簡單介紹如下：</p>
+<ol>
+<li><strong>模式名稱</strong>：</li>
+</ol>
+<blockquote>
+<p>Composite Pattern（組合模式）</p>
+</blockquote>
+<ol start=2>
+<li><strong>問題</strong>：</li>
+</ol>
+<blockquote>
+<p>需要以一致的方式處理單個對象和組合對象，並在不同層級結構中運行操作。</p>
+</blockquote>
+<ol start=3>
+<li><strong>解決方案</strong>：</li>
+</ol>
+<blockquote>
+<p>使用組合模式將對象組織成樹狀結構，其中包含兩種類型的對象：葉子對象和容器對象。葉子對象表示結構的最終節點，而容器對象可以包含子對象，並對子對象進行相同的操作。</p>
+</blockquote>
+<ol start=4>
+<li><strong>結果</strong>：</li>
+</ol>
+<blockquote>
+<p>組合模式使得客戶端可以對整個結構或單個對象進行統一的操作，同時也可以輕鬆地添加新的對象類型，擴展結構。</p>
+</blockquote>
+<h2 id=在c中可以通過以下方式進行composite-pattern的實作>在C#中，可以通過以下方式進行Composite Pattern的實作：</h2>
+<p>建立組合對象的基本抽象類（Component）：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>abstract</span> <span class=k>class</span> <span class=nc>Component</span>
+<span class=p>{</span>
+    <span class=k>protected</span> <span class=kt>string</span> <span class=n>name</span><span class=p>;</span>
+
+    <span class=k>public</span> <span class=n>Component</span><span class=p>(</span><span class=kt>string</span> <span class=n>name</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=k>this</span><span class=p>.</span><span class=n>name</span> <span class=p>=</span> <span class=n>name</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>abstract</span> <span class=k>void</span> <span class=n>Operation</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><p>建立葉子對象（Leaf）繼承自Component：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Leaf</span> <span class=p>:</span> <span class=n>Component</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=n>Leaf</span><span class=p>(</span><span class=kt>string</span> <span class=n>name</span><span class=p>)</span> <span class=p>:</span> <span class=k>base</span><span class=p>(</span><span class=n>name</span><span class=p>)</span>
+    <span class=p>{</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>override</span> <span class=k>void</span> <span class=n>Operation</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>$&#34;Leaf {name} is performing operation.&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>建立容器對象（Composite）繼承自Component，並包含子對象的集合：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Composite</span> <span class=p>:</span> <span class=n>Component</span>
+<span class=p>{</span>
+    <span class=k>private</span> <span class=n>List</span><span class=p>&lt;</span><span class=n>Component</span><span class=p>&gt;</span> <span class=n>components</span><span class=p>;</span>
+
+    <span class=k>public</span> <span class=n>Composite</span><span class=p>(</span><span class=kt>string</span> <span class=n>name</span><span class=p>)</span> <span class=p>:</span> <span class=k>base</span><span class=p>(</span><span class=n>name</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=n>components</span> <span class=p>=</span> <span class=k>new</span> <span class=n>List</span><span class=p>&lt;</span><span class=n>Component</span><span class=p>&gt;();</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>Add</span><span class=p>(</span><span class=n>Component</span> <span class=n>component</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=n>components</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=n>component</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>Remove</span><span class=p>(</span><span class=n>Component</span> <span class=n>component</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=n>components</span><span class=p>.</span><span class=n>Remove</span><span class=p>(</span><span class=n>component</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>override</span> <span class=k>void</span> <span class=n>Operation</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>$&#34;Composite {name} is performing operation.&#34;</span><span class=p>);</span>
+        
+        <span class=k>foreach</span> <span class=p>(</span><span class=kt>var</span> <span class=n>component</span> <span class=k>in</span> <span class=n>components</span><span class=p>)</span>
+        <span class=p>{</span>
+            <span class=n>component</span><span class=p>.</span><span class=n>Operation</span><span class=p>();</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>測試程式碼：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>class</span> <span class=nc>Program</span>
+<span class=p>{</span>
+    <span class=k>static</span> <span class=k>void</span> <span class=n>Main</span><span class=p>(</span><span class=kt>string</span><span class=p>[]</span> <span class=n>args</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=c1>// 初始化葉子對象
+</span><span class=c1></span>        <span class=kt>var</span> <span class=n>leaf1</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Leaf</span><span class=p>(</span><span class=s>&#34;Leaf 1&#34;</span><span class=p>);</span>
+        <span class=kt>var</span> <span class=n>leaf2</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Leaf</span><span class=p>(</span><span class=s>&#34;Leaf 2&#34;</span><span class=p>);</span>
+        <span class=kt>var</span> <span class=n>leaf3</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Leaf</span><span class=p>(</span><span class=s>&#34;Leaf 3&#34;</span><span class=p>);</span>
+
+        <span class=c1>// 初始化容器對象
+</span><span class=c1></span>        <span class=kt>var</span> <span class=n>composite1</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Composite</span><span class=p>(</span><span class=s>&#34;Composite 1&#34;</span><span class=p>);</span>
+        <span class=kt>var</span> <span class=n>composite2</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Composite</span><span class=p>(</span><span class=s>&#34;Composite 2&#34;</span><span class=p>);</span>
+
+
+        <span class=c1>// 將葉子對象添加到容器中
+</span><span class=c1></span>        <span class=n>composite1</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=n>leaf1</span><span class=p>);</span>
+        <span class=n>composite1</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=n>leaf2</span><span class=p>);</span>
+        <span class=n>composite2</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=n>leaf3</span><span class=p>);</span>
+
+        <span class=c1>// 將容器對象添加到容器中，形成結構
+</span><span class=c1></span>        <span class=n>composite1</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=n>composite2</span><span class=p>);</span>
+
+        <span class=c1>// 執行操作
+</span><span class=c1></span>        <span class=n>composite1</span><span class=p>.</span><span class=n>Operation</span><span class=p>();</span>
+
+        <span class=cm>/*
+</span><span class=cm>         * 輸出結果：
+</span><span class=cm>         * Composite Composite 1 is performing operation.
+</span><span class=cm>         * Leaf Leaf 1 is performing operation.
+</span><span class=cm>         * Leaf Leaf 2 is performing operation.
+</span><span class=cm>         * Composite Composite 2 is performing operation.
+</span><span class=cm>         * Leaf Leaf 3 is performing operation.
+</span><span class=cm>         */</span>
+
+        <span class=n>Console</span><span class=p>.</span><span class=n>ReadLine</span><span class=p>();</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><blockquote>
+<p>以上程式碼中，我們建立了葉子對象（Leaf）和容器對象（Composite），並通過添加和移除的方式構建了一個結構。
+最後，我們調用容器對象的Operation方法，該方法遞歸地調用了所有子對象的Operation方法，實現了一致的操作。</p>
+</blockquote>
+<blockquote>
+<p>這是Composite Pattern在C#中的基本實現方式。藉助Composite Pattern，您可以方便地處理具有層次結構的對象，同時保持操作的一致性。</p>
+</blockquote>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/designpattern/bridgepattern/>[Design Pattern] 掌握設計模式：Bridge Pattern原理與應用</a></li>
 <li><a href=/blog/posts/designpattern/adapterpattern/>[Design Pattern] 掌握設計模式：Adapter Pattern原理與應用</a></li>
 <li><a href=/blog/posts/designpattern/prototypepattern/>[Design Pattern] 掌握設計模式：Prototype Pattern原理與應用</a></li>
 <li><a href=/blog/posts/designpattern/builderpattern/>[Design Pattern] 掌握設計模式：Builder Pattern原理與應用</a></li>
-<li><a href=/blog/posts/designpattern/factorycomparison/>[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析</a></li>
+<li><a href=/blog/posts/designpattern/abstractfactorypattern/>[Design Pattern] 掌握設計模式：Abstract Factory Pattern原理與應用</a></li>
 </ul>

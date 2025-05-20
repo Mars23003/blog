@@ -1,3 +1,90 @@
+<p><font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 是 C# 中的一個泛型類別，它提供了一種方式來進行延遲初始化，即在需要使用之前不會初始化它。</p>
+<p>可能的兩個使用情境:</p>
+<ol>
+<li>當建立某個物件會耗費大量資源，而程式可能不使用它時。</li>
+<li>當建立某個物件會耗費大量資源，而您想要延遲到完成其他耗費資源的作業後，再建立它。</li>
+</ol>
+<h2 id=font-colorc7254e-stylebackground-f9f2f4-lazytfont-簡單範例><font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 簡單範例：</h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>using</span> <span class=nn>System</span><span class=p>;</span>
+<span class=k>using</span> <span class=nn>System.Threading</span><span class=p>;</span>
+
+<span class=k>class</span> <span class=nc>Program</span>
+<span class=p>{</span>
+    <span class=k>static</span> <span class=k>void</span> <span class=n>Main</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=n>Lazy</span><span class=p>&lt;</span><span class=kt>string</span><span class=p>&gt;</span> <span class=n>lazyString</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Lazy</span><span class=p>&lt;</span><span class=kt>string</span><span class=p>&gt;(()</span> <span class=p>=&gt;</span>
+        <span class=p>{</span>
+            <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>&#34;執行A計算...&#34;</span><span class=p>);</span>
+            <span class=n>Thread</span><span class=p>.</span><span class=n>Sleep</span><span class=p>(</span><span class=m>2000</span><span class=p>);</span>
+            <span class=k>return</span> <span class=s>&#34;這是A計算結果&#34;</span><span class=p>;</span>
+        <span class=p>});</span>
+
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>&#34;執行B計算...&#34;</span><span class=p>);</span>
+
+        <span class=c1>// 等待兩秒
+</span><span class=c1></span>        <span class=n>Thread</span><span class=p>.</span><span class=n>Sleep</span><span class=p>(</span><span class=m>2000</span><span class=p>);</span>
+
+        <span class=c1>// 使用 Lazy&lt;T&gt; 的值
+</span><span class=c1></span>        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=n>lazyString</span><span class=p>.</span><span class=n>Value</span><span class=p>);</span>
+
+        <span class=n>Console</span><span class=p>.</span><span class=n>ReadLine</span><span class=p>();</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>在此範例中，我們創建了一個 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<string></strong></font> 物件，該物件會在需要時執行計算。在 Main 方法的開始部分，我們不會立即初始化這個物件，而是先執行一些其他計算。接下來，我們等待兩秒後，才呼叫 lazyString.Value，這時才會執行該物件的初始化，並且返回計算的結果。</p>
+<p>當我們執行這個範例時，它的輸出應該會如下所示：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>執行B計算...
+執行A計算...
+這是A計算結果
+</code></pre></div><blockquote>
+<p>可以看到，<font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 物件的初始化被推遲到了需要使用其值時才執行。</p>
+</blockquote>
+<p>值得注意的是，<font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 的初始化只會發生一次，即使它被多次使用。這是因為 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 使用了一個稱為“double-checked locking”的技術，它可以確保只有一個執行緒在初始化期間可以訪問該物件。如果多個執行緒同時嘗試訪問該物件，它們會在等待 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 的初始化完成之前被阻塞。</p>
+<h2 id=font-colorc7254e-stylebackground-f9f2f4-lazytfont-thread-safe範例><font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> Thread safe範例</h2>
+<p>以下是一個使用 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 創建單例模式的範例，並確保它是 thread safe 的：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Singleton</span>
+<span class=p>{</span>
+    <span class=k>private</span> <span class=k>static</span> <span class=k>readonly</span> <span class=n>Lazy</span><span class=p>&lt;</span><span class=n>Singleton</span><span class=p>&gt;</span> <span class=n>instance</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Lazy</span><span class=p>&lt;</span><span class=n>Singleton</span><span class=p>&gt;(()</span> <span class=p>=&gt;</span> <span class=k>new</span> <span class=n>Singleton</span><span class=p>(),</span> <span class=n>LazyThreadSafetyMode</span><span class=p>.</span><span class=n>ExecutionAndPublication</span><span class=p>);</span>
+
+    <span class=k>private</span> <span class=n>Singleton</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=c1>// 建構子為 private，以防止從外部實例化
+</span><span class=c1></span>    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>static</span> <span class=n>Singleton</span> <span class=n>Instance</span>
+    <span class=p>{</span>
+        <span class=k>get</span> <span class=p>{</span> <span class=k>return</span> <span class=n>instance</span><span class=p>.</span><span class=n>Value</span><span class=p>;</span> <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>在上面的範例中，我們使用 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 創建 Singleton 類別的單例實例。由於 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 預設是執行緒安全的，但建議指定 LazyThreadSafetyMode.ExecutionAndPublication 以確保在初始化期間和初始化完成後都是執行緒安全的。因此，即使有多個執行緒同時訪問 Singleton.Instance 屬性，也不會導致多個實例被創建。</p>
+<p>值得注意的是，<font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 並不能解決所有的 thread safety 問題。在某些情況下，我們可能需要使用其他同步機制，例如 lock 關鍵字。</p>
+<h2 id=font-colorc7254e-stylebackground-f9f2f4-lazytfont-的一些常用屬性和方法><font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 的一些常用屬性和方法：</h2>
+<ol>
+<li>
+<p><font color=#c7254e style="background: #f9f2f4"> <strong>Value</strong></font>：用於獲取 Lazy<t> 的值，如果 Lazy<t> 還沒有初始化，則在第一次呼叫時會進行初始化。</p>
+</li>
+<li>
+<p><font color=#c7254e style="background: #f9f2f4"> <strong>IsValueCreated</strong></font>：用於檢查 Lazy<t> 是否已經初始化。</p>
+</li>
+<li>
+<p><font color=#c7254e style="background: #f9f2f4"> <strong>LazyThreadSafetyMode</strong></font>：用於指定 Lazy<t> 的執行緒安全性，有三個可選值：</p>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li>None：Lazy<t> 不是執行緒安全的，這意味著多個執行緒可以同時訪問它，並導致一些問題，建議只有在確定只有一個執行緒會訪問該物件時使用此選項。</li>
+<li>PublicationOnly：Lazy<t> 在初始化完成後變為執行緒安全，這意味著在初始化期間可能會有多個執行緒同時訪問該物件。</li>
+<li>ExecutionAndPublication：Lazy<t> 在初始化期間和初始化完成後都是執行緒安全的，這意味著在初始化期間只有一個執行緒可以訪問該物件。</li>
+</ul>
+</blockquote>
+<ol start=4>
+<li><font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t>()建構子</strong></font>：用於創建 Lazy<t> 物件，接受一個 Func<t> 委託，該委託將在需要時執行以初始化 Lazy<t>。</li>
+</ol>
+<blockquote>
+<p>如上述範例中，我們使用了 Lambda 表達式定義了一個 Func<singleton> 委託，它將在需要時初始化 Lazy<singleton>。</p>
+</blockquote>
+<p>具體來說，這個委託創建了一個新的 Singleton 物件，並將其作為 Lazy<singleton> 的值返回。</p>
+<h2 id=小結>小結</h2>
+<p>使用 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 可以讓我們在需要時才執行昂貴的操作，從而提高應用程式的效能。然而，如果我們的程式需要經常訪問 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 的值，則可能會導致不必要的延遲和效能問題。因此，在使用 <font color=#c7254e style="background: #f9f2f4"> <strong>Lazy<t></strong></font> 時需要注意適當的使用情境，以避免出現效能問題。</p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/csharp/accessmodifiers/>[C#] 存取修飾詞筆記</a></li>

@@ -1,3 +1,156 @@
+<h1 id=前端-html-常用-tag-說明與範例>前端 HTML 常用 Tag 說明與範例</h1>
+<p>本篇整理常見 HTML 標籤的用途與語法範例，適合初學者快速查閱與學習。</p>
+<h2 id=1-標題與段落>1. 標題與段落</h2>
+<ul>
+<li><code>&lt;h1></code> ~ <code>&lt;h6></code>：標題，數字越小字體越大。</li>
+<li><code>&lt;p></code>：段落。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>主標題<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;</span>次標題<span class=p>&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>這是一段文字。<span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+</code></pre></div><h2 id=2-連結與圖片>2. 連結與圖片</h2>
+<ul>
+<li><code>&lt;a></code>：超連結。</li>
+<li><code>&lt;img></code>：圖片。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;https://www.google.com&#34;</span><span class=p>&gt;</span>Google<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>img</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;/static/image/hugocover.png&#34;</span> <span class=na>alt</span><span class=o>=</span><span class=s>&#34;封面圖&#34;</span> <span class=p>/&gt;</span>
+</code></pre></div><h2 id=3-清單>3. 清單</h2>
+<ul>
+<li><code>&lt;ul></code>：無序清單。</li>
+<li><code>&lt;ol></code>：有序清單。</li>
+<li><code>&lt;li></code>：清單項目。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>ul</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>li</span><span class=p>&gt;</span>項目一<span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>li</span><span class=p>&gt;</span>項目二<span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>ul</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>ol</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>li</span><span class=p>&gt;</span>步驟一<span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>li</span><span class=p>&gt;</span>步驟二<span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>ol</span><span class=p>&gt;</span>
+</code></pre></div><h2 id=4-表格>4. 表格</h2>
+<ul>
+<li><code>&lt;table></code>：表格。</li>
+<li><code>&lt;tr></code>：表格列。</li>
+<li><code>&lt;th></code>：表頭。</li>
+<li><code>&lt;td></code>：儲存格。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>table</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>tr</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>th</span><span class=p>&gt;</span>姓名<span class=p>&lt;/</span><span class=nt>th</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>th</span><span class=p>&gt;</span>年齡<span class=p>&lt;/</span><span class=nt>th</span><span class=p>&gt;</span>
+  <span class=p>&lt;/</span><span class=nt>tr</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>tr</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>td</span><span class=p>&gt;</span>小明<span class=p>&lt;/</span><span class=nt>td</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>td</span><span class=p>&gt;</span>18<span class=p>&lt;/</span><span class=nt>td</span><span class=p>&gt;</span>
+  <span class=p>&lt;/</span><span class=nt>tr</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>table</span><span class=p>&gt;</span>
+</code></pre></div><h2 id=5-表單>5. 表單</h2>
+<ul>
+<li><code>&lt;form></code>：表單。</li>
+<li><code>&lt;input></code>：輸入欄位。</li>
+<li><code>&lt;label></code>：欄位標籤。</li>
+<li><code>&lt;button></code>：按鈕。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>form</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>label</span> <span class=na>for</span><span class=o>=</span><span class=s>&#34;name&#34;</span><span class=p>&gt;</span>姓名：<span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>input</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;name&#34;</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;name&#34;</span> <span class=p>/&gt;</span>
+  <span class=p>&lt;</span><span class=nt>button</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;submit&#34;</span><span class=p>&gt;</span>送出<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
+</code></pre></div><h2 id=6-其他常用標籤>6. 其他常用標籤</h2>
+<ul>
+<li><code>&lt;div></code>：區塊元素，常用於版面切割。</li>
+<li><code>&lt;span></code>：行內元素，常用於文字標記。</li>
+<li><code>&lt;br></code>：換行。</li>
+<li><code>&lt;hr></code>：水平線。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;</span>這是一個區塊<span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>span</span><span class=p>&gt;</span>這是行內文字<span class=p>&lt;/</span><span class=nt>span</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>br</span> <span class=p>/&gt;</span>
+<span class=p>&lt;</span><span class=nt>hr</span> <span class=p>/&gt;</span>
+</code></pre></div><h2 id=7-區塊語意標籤html5-semantic-tags>7. 區塊語意標籤（HTML5 Semantic Tags）</h2>
+<ul>
+<li><code>&lt;header></code>：頁首區域，通常放 logo、主選單。</li>
+<li><code>&lt;nav></code>：導覽列。</li>
+<li><code>&lt;main></code>：主要內容區。</li>
+<li><code>&lt;section></code>：章節區塊。</li>
+<li><code>&lt;article></code>：獨立內容（如一篇文章）。</li>
+<li><code>&lt;aside></code>：側邊欄。</li>
+<li><code>&lt;footer></code>：頁尾。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>header</span><span class=p>&gt;</span>網站標題<span class=p>&lt;/</span><span class=nt>header</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>nav</span><span class=p>&gt;</span>主選單<span class=p>&lt;/</span><span class=nt>nav</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>main</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>section</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>article</span><span class=p>&gt;</span>
+      <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;</span>文章標題<span class=p>&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+      <span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>文章內容...<span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>article</span><span class=p>&gt;</span>
+  <span class=p>&lt;/</span><span class=nt>section</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>aside</span><span class=p>&gt;</span>相關連結<span class=p>&lt;/</span><span class=nt>aside</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>main</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>footer</span><span class=p>&gt;</span>版權資訊<span class=p>&lt;/</span><span class=nt>footer</span><span class=p>&gt;</span>
+</code></pre></div><h2 id=8-媒體標籤>8. 媒體標籤</h2>
+<ul>
+<li><code>&lt;audio></code>：音訊播放。</li>
+<li><code>&lt;video></code>：影片播放。</li>
+<li><code>&lt;source></code>：多媒體來源。</li>
+<li><code>&lt;iframe></code>：嵌入其他網頁。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>audio</span> <span class=na>controls</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>source</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;music.mp3&#34;</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;audio/mpeg&#34;</span><span class=p>&gt;</span>
+  您的瀏覽器不支援 audio 標籤。
+<span class=p>&lt;/</span><span class=nt>audio</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>video</span> <span class=na>width</span><span class=o>=</span><span class=s>&#34;320&#34;</span> <span class=na>height</span><span class=o>=</span><span class=s>&#34;240&#34;</span> <span class=na>controls</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>source</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;movie.mp4&#34;</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;video/mp4&#34;</span><span class=p>&gt;</span>
+  您的瀏覽器不支援 video 標籤。
+<span class=p>&lt;/</span><span class=nt>video</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>iframe</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://www.example.com&#34;</span> <span class=na>width</span><span class=o>=</span><span class=s>&#34;300&#34;</span> <span class=na>height</span><span class=o>=</span><span class=s>&#34;200&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>iframe</span><span class=p>&gt;</span>
+</code></pre></div><h2 id=9-輸入控制與互動元素>9. 輸入控制與互動元素</h2>
+<ul>
+<li><code>&lt;select></code>：下拉選單。</li>
+<li><code>&lt;option></code>：選項。</li>
+<li><code>&lt;textarea></code>：多行文字輸入。</li>
+<li><code>&lt;fieldset></code>：表單群組。</li>
+<li><code>&lt;legend></code>：群組標題。</li>
+<li><code>&lt;progress></code>：進度條。</li>
+<li><code>&lt;meter></code>：計量器。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>form</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>fieldset</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>legend</span><span class=p>&gt;</span>個人資訊<span class=p>&lt;/</span><span class=nt>legend</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>label</span> <span class=na>for</span><span class=o>=</span><span class=s>&#34;gender&#34;</span><span class=p>&gt;</span>性別：<span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>select</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;gender&#34;</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;gender&#34;</span><span class=p>&gt;</span>
+      <span class=p>&lt;</span><span class=nt>option</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;male&#34;</span><span class=p>&gt;</span>男<span class=p>&lt;/</span><span class=nt>option</span><span class=p>&gt;</span>
+      <span class=p>&lt;</span><span class=nt>option</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;female&#34;</span><span class=p>&gt;</span>女<span class=p>&lt;/</span><span class=nt>option</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>select</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>br</span> <span class=p>/&gt;</span>
+    <span class=p>&lt;</span><span class=nt>label</span> <span class=na>for</span><span class=o>=</span><span class=s>&#34;desc&#34;</span><span class=p>&gt;</span>自我介紹：<span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>textarea</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;desc&#34;</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;desc&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>textarea</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>br</span> <span class=p>/&gt;</span>
+    <span class=p>&lt;</span><span class=nt>progress</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;70&#34;</span> <span class=na>max</span><span class=o>=</span><span class=s>&#34;100&#34;</span><span class=p>&gt;</span>70%<span class=p>&lt;/</span><span class=nt>progress</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>meter</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;0.6&#34;</span><span class=p>&gt;</span>60%<span class=p>&lt;/</span><span class=nt>meter</span><span class=p>&gt;</span>
+  <span class=p>&lt;/</span><span class=nt>fieldset</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
+</code></pre></div><h2 id=10-其他輔助標籤>10. 其他輔助標籤</h2>
+<ul>
+<li><code>&lt;mark></code>：標記重點文字。</li>
+<li><code>&lt;code></code>：程式碼片段。</li>
+<li><code>&lt;pre></code>：保留格式的文字。</li>
+<li><code>&lt;sup></code>：上標。</li>
+<li><code>&lt;sub></code>：下標。</li>
+<li><code>&lt;abbr></code>：縮寫。</li>
+<li><code>&lt;time></code>：時間。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>這是<span class=p>&lt;</span><span class=nt>mark</span><span class=p>&gt;</span>重點<span class=p>&lt;/</span><span class=nt>mark</span><span class=p>&gt;</span>說明。<span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>pre</span><span class=p>&gt;&lt;</span><span class=nt>code</span><span class=p>&gt;</span>let x = 10;<span class=p>&lt;/</span><span class=nt>code</span><span class=p>&gt;&lt;/</span><span class=nt>pre</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>水的化學式是 H<span class=p>&lt;</span><span class=nt>sub</span><span class=p>&gt;</span>2<span class=p>&lt;/</span><span class=nt>sub</span><span class=p>&gt;</span>O。<span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>平方：x<span class=p>&lt;</span><span class=nt>sup</span><span class=p>&gt;</span>2<span class=p>&lt;/</span><span class=nt>sup</span><span class=p>&gt;&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>abbr</span> <span class=na>title</span><span class=o>=</span><span class=s>&#34;HyperText Markup Language&#34;</span><span class=p>&gt;</span>HTML<span class=p>&lt;/</span><span class=nt>abbr</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>time</span> <span class=na>datetime</span><span class=o>=</span><span class=s>&#34;2025-05-19&#34;</span><span class=p>&gt;</span>2025年5月19日<span class=p>&lt;/</span><span class=nt>time</span><span class=p>&gt;</span>
+</code></pre></div><hr>
+<p>以上為 HTML 常用標籤與語法範例，建議多加練習並搭配 CSS 美化，讓網頁更具延展性與互動性！</p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/frontend/html/what-is-html/>[HTML]HTML基本介紹</a></li>

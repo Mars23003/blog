@@ -1,3 +1,129 @@
+<p>Builder Pattern通常由Director、Builder和Product三個角色組成。其中Director負責調用Builder進行構建，而Builder則負責實際進行構建工作，最終產生Product。
+其可以應用於多種場景，例如創建複雜的對象、創建可配置的對象、創建大量相似的對象等，
+但需要注意一些細節，例如Builder的可重用性、Builder與Product的耦合度、Builder的抽象程度等。
+與其他設計模式，例如Abstract Factory Pattern、Prototype Pattern、Factory Method Pattern等，都有相似之處，但也有不同之處，需要根據具體情況進行選擇。
+在實現Builder Pattern時，可以使用流暢界面（Fluent Interface）等技術來進行實現。</p>
+<h2 id=簡介>簡介</h2>
+<ol>
+<li><strong>設計模式</strong>：</li>
+</ol>
+<blockquote>
+<p>建造者模式 (Builder Pattern)</p>
+</blockquote>
+<ol start=2>
+<li><strong>問題</strong>：</li>
+</ol>
+<blockquote>
+<p>當一個物件需要進行複雜的建構過程，包含多個步驟和依賴關係時，使用傳統的建構子或工廠方法可能會導致代碼複雜度和可讀性的問題。</p>
+</blockquote>
+<ol start=3>
+<li><strong>解決方案</strong>：</li>
+</ol>
+<blockquote>
+<p>使用建造者模式，將物件建構過程的每個步驟封裝在一個獨立的建造者類別中，使得建構過程的每個步驟都可以被定制，最終將所有的步驟組裝成一個完整的物件。</p>
+</blockquote>
+<ol start=4>
+<li><strong>結果</strong>：</li>
+</ol>
+<blockquote>
+<p>建造者模式可以將複雜的建構過程分解成多個簡單的步驟，減少了代碼的複雜度和可讀性問題，同時提高了可維護性和擴展性。</p>
+</blockquote>
+<h2 id=以下是建造者模式在-c-中的重點整理和實作>以下是建造者模式在 C# 中的重點整理和實作：</h2>
+<p>以下是建造者模式在 C# 中的重點整理和實作：</p>
+<ol>
+<li>定義一個建造者介面，該介面包含所有建構過程的步驟，以及最終獲得結果的方法。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>interface</span> <span class=n>IBuilder</span>
+<span class=p>{</span>
+    <span class=k>void</span> <span class=n>BuildPartA</span><span class=p>();</span>
+    <span class=k>void</span> <span class=n>BuildPartB</span><span class=p>();</span>
+    <span class=k>void</span> <span class=n>BuildPartC</span><span class=p>();</span>
+    <span class=n>Product</span> <span class=n>GetResult</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><ol start=2>
+<li>實作建造者類別，該類別實現建造者介面的所有方法，並保存正在建構的物件。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>ConcreteBuilder</span> <span class=p>:</span> <span class=n>IBuilder</span>
+<span class=p>{</span>
+    <span class=k>private</span> <span class=n>Product</span> <span class=m>_</span><span class=n>product</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Product</span><span class=p>();</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>BuildPartA</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=m>_</span><span class=n>product</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=s>&#34;PartA&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>BuildPartB</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=m>_</span><span class=n>product</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=s>&#34;PartB&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>BuildPartC</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=m>_</span><span class=n>product</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=s>&#34;PartC&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=n>Product</span> <span class=n>GetResult</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=k>return</span> <span class=m>_</span><span class=n>product</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><ol start=3>
+<li>定義一個產品類別，該類別用於保存建造過程中的結果。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Product</span>
+<span class=p>{</span>
+    <span class=k>private</span> <span class=n>List</span><span class=p>&lt;</span><span class=kt>string</span><span class=p>&gt;</span> <span class=m>_</span><span class=n>parts</span> <span class=p>=</span> <span class=k>new</span> <span class=n>List</span><span class=p>&lt;</span><span class=kt>string</span><span class=p>&gt;();</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>Add</span><span class=p>(</span><span class=kt>string</span> <span class=n>part</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=m>_</span><span class=n>parts</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span><span class=n>part</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=kt>string</span> <span class=n>ListParts</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=k>return</span> <span class=kt>string</span><span class=p>.</span><span class=n>Join</span><span class=p>(</span><span class=s>&#34;, &#34;</span><span class=p>,</span> <span class=m>_</span><span class=n>parts</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><ol start=4>
+<li>定義一個指揮者類別，該類別用於指導建造過程，可以在不同的建造者之間進行切換。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Director</span>
+<span class=p>{</span>
+    <span class=k>private</span> <span class=n>IBuilder</span> <span class=m>_</span><span class=n>builder</span><span class=p>;</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>SetBuilder</span><span class=p>(</span><span class=n>IBuilder</span> <span class=n>builder</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=m>_</span><span class=n>builder</span> <span class=p>=</span> <span class=n>builder</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>BuildMinimalProduct</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=m>_</span><span class=n>builder</span><span class=p>.</span><span class=n>BuildPartA</span><span class=p>();</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>BuildFullFeaturedProduct</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=m>_</span><span class=n>builder</span><span class=p>.</span><span class=n>BuildPartA</span><span class=p>();</span><span class=m>_</span><span class=n>builder</span><span class=p>.</span><span class=n>BuildPartB</span><span class=p>();</span>
+<span class=m>_</span><span class=n>builder</span><span class=p>.</span><span class=n>BuildPartC</span><span class=p>();</span>
+<span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><ol start=5>
+<li>最後，我們可以使用建造者模式來初始化產品，可以使用不同的建造者來創建不同的產品。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=n>Director</span> <span class=n>director</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Director</span><span class=p>();</span>
+
+<span class=n>ConcreteBuilder</span> <span class=n>builder</span> <span class=p>=</span> <span class=k>new</span> <span class=n>ConcreteBuilder</span><span class=p>();</span>
+<span class=n>director</span><span class=p>.</span><span class=n>SetBuilder</span><span class=p>(</span><span class=n>builder</span><span class=p>);</span>
+
+<span class=n>director</span><span class=p>.</span><span class=n>BuildMinimalProduct</span><span class=p>();</span>
+<span class=n>Product</span> <span class=n>product1</span> <span class=p>=</span> <span class=n>builder</span><span class=p>.</span><span class=n>GetResult</span><span class=p>();</span>
+<span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>&#34;Minimal product parts: &#34;</span> <span class=p>+</span> <span class=n>product1</span><span class=p>.</span><span class=n>ListParts</span><span class=p>());</span>
+
+<span class=n>director</span><span class=p>.</span><span class=n>BuildFullFeaturedProduct</span><span class=p>();</span>
+<span class=n>Product</span> <span class=n>product2</span> <span class=p>=</span> <span class=n>builder</span><span class=p>.</span><span class=n>GetResult</span><span class=p>();</span>
+<span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>&#34;Full featured product parts: &#34;</span> <span class=p>+</span> <span class=n>product2</span><span class=p>.</span><span class=n>ListParts</span><span class=p>());</span>
+</code></pre></div><p>上述代碼中，我們首先創建一個 Director 物件，然後創建一個 ConcreteBuilder 物件並將其設置給 Director。接下來，我們使用 Director 對象來調用建造過程中的方法，最後獲取構建的產品。</p>
+<p>這樣，我們就成功地使用了建造者模式來創建一個複雜的物件，並將其過程分解成多個簡單的步驟。使用建造者模式可以使代碼更加可讀，可維護和可擴展，特別是在複雜的建構過程中。</p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/designpattern/compositepattern/>[Design Pattern] 掌握設計模式：Composite Pattern原理與應用</a></li>

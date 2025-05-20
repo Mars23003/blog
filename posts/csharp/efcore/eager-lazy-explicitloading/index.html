@@ -1,3 +1,81 @@
+<h2 id=eager-loading>Eager Loading</h2>
+<h3 id=概念說明>概念說明</h3>
+<p>在 Entity Framework Core 中，如果要將關聯資料載入查詢結果，可以使用 Eager Loading，它是將所有相關資料都載入記憶體中的方式。Eager Loading 可以使用 Include 方法來載入關聯資料。</p>
+<p>以下是 Eager Loading 的基本語法：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>var</span> <span class=n>orders</span> <span class=p>=</span> <span class=m>_</span><span class=n>context</span><span class=p>.</span><span class=n>Orders</span><span class=p>.</span><span class=n>Include</span><span class=p>(</span><span class=n>o</span> <span class=p>=&gt;</span> <span class=n>o</span><span class=p>.</span><span class=n>OrderDetails</span><span class=p>).</span><span class=n>ToList</span><span class=p>();</span>
+</code></pre></div><p>這個查詢將會載入 Orders 和相關的 OrderDetails 資料。</p>
+<h3 id=範例說明>範例說明</h3>
+<p>以下是 Microsoft 官方文件中有關 Eager Loading 的範例說明：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>using</span> <span class=p>(</span><span class=kt>var</span> <span class=n>context</span> <span class=p>=</span> <span class=k>new</span> <span class=n>BloggingContext</span><span class=p>())</span>
+<span class=p>{</span>
+    <span class=kt>var</span> <span class=n>blogs</span> <span class=p>=</span> <span class=n>context</span><span class=p>.</span><span class=n>Blogs</span>
+        <span class=p>.</span><span class=n>Include</span><span class=p>(</span><span class=n>blog</span> <span class=p>=&gt;</span> <span class=n>blog</span><span class=p>.</span><span class=n>Posts</span><span class=p>)</span>
+            <span class=p>.</span><span class=n>ThenInclude</span><span class=p>(</span><span class=n>post</span> <span class=p>=&gt;</span> <span class=n>post</span><span class=p>.</span><span class=n>Author</span><span class=p>)</span>
+        <span class=p>.</span><span class=n>ToList</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><p>這個範例會載入 Blogs、Blogs 的所有 Posts，以及每個 Post 的 Author 資料。</p>
+<h2 id=lazy-loading>Lazy Loading</h2>
+<h3 id=概念說明-1>概念說明</h3>
+<p>在 Entity Framework Core 中，如果要使用 Lazy Loading，必須先啟用它。它是在需要時才載入相關資料的方式。可以使用 virtual 關鍵字來啟用 Lazy Loading。此外，必須在 DbContext 的 OnConfiguring 方法中啟用 Lazy Loading。</p>
+<p>以下是啟用 Lazy Loading 的基本語法：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>protected</span> <span class=k>override</span> <span class=k>void</span> <span class=n>OnConfiguring</span><span class=p>(</span><span class=n>DbContextOptionsBuilder</span> <span class=n>optionsBuilder</span><span class=p>)</span>
+    <span class=p>=&gt;</span> <span class=n>optionsBuilder</span>
+        <span class=p>.</span><span class=n>UseLazyLoadingProxies</span><span class=p>()</span>
+        <span class=p>.</span><span class=n>UseSqlServer</span><span class=p>(</span><span class=n>myConnectionString</span><span class=p>);</span>
+</code></pre></div><p>使用 Lazy Loading 的時候，可以在需要時載入相關資料：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>var</span> <span class=n>orders</span> <span class=p>=</span> <span class=m>_</span><span class=n>context</span><span class=p>.</span><span class=n>Orders</span><span class=p>.</span><span class=n>ToList</span><span class=p>();</span>
+
+<span class=k>foreach</span> <span class=p>(</span><span class=kt>var</span> <span class=n>order</span> <span class=k>in</span> <span class=n>orders</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=kt>var</span> <span class=n>orderDetails</span> <span class=p>=</span> <span class=n>order</span><span class=p>.</span><span class=n>OrderDetails</span><span class=p>.</span><span class=n>ToList</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=範例說明-1>範例說明</h3>
+<p>以下是 Microsoft 官方文件中有關 Lazy Loading 的範例說明：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>using</span> <span class=p>(</span><span class=kt>var</span> <span class=n>context</span> <span class=p>=</span> <span class=k>new</span> <span class=n>BloggingContext</span><span class=p>())</span>
+<span class=p>{</span>
+    <span class=kt>var</span> <span class=n>blogs</span> <span class=p>=</span> <span class=n>context</span><span class=p>.</span><span class=n>Blogs</span><span class=p>.</span><span class=n>ToList</span><span class=p>();</span>
+
+    <span class=k>foreach</span> <span class=p>(</span><span class=kt>var</span> <span class=n>blog</span> <span class=k>in</span> <span class=n>blogs</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=c1>// The Posts property will be lazily loaded here.
+</span><span class=c1></span>        <span class=k>if</span> <span class=p>(</span><span class=n>blog</span><span class=p>.</span><span class=n>Posts</span><span class=p>.</span><span class=n>Count</span> <span class=p>==</span> <span class=m>0</span><span class=p>)</span>
+        <span class=p>{</span>
+            <span class=n>blog</span><span class=p>.</span><span class=n>Posts</span><span class=p>.</span><span class=n>Add</span><span class=p>(</span>
+                <span class=k>new</span> <span class=n>Post</span> <span class=p>{</span> <span class=n>Title</span> <span class=p>=</span> <span class=s>&#34;Test Post&#34;</span><span class=p>,</span> <span class=n>Content</span> <span class=p>=</span> <span class=s>&#34;Test Content&#34;</span> <span class=p>});</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=n>context</span><span class=p>.</span><span class=n>SaveChanges</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><p>這個範例會載入 Blogs 資料，然後在需要時載入 Posts 資料。</p>
+<h2 id=explicit-loading>Explicit Loading</h2>
+<h3 id=概念說明-2>概念說明</h3>
+<p>Explicit Loading是一種導入關聯實體的方式，透過Load()方法從DbContext實例中明確的導入特定的關聯實體，此時可以選擇一次導入一個或多個關聯實體。Explicit Loading通常用於需要導入單一實體的特定資訊，並且應用程式的需求比Eager Loading更為嚴格。</p>
+<h3 id=範例>範例</h3>
+<p>以下是Explicit Loading的範例程式碼，採用Entity Framework Core 6的版本：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>using</span> <span class=p>(</span><span class=kt>var</span> <span class=n>context</span> <span class=p>=</span> <span class=k>new</span> <span class=n>MyContext</span><span class=p>())</span>
+<span class=p>{</span>
+    <span class=kt>var</span> <span class=n>order</span> <span class=p>=</span> <span class=n>context</span><span class=p>.</span><span class=n>Orders</span><span class=p>.</span><span class=n>Find</span><span class=p>(</span><span class=m>1</span><span class=p>);</span>
+
+    <span class=c1>// Load related OrderDetails for an order manually
+</span><span class=c1></span>    <span class=n>context</span><span class=p>.</span><span class=n>Entry</span><span class=p>(</span><span class=n>order</span><span class=p>)</span>
+        <span class=p>.</span><span class=n>Collection</span><span class=p>(</span><span class=n>b</span> <span class=p>=&gt;</span> <span class=n>b</span><span class=p>.</span><span class=n>OrderDetails</span><span class=p>)</span>
+        <span class=p>.</span><span class=n>Load</span><span class=p>();</span>
+
+    <span class=c1>// Load related Product and Category for each OrderDetail
+</span><span class=c1></span>    <span class=k>foreach</span> <span class=p>(</span><span class=kt>var</span> <span class=n>orderDetail</span> <span class=k>in</span> <span class=n>order</span><span class=p>.</span><span class=n>OrderDetails</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=n>context</span><span class=p>.</span><span class=n>Entry</span><span class=p>(</span><span class=n>orderDetail</span><span class=p>)</span>
+            <span class=p>.</span><span class=n>Reference</span><span class=p>(</span><span class=n>b</span> <span class=p>=&gt;</span> <span class=n>b</span><span class=p>.</span><span class=n>Product</span><span class=p>)</span>
+            <span class=p>.</span><span class=n>Load</span><span class=p>();</span>
+
+        <span class=n>context</span><span class=p>.</span><span class=n>Entry</span><span class=p>(</span><span class=n>orderDetail</span><span class=p>.</span><span class=n>Product</span><span class=p>)</span>
+            <span class=p>.</span><span class=n>Reference</span><span class=p>(</span><span class=n>b</span> <span class=p>=&gt;</span> <span class=n>b</span><span class=p>.</span><span class=n>Category</span><span class=p>)</span>
+            <span class=p>.</span><span class=n>Load</span><span class=p>();</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>在這個範例中，透過Find()方法取得OrderId為1的訂單，然後透過Collection()方法將關聯的OrderDetails導入，最後使用迴圈分別從每個OrderDetail實體中導入Product和Category實體。</p>
+<p>該篇參考官方<a href=https://learn.microsoft.com/zh-tw/ef/core/querying/related-data/>Loading Related Data</a></p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/csharp/accessmodifiers/>[C#] 存取修飾詞筆記</a></li>

@@ -1,3 +1,59 @@
+<p>C# 是一種物件導向的程式語言，此篇將介紹 C# 中的基本類型和它們的用法。</p>
+<h2 id=整數類型>整數類型</h2>
+<p>用來表示整數數值，它包括以下幾種類型：
+<font color=#c7254e style="background: #f9f2f4"> <strong>sbyte,byte,short,ushort,int,uint,long,ulong&mldr;</strong></font></p>
+<p>例如，以下是聲明整數變數的示例：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>int</span> <span class=n>i</span> <span class=p>=</span> <span class=m>10</span><span class=p>;</span>
+<span class=kt>byte</span> <span class=n>b</span> <span class=p>=</span> <span class=m>20</span><span class=p>;</span>
+<span class=kt>long</span> <span class=n>l</span> <span class=p>=</span> <span class=m>30L</span><span class=p>;</span>
+</code></pre></div><p>在這個範例中，聲明了三個變數，分別為 i、b 和 l。
+變數 i 的類型為 int，它的初始值為 10；
+變數 b 的類型為 byte，它的初始值為 20；
+變數 l 的類型為 long，它的初始值為 30L。
+<em><strong>注意，在聲明 long 變數時，需要在數值後面添加 L，以明確表示這是一個 long 數值。</strong></em></p>
+<h2 id=浮點數類型>浮點數類型</h2>
+<p>浮點數類型用來表示帶小數部分的數值，它包括以下兩種類型：</p>
+<p><font color=#c7254e style="background: #f9f2f4"> <strong>float</strong></font>：32 位浮點數，取值範圍為正負 3.402823e38 到正負 1.401298e-45，精度為 7 位小數。</p>
+<p><font color=#c7254e style="background: #f9f2f4"> <strong>double</strong></font>：64 位浮點數，取值範圍為正負 1.79769313486232e308 到正負 4.94065645841247e-324，精度為 15 位小數。
+例如，以下是聲明浮點數變數的示例：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>float</span> <span class=n>f</span> <span class=p>=</span> <span class=m>3.14f</span><span class=p>;</span>
+<span class=kt>double</span> <span class=n>d</span> <span class=p>=</span> <span class=m>1.23456789</span><span class=p>;</span>
+</code></pre></div><p>在這個範例中，聲明了兩個變數，分別為 f 和 d。
+變數 f 的類型為 float，它的初始值為 3.14f；
+變數 d 的類型為 double，它的初始值為 1.23456789。
+<em><strong>注意，在聲明 float 變數時，需要在數值後面添加 f，以明確表示這是一個 float 數值。</strong></em></p>
+<h2 id=字元類型>字元類型</h2>
+<p>字元類型用來表示單個字元，它的類型為<font color=#c7254e style="background: #f9f2f4"> <strong>char</strong></font> 。例如，以下是聲明字元變數的範例：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>char</span> <span class=n>c1</span> <span class=p>=</span> <span class=sc>&#39;A&#39;</span><span class=p>;</span>
+<span class=kt>char</span> <span class=n>c2</span> <span class=p>=</span> <span class=err>&#39;\</span><span class=n>u0058</span><span class=err>&#39;</span><span class=p>;</span>
+</code></pre></div><p>在這個範例中，聲明了兩個變數，分別為 c1 和 c2。
+變數 c1 的初始值為 &lsquo;A&rsquo;，它表示字母 A；
+變數 c2 的初始值為 &lsquo;\u0058&rsquo;，它表示 ASCII 碼值為 88 的字符，也就是字母 X。</p>
+<h2 id=布林類型>布林類型</h2>
+<p>布林類型用來表示布林值，它的類型為 <font color=#c7254e style="background: #f9f2f4"> <strong>bool</strong></font>。布林值只有兩個取值：true 和 false。例如，以下是聲明布林變數的範例：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>bool</span> <span class=n>b1</span> <span class=p>=</span> <span class=k>true</span><span class=p>;</span>
+<span class=kt>bool</span> <span class=n>b2</span> <span class=p>=</span> <span class=k>false</span><span class=p>;</span>
+</code></pre></div><p>在這個範例中，聲明了兩個變數，分別為 b1 和 b2。
+變數 b1 的初始值為 true；
+變數 b2 的初始值為 false。</p>
+<h2 id=字串類型>字串類型</h2>
+<p>字串類型用來表示字串，它的類型為 <font color=#c7254e style="background: #f9f2f4"> <strong>string</strong></font>。例如，以下是聲明字串變數的示例：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>string</span> <span class=n>s1</span> <span class=p>=</span> <span class=s>&#34;Hello, World!&#34;</span><span class=p>;</span>
+<span class=kt>string</span> <span class=n>s2</span> <span class=p>=</span> <span class=s>&#34;C# Tutorial&#34;</span><span class=p>;</span>
+</code></pre></div><p>在這個範例中，聲明了兩個變數，分別為 s1 和 s2。
+變數 s1 的初始值為 &ldquo;Hello, World!"，它表示一個字串；
+變數 s2 的初始值為 &ldquo;C# Tutorial&rdquo;，它也表示一個字串。
+<em><strong>注意，字串值必須用引號括起來。</strong></em></p>
+<h2 id=物件類型>物件類型</h2>
+<p>物件類型是一種通用類型，它可以存儲任何類型的值。在 C# 中，物件類型的類型為 <font color=#c7254e style="background: #f9f2f4"> <strong>object</strong></font>。例如，以下是聲明物件的範例：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>object</span> <span class=n>obj1</span> <span class=p>=</span> <span class=m>123</span><span class=p>;</span>
+<span class=kt>object</span> <span class=n>obj2</span> <span class=p>=</span> <span class=s>&#34;Hello, World!&#34;</span><span class=p>;</span>
+</code></pre></div><p>在這個範例中，聲明了兩個變數，分別為 obj1 和 obj2。
+變數 obj1 的初始值為整數值 123，它被自動轉換為 object 類型；
+變數 obj2 的初始值為字串值 &ldquo;Hello, World!"，也被自動轉換為 object 類型。</p>
+<h2 id=總結>總結</h2>
+<p>本文介紹了 C# 中的六種基本數據類型，包括<font color=#c7254e style="background: #f9f2f4"> <strong>整數、浮點數、字元、布林、字串和物件類型</strong></font>。了解這些基本數據類型對於寫出高效、正確的code是非常重要的。</p>
+<p>該篇參考官方<a href=https://learn.microsoft.com/zh-tw/dotnet/csharp/tour-of-csharp/types>C# types and members</a></p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/csharp/accessmodifiers/>[C#] 存取修飾詞筆記</a></li>

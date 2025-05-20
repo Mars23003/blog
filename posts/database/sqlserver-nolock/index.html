@@ -1,0 +1,17 @@
+<h2 id=nolock使用情境>NOLOCK使用情境</h2>
+<p>若Table會頻繁操作(INSERT、UPDATE、DELETE)即可考慮使用NOLOCK，但亦要考慮 <font color=#c7254e style="background: #f9f2f4">Dirty Read</font>的問題。</p>
+<ul>
+<li>不經常修改的Table，可以減少Lock住Table的時間來加快查詢速度。</li>
+<li>數據量極大的Table，可以透過透落 <font color=#c7254e style="background: #f9f2f4">NOLOCK</font>來提升查詢效率，但需要注意數據的完整性</li>
+<li>允許<font color=#c7254e style="background: #f9f2f4">Dirty Read</font> 的業務邏輯。</li>
+<li><font color=#c7254e style="background: #f9f2f4">NOLOCK</font>允許查詢已修改但是還沒結束Trasaction的數據;因此若要考慮到Trasaction的實時完整性時時不建議使用。</li>
+</ul>
+<h2 id=nolocknolockwithnolock-差異>NOLOCK、(NOLOCK)、WITH(NOLOCK) 差異</h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>A</span><span class=w> </span><span class=n>NOLOCK</span><span class=p>;</span><span class=w> 
+</span><span class=w></span><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>A</span><span class=w> </span><span class=p>(</span><span class=n>NOLOCK</span><span class=p>);</span><span class=w> 
+</span><span class=w></span><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>A</span><span class=w> </span><span class=k>WITH</span><span class=p>(</span><span class=n>NOLOCK</span><span class=p>);</span><span class=w> 
+</span></code></pre></div><ol>
+<li>上述無括號的NOLOCK將不起作用需要特別注意。</li>
+<li>(NOLOCK)、WITH(NOLOCK)用法大致相同，但是<font color=#c7254e style="background: #f9f2f4"> SQL Server 2008以後的版本建議使用 WITH(NOLOCK)</font>，並表示(NOLOCK)用法已過時。</li>
+</ol>
+<p>參考資源 : <a href=https://zhuanlan.zhihu.com/p/420826075>https://zhuanlan.zhihu.com/p/420826075</a></p>

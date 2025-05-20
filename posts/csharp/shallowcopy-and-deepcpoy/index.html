@@ -1,3 +1,40 @@
+<h2 id=淺層複製>淺層複製</h2>
+<p>當我們有物件需要複製時可以透過<a href="https://docs.microsoft.com/zh-tw/dotnet/api/system.object.memberwiseclone?view=net-6.0">Object.MemberwiseClone()</a>的方法來達成，
+該方法屬於淺層複製，這樣會有什麼問題嗎?
+若複製的物件中有ValueType的屬性,其欄位時將會複製該欄位，
+但是有複製ReferenceType的屬性,其欄位時只會複製到其參考
+(<a href=https://mars23003.github.io/blog/posts/csharp/valuetype-and-referencetype/>ValueType、ReferenceType點我</a>)</p>
+<p>以下擷取<a href="https://docs.microsoft.com/zh-tw/dotnet/api/system.object.memberwiseclone?view=net-6.0#--">官方</a>提供之相關程式碼:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Person</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=kt>int</span> <span class=n>Age</span><span class=p>;</span>
+    <span class=k>public</span> <span class=kt>string</span> <span class=n>Name</span><span class=p>;</span>
+    <span class=k>public</span> <span class=n>IdInfo</span> <span class=n>IdInfo</span><span class=p>;</span>
+
+    <span class=k>public</span> <span class=n>Person</span> <span class=n>ShallowCopy</span><span class=p>()</span>
+    <span class=p>{</span>
+       <span class=k>return</span> <span class=p>(</span><span class=n>Person</span><span class=p>)</span> <span class=k>this</span><span class=p>.</span><span class=n>MemberwiseClone</span><span class=p>();</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>若想要避免上述的複製問題，就要考慮到使用深層複製。</p>
+<h2 id=深層複製>深層複製</h2>
+<p>深層複製就是完整Clone一個物件，並不會只有複製到參考的問題。</p>
+<p>以下擷取<a href="https://docs.microsoft.com/zh-tw/dotnet/api/system.object.memberwiseclone?view=net-6.0#--">官方</a>提供之相關程式碼:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Person</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=kt>int</span> <span class=n>Age</span><span class=p>;</span>
+    <span class=k>public</span> <span class=kt>string</span> <span class=n>Name</span><span class=p>;</span>
+    <span class=k>public</span> <span class=n>IdInfo</span> <span class=n>IdInfo</span><span class=p>;</span>
+
+    <span class=k>public</span> <span class=n>Person</span> <span class=n>DeepCopy</span><span class=p>()</span>
+    <span class=p>{</span>
+       <span class=n>Person</span> <span class=n>other</span> <span class=p>=</span> <span class=p>(</span><span class=n>Person</span><span class=p>)</span> <span class=k>this</span><span class=p>.</span><span class=n>MemberwiseClone</span><span class=p>();</span>
+       <span class=n>other</span><span class=p>.</span><span class=n>IdInfo</span> <span class=p>=</span> <span class=k>new</span> <span class=n>IdInfo</span><span class=p>(</span><span class=n>IdInfo</span><span class=p>.</span><span class=n>IdNumber</span><span class=p>);</span>
+       <span class=n>other</span><span class=p>.</span><span class=n>Name</span> <span class=p>=</span> <span class=n>String</span><span class=p>.</span><span class=n>Copy</span><span class=p>(</span><span class=n>Name</span><span class=p>);</span>
+       <span class=k>return</span> <span class=n>other</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>官方也提到可用「Serialize(序列化)」或「Reflection(映射)」的方式來達成。</p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/csharp/accessmodifiers/>[C#] 存取修飾詞筆記</a></li>

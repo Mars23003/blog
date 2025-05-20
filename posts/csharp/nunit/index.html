@@ -1,3 +1,57 @@
+<h2 id=一單元測試特質>一、單元測試特質</h2>
+<ol>
+<li>單元測試是一段自動化的程式碼。</li>
+<li>呼叫測試的工作單元，並對該單元進行某些驗證。</li>
+<li>單元測試使用單元測試框架進行撰寫。</li>
+<li>單元測試撰寫容易，執行快速、可靠、易讀。</li>
+<li>單元測試的執行結果是穩定一致的。</li>
+</ol>
+<h2 id=二單元測試流程>二、單元測試流程</h2>
+<ol>
+<li>Arrange( 準備 ) 建立物件、進行必要的設定</li>
+<li>Act( 操作 ) 物件</li>
+<li>Assert( 驗證 ) 符合預期與否</li>
+</ol>
+<h2 id=三單元測試命名>三、單元測試命名</h2>
+<blockquote>
+<p>[UnitOfWorkName] _ [ScenarioUnderTest] _ [ExpectedBehavior]</p>
+</blockquote>
+<ol>
+<li>
+<p>UnitOfWorkName：被測試的方法或類別</p>
+</li>
+<li>
+<p>ScenarioUnderTest：測試進行的假設條件
+(例如登入失敗、無效的使用者、密碼正確)</p>
+</li>
+<li>
+<p>ExpectedBehavior：在測試情境的假設條件下，行為的預期
+(回傳一個結果值、系統狀態的改變、呼叫外部第三方系統提供的服務)</p>
+</li>
+</ol>
+<h2 id=四-nunit-特性>四、 NUnit 特性</h2>
+<ol>
+<li>
+<p>[TestFixture] 標記一個包含 NUnit 測試的類別。</p>
+</li>
+<li>
+<p>[Test] 可以加在一個方法上，用來標記這個方法是一個需要被執行的自動化測試。</p>
+</li>
+</ol>
+<blockquote>
+<p>NUnit 要求測試方法必須是公開的且為 void，
+在基本設定情況下，不允許傳入參數，但是有時這些情況可以使用參數。</p>
+</blockquote>
+<ol start=3>
+<li>
+<p>[TestCase()]
+Test Explorer 會將測試方法代入測試參數全部列出來</p>
+</li>
+<li>
+<p>Values 於測試方法參數內帶入
+會列出所有組合，如果需要一對一測試組合就要加上Sequential</p>
+</li>
+</ol>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/csharp/accessmodifiers/>[C#] 存取修飾詞筆記</a></li>

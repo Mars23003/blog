@@ -1,3 +1,125 @@
+<p>Abstract Factory Pattern (抽象工廠模式) 是一種 Creational Design Pattern (創建型設計模式)。它提供一個介面，用於創建一系列相關或相互依賴的物件，而不需要指定其實體類別。這樣可以隔離實體類別的變化，使得程式碼更容易擴展和維護。</p>
+<h2 id=簡介>簡介</h2>
+<ol>
+<li><strong>模式名稱</strong>：</li>
+</ol>
+<blockquote>
+<p>Abstract Factory Pattern</p>
+</blockquote>
+<ol start=2>
+<li><strong>問題</strong>：</li>
+</ol>
+<blockquote>
+<p>當需要創建一系列相關或相互依賴的物件時，如果直接在程式碼中使用實體類別，會導致程式碼的脆弱性，使得程式碼難以擴展和維護。</p>
+</blockquote>
+<ol start=3>
+<li><strong>解決方案</strong>：</li>
+</ol>
+<blockquote>
+<p>使用 Abstract Factory Pattern，將實體類別隱藏在介面後面，使用工廠方法來創建物件，讓客戶端程式碼只關注介面，而不是具體實現，從而隔離了具體實現的變化。</p>
+</blockquote>
+<ol start=4>
+<li><strong>結果</strong>：</li>
+</ol>
+<blockquote>
+<p>使程式碼更容易擴展和維護，提高程式碼的可讀性和可靠性。</p>
+</blockquote>
+<h2 id=在-c-中實現-abstract-factory-pattern-的重點如下>在 C# 中實現 Abstract Factory Pattern 的重點如下：</h2>
+<ol>
+<li>創建一個抽象工廠介面 (Abstract Factory Interface)，該介面定義了創建一系列相關物件的方法。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>interface</span> <span class=n>IFoodFactory</span>
+<span class=p>{</span>
+    <span class=n>INoodle</span> <span class=n>CreateNoodle</span><span class=p>();</span>
+    <span class=n>ISashimi</span> <span class=n>CreateSashimi</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><ol start=2>
+<li>創建一系列相關的產品介面 (Product Interfaces)，每個介面定義了該產品所具有的方法。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>interface</span> <span class=n>INoodle</span>
+<span class=p>{</span>
+    <span class=k>void</span> <span class=n>Cook</span><span class=p>();</span>
+<span class=p>}</span>
+
+<span class=k>public</span> <span class=k>interface</span> <span class=n>ISashimi</span>
+<span class=p>{</span>
+    <span class=k>void</span> <span class=n>Cook</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><ol start=3>
+<li>創建一系列實體產品類別 (Concrete Product Classes)，實現產品介面定義的方法。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp>
+<span class=k>public</span> <span class=k>class</span> <span class=nc>Ramen</span> <span class=p>:</span> <span class=n>INoodle</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=k>void</span> <span class=n>Cook</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>&#34;Cooking Ramen...&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=k>public</span> <span class=k>class</span> <span class=nc>Tuna</span> <span class=p>:</span> <span class=n>ISashimi</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=k>void</span> <span class=n>Cook</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>&#34;Cooking Tuna...&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><ol start=4>
+<li>創建一個工廠實作類別 (Abstract Factory Implementation)，該類別實現了抽象工廠介面，並且返回實體的產品類別實例。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>JapaneseFoodFactory</span> <span class=p>:</span> <span class=n>IFoodFactory</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=n>INoodle</span> <span class=n>CreateNoodle</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=k>return</span> <span class=k>new</span> <span class=n>Ramen</span><span class=p>();</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=n>ISashimi</span> <span class=n>CreateSashimi</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=k>return</span> <span class=k>new</span> <span class=n>Tuna</span><span class=p>();</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><ol start=5>
+<li>在客戶端程式碼中，使用抽象工廠介面來創建產品，而不是直接使用具體類別。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>Client</span>
+<span class=p>{</span>
+    <span class=k>private</span> <span class=n>IFoodFactory</span> <span class=m>_f</span><span class=n>actory</span><span class=p>;</span>
+
+    <span class=k>public</span> <span class=n>Client</span><span class=p>(</span><span class=n>IFoodFactory</span> <span class=n>factory</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=m>_f</span><span class=n>actory</span> <span class=p>=</span> <span class=n>factory</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>void</span> <span class=n>Cook</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=n>INoodle</span> <span class=n>Ramen</span> <span class=p>=</span> <span class=m>_f</span><span class=n>actory</span><span class=p>.</span><span class=n>CreateNoodle</span><span class=p>();</span>
+        <span class=n>ISashimi</span> <span class=n>Tuna</span> <span class=p>=</span> <span class=m>_f</span><span class=n>actory</span><span class=p>.</span><span class=n>CreateSashimi</span><span class=p>();</span>
+
+        <span class=n>Ramen</span><span class=p>.</span><span class=n>Cook</span><span class=p>();</span>
+        <span class=n>Tuna</span><span class=p>.</span><span class=n>Cook</span><span class=p>();</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><ol start=6>
+<li>在主程式中，創建具體工廠介面的實例，並將其傳遞給客戶端程式碼中的構造函數。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>static</span> <span class=k>void</span> <span class=n>Main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>IFoodFactory</span> <span class=n>taiwaneseFactory</span> <span class=p>=</span> <span class=k>new</span> <span class=n>TaiwaneseFoodFactory</span><span class=p>();</span>
+    <span class=n>Client</span> <span class=n>client</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Client</span><span class=p>(</span><span class=n>taiwaneseFactory</span><span class=p>);</span>
+    <span class=n>client</span><span class=p>.</span><span class=n>Cook</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><p>這樣就完成了 Abstract Factory Pattern 的實現。</p>
+<p>以下是幾種初始化抽象工廠的方式：</p>
+<p>直接使用具體的工廠實現類別。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=n>IFoodFactory</span> <span class=n>factory</span> <span class=p>=</span> <span class=k>new</span> <span class=n>JapaneseFoodFactory</span><span class=p>();</span>
+</code></pre></div><p>使用反射機制動態創建工廠實現類別。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>string</span> <span class=n>factoryName</span> <span class=p>=</span> <span class=n>ConfigurationManager</span><span class=p>.</span><span class=n>AppSettings</span><span class=p>[</span><span class=s>&#34;IFoodFactory&#34;</span><span class=p>];</span>
+<span class=n>Type</span> <span class=n>factoryType</span> <span class=p>=</span> <span class=n>Type</span><span class=p>.</span><span class=n>GetType</span><span class=p>(</span><span class=n>factoryName</span><span class=p>);</span>
+<span class=n>IFoodFactory</span> <span class=n>factory</span> <span class=p>=</span> <span class=p>(</span><span class=n>IFoodFactory</span><span class=p>)</span><span class=n>Activator</span><span class=p>.</span><span class=n>CreateInstance</span><span class=p>(</span><span class=n>factoryType</span><span class=p>);</span>
+</code></pre></div><p>使用 DI 容器創建工廠實現類別。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=n>services</span><span class=p>.</span><span class=n>AddTransient</span><span class=p>&lt;</span><span class=n>IFoodFactory</span><span class=p>,</span> <span class=n>JapaneseFoodFactory</span><span class=p>&gt;();</span>
+</code></pre></div><p>以上是 Abstract Factory Pattern 的簡介和實現方式，以及幾種初始化抽象工廠的方式。希望對您有所幫助。</p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/designpattern/compositepattern/>[Design Pattern] 掌握設計模式：Composite Pattern原理與應用</a></li>

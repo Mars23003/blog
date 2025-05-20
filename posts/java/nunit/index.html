@@ -1,0 +1,66 @@
+<h2 id=string中equals與的差異>String中equals與==的差異?</h2>
+<ol>
+<li>equals</li>
+</ol>
+<blockquote>
+<p>比較物件裡的值(屬性)是否相同。</p>
+</blockquote>
+<ol start=2>
+<li>==</li>
+</ol>
+<blockquote>
+<p>比較物件(實體、記憶體空間)是否相同。</p>
+</blockquote>
+<hr>
+<h2 id=舉例->舉例 :</h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>String</span> <span class=n>s1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=s>&#34;restful&#34;</span><span class=o>)</span> <span class=o>;</span>
+<span class=n>String</span> <span class=n>s2</span> <span class=o>=</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=s>&#34;restful&#34;</span><span class=o>)</span> <span class=o>;</span>
+<span class=n>String</span> <span class=n>s3</span> <span class=o>=</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=s>&#34;peaceful&#34;</span><span class=o>)</span> <span class=o>;</span>
+<span class=n>String</span> <span class=n>s4</span> <span class=o>=</span> <span class=n>s1</span> <span class=o>;</span>
+<span class=n>String</span> <span class=n>s5</span><span class=o>=</span> <span class=s>&#34;restful&#34;</span> <span class=o>;</span>
+<span class=n>String</span> <span class=n>s6</span><span class=o>=</span> <span class=s>&#34;restful&#34;</span> <span class=o>;</span>
+
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>s1</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>s2</span><span class=o>))</span> <span class=o>;</span>
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>s1</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>s3</span><span class=o>))</span> <span class=o>;</span>
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>s1</span> <span class=o>==</span> <span class=n>s2</span><span class=o>)</span> <span class=o>;</span>
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>s1</span> <span class=o>==</span> <span class=n>s4</span><span class=o>)</span> <span class=o>;</span>
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>s1</span> <span class=o>==</span> <span class=n>s5</span><span class=o>)</span> <span class=o>;</span>
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>s5</span> <span class=o>==</span> <span class=n>s6</span><span class=o>)</span> <span class=o>;</span>
+
+</code></pre></div><hr>
+<ul>
+<li>s1.equals(s2)</li>
+</ul>
+<blockquote>
+<p>s1和s2所帶的值相同。 <strong>true</strong></p>
+</blockquote>
+<ul>
+<li>s1.equals(s3)</li>
+</ul>
+<blockquote>
+<p>s1和s3所帶的值不相同。 <strong>false</strong></p>
+</blockquote>
+<ul>
+<li>s1 == s2</li>
+</ul>
+<blockquote>
+<p>s1和s2各new了不同的記憶體空間。 <strong>false</strong></p>
+</blockquote>
+<ul>
+<li>s1 == s4</li>
+</ul>
+<blockquote>
+<p>因為把s4指向了和s1所指向的同一個空間。 <strong>true</strong></p>
+</blockquote>
+<ul>
+<li>s1 == s5</li>
+</ul>
+<blockquote>
+<p>因為s1 new了一個新空間，而s5則在字串池中。 <strong>false</strong></p>
+</blockquote>
+<ul>
+<li>s5 == s6</li>
+</ul>
+<blockquote>
+<p>s5和s6都在字串池中，為了節省記憶體空間，在字串池中，只要值相同，都會指向同一個記憶體空間。 <strong>true</strong></p>
+</blockquote>

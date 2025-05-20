@@ -1,3 +1,165 @@
+<h2 id=簡單來認識inrefoutparams的差異>簡單來認識in、ref、out、params的差異</h2>
+<blockquote>
+<p><font color=#c7254e style="background: #f9f2f4"><strong>params</strong></font>
+指定該參數可以接受可變數目的引數。</p>
+</blockquote>
+<blockquote>
+<p><font color=#c7254e style="background: #f9f2f4"><strong>in</strong></font>
+指定該參數是傳址方式傳遞，但只會由所呼叫的方法讀取。</p>
+</blockquote>
+<blockquote>
+<p><font color=#c7254e style="background: #f9f2f4"><strong>ref</strong></font>
+指定該參數是傳址方式傳遞，且可以由所呼叫的方法讀取或寫入。</p>
+</blockquote>
+<blockquote>
+<p><font color=#c7254e style="background: #f9f2f4"><strong>out</strong></font>
+指定該參數是傳址方式傳遞，且由所呼叫的方法寫入。</p>
+</blockquote>
+<h2 id=method-parameters---in>Method Parameters - in</h2>
+<p><font color=#c7254e style="background: #f9f2f4"><strong>in</strong></font>關鍵字會使參數以傳址方式傳遞，但可確保<strong>不會修改參數</strong>。
+所以在傳遞in修飾的參數時，<strong>需要經過初始化</strong>才可以使用。
+它就像 ref 或 out 關鍵字，不同的是 in 引數不能被呼叫的方法修改。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>void</span> <span class=n>InArgExample</span><span class=p>(</span><span class=k>in</span> <span class=kt>int</span> <span class=n>number</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=c1>// Uncomment the following line to see error CS8331
+</span><span class=c1></span>    <span class=c1>//number = 19;
+</span><span class=c1></span><span class=p>}</span>
+
+<span class=kt>int</span> <span class=n>readonlyArgument</span> <span class=p>=</span> <span class=m>44</span><span class=p>;</span>
+<span class=n>InArgExample</span><span class=p>(</span><span class=n>readonlyArgument</span><span class=p>);</span>
+<span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=n>readonlyArgument</span><span class=p>);</span>     <span class=c1>// value is still 44
+</span></code></pre></div><p>上述為官方的範例，
+若使用in修飾的參數其方法無法修改變數內容，若修改參數將會出現以下錯誤。</p>
+<blockquote>
+<p>CS8331: Cannot assign to variable &lsquo;in int&rsquo; because it is a readonly variable</p>
+</blockquote>
+<hr>
+<h3 id=使用時機>使用時機</h3>
+<blockquote>
+<p>當您新增 <font color=#c7254e style="background: #f9f2f4"><strong>in</strong></font> 修飾詞來利用參考傳遞引數時，即表明您的設計目的是利用參考傳遞引數，來避免不必要的複製。</p>
+</blockquote>
+<h3 id=其他應用>其他應用</h3>
+<p>另外<font color=#c7254e style="background: #f9f2f4"><strong>in</strong></font>還有以下幾種應用</p>
+<ul>
+<li>泛型介面和委派的泛型型別參數。</li>
+<li>foreach 語句。</li>
+<li>LINQ 查詢運算式中的 from 子句。</li>
+<li>LINQ 查詢運算式中的 join 子句。</li>
+</ul>
+<h2 id=method-parameters---ref>Method Parameters - ref</h2>
+<p><font color=#c7254e style="background: #f9f2f4"><strong>ref</strong></font> 指定該參數是傳址方式傳遞，且可以由所呼叫的方法讀取或寫入，
+另外方法定義和呼叫方法都必須明確使用 ref 關鍵字，官方範例如下:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>void</span> <span class=n>Method</span><span class=p>(</span><span class=k>ref</span> <span class=kt>int</span> <span class=n>refArgument</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=n>refArgument</span> <span class=p>=</span> <span class=n>refArgument</span> <span class=p>+</span> <span class=m>44</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kt>int</span> <span class=n>number</span> <span class=p>=</span> <span class=m>1</span><span class=p>;</span>
+<span class=n>Method</span><span class=p>(</span><span class=k>ref</span> <span class=n>number</span><span class=p>);</span><span class=c1>//呼叫時也要記得使用ref關鍵字
+</span><span class=c1></span><span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=n>number</span><span class=p>);</span>
+<span class=c1>// Output: 45
+</span></code></pre></div><h3 id=使用時機-1>使用時機</h3>
+<p>例如，假設呼叫端傳遞區域變數運算式或陣列元素存取運算式。 接著，呼叫的方法可以取代 ref 參數所參考的物件。 在此情況下，呼叫端的區域變數或陣列專案會在方法傳回時參考新的物件。</p>
+<h2 id=method-parameters---out>Method Parameters - out</h2>
+<p><font color=#c7254e style="background: #f9f2f4"><strong>out</strong></font>指定該參數是傳址方式傳遞，且由所呼叫的方法寫入，故不用先初始化，<strong>不過需要先指派值給被呼叫的方法，方法才能傳回</strong>。</p>
+<p>範例如下:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>int</span> <span class=n>initializeInMethod</span><span class=p>;</span>
+<span class=n>OutArgExample</span><span class=p>(</span><span class=k>out</span> <span class=n>initializeInMethod</span><span class=p>);</span>
+<span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=n>initializeInMethod</span><span class=p>);</span>     <span class=c1>// value is now 44
+</span><span class=c1></span>
+<span class=k>void</span> <span class=n>OutArgExample</span><span class=p>(</span><span class=k>out</span> <span class=kt>int</span> <span class=n>number</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=n>number</span> <span class=p>=</span> <span class=m>44</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=建議>建議</h3>
+<p>使用 out 引數來宣告方法是傳回多個值的傳統因應措施。 從 C# 7.0 開始，官方考慮使用 <a href=https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/builtin-types/value-tuples>Tuple</a>。</p>
+<h2 id=method-parameters---params>Method Parameters - params</h2>
+<p>使用 params 關鍵字的特性:</p>
+<ul>
+<li><strong>可變長度</strong>的引數</li>
+<li>必須是<strong>一維陣列</strong></li>
+<li><strong>params關鍵字後面不允許任何其他參數</strong></li>
+<li><strong>只允許一個 params 關鍵字</strong></li>
+<li><strong>如果參數的宣告型 params 別不是一維陣列，就會發生編譯器錯誤</strong></li>
+</ul>
+<p>當您使用 params 參數呼叫方法時，您可以傳入：</p>
+<ul>
+<li>陣列元素型別的引數清單（以逗號分隔）。</li>
+<li>指定之類型的引數陣列。</li>
+<li>無引數。 如果不傳送任何引數，params 清單的長度為零。</li>
+</ul>
+<p>官方範例如下:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>public</span> <span class=k>class</span> <span class=nc>MyClass</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=k>static</span> <span class=k>void</span> <span class=n>UseParams</span><span class=p>(</span><span class=k>params</span> <span class=kt>int</span><span class=p>[]</span> <span class=n>list</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=p>=</span> <span class=m>0</span><span class=p>;</span> <span class=n>i</span> <span class=p>&lt;</span> <span class=n>list</span><span class=p>.</span><span class=n>Length</span><span class=p>;</span> <span class=n>i</span><span class=p>++)</span>
+        <span class=p>{</span>
+            <span class=n>Console</span><span class=p>.</span><span class=n>Write</span><span class=p>(</span><span class=n>list</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=p>+</span> <span class=s>&#34; &#34;</span><span class=p>);</span>
+        <span class=p>}</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>();</span>
+    <span class=p>}</span>
+
+    <span class=k>public</span> <span class=k>static</span> <span class=k>void</span> <span class=n>UseParams2</span><span class=p>(</span><span class=k>params</span> <span class=kt>object</span><span class=p>[]</span> <span class=n>list</span><span class=p>)</span>
+    <span class=p>{</span>
+        <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=p>=</span> <span class=m>0</span><span class=p>;</span> <span class=n>i</span> <span class=p>&lt;</span> <span class=n>list</span><span class=p>.</span><span class=n>Length</span><span class=p>;</span> <span class=n>i</span><span class=p>++)</span>
+        <span class=p>{</span>
+            <span class=n>Console</span><span class=p>.</span><span class=n>Write</span><span class=p>(</span><span class=n>list</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=p>+</span> <span class=s>&#34; &#34;</span><span class=p>);</span>
+        <span class=p>}</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>();</span>
+    <span class=p>}</span>
+
+    <span class=k>static</span> <span class=k>void</span> <span class=n>Main</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=c1>// You can send a comma-separated list of arguments of the
+</span><span class=c1></span>        <span class=c1>// specified type.
+</span><span class=c1></span>        <span class=n>UseParams</span><span class=p>(</span><span class=m>1</span><span class=p>,</span> <span class=m>2</span><span class=p>,</span> <span class=m>3</span><span class=p>,</span> <span class=m>4</span><span class=p>);</span>
+        <span class=n>UseParams2</span><span class=p>(</span><span class=m>1</span><span class=p>,</span> <span class=sc>&#39;a&#39;</span><span class=p>,</span> <span class=s>&#34;test&#34;</span><span class=p>);</span>
+
+        <span class=c1>// A params parameter accepts zero or more arguments.
+</span><span class=c1></span>        <span class=c1>// The following calling statement displays only a blank line.
+</span><span class=c1></span>        <span class=n>UseParams2</span><span class=p>();</span>
+
+        <span class=c1>// An array argument can be passed, as long as the array
+</span><span class=c1></span>        <span class=c1>// type matches the parameter type of the method being called.
+</span><span class=c1></span>        <span class=kt>int</span><span class=p>[]</span> <span class=n>myIntArray</span> <span class=p>=</span> <span class=p>{</span> <span class=m>5</span><span class=p>,</span> <span class=m>6</span><span class=p>,</span> <span class=m>7</span><span class=p>,</span> <span class=m>8</span><span class=p>,</span> <span class=m>9</span> <span class=p>};</span>
+        <span class=n>UseParams</span><span class=p>(</span><span class=n>myIntArray</span><span class=p>);</span>
+
+        <span class=kt>object</span><span class=p>[]</span> <span class=n>myObjArray</span> <span class=p>=</span> <span class=p>{</span> <span class=m>2</span><span class=p>,</span> <span class=sc>&#39;b&#39;</span><span class=p>,</span> <span class=s>&#34;test&#34;</span><span class=p>,</span> <span class=s>&#34;again&#34;</span> <span class=p>};</span>
+        <span class=n>UseParams2</span><span class=p>(</span><span class=n>myObjArray</span><span class=p>);</span>
+
+        <span class=c1>// The following call causes a compiler error because the object
+</span><span class=c1></span>        <span class=c1>// array cannot be converted into an integer array.
+</span><span class=c1></span>        <span class=c1>//UseParams(myObjArray);
+</span><span class=c1></span>
+        <span class=c1>// The following call does not cause an error, but the entire
+</span><span class=c1></span>        <span class=c1>// integer array becomes the first element of the params array.
+</span><span class=c1></span>        <span class=n>UseParams2</span><span class=p>(</span><span class=n>myIntArray</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+<span class=cm>/*
+</span><span class=cm>Output:
+</span><span class=cm>    1 2 3 4
+</span><span class=cm>    1 a test
+</span><span class=cm>
+</span><span class=cm>    5 6 7 8 9
+</span><span class=cm>    2 b test again
+</span><span class=cm>    System.Int32[]
+</span><span class=cm>*/</span>
+</code></pre></div><hr>
+<h2 id=差異整理>差異整理</h2>
+<ol>
+<li>in、ref的參數需初始化,out不用初始化。</li>
+<li>ref、out可以在呼叫時進行參數的寫入、in僅唯讀。</li>
+<li>擴充方法 具有下列限制：</li>
+</ol>
+<blockquote>
+<p>out關鍵字不能用在擴充方法的第一個引數上。
+ref當引數不是struct，或是泛型型別不受限制為struct時，無法在擴充方法的第一個引數上使用 關鍵字。
+in除非第一個引數是struct，否則無法使用 關鍵字。 in關鍵字不能用於任何泛型型別，即使限制為 struct也一樣。</p>
+</blockquote>
+<hr>
+<p>該篇參考官方<a href=https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/method-parameters>Method Parameters</a></p>
 <h2>延伸閱讀</h2>
 <ul>
 <li><a href=/blog/posts/csharp/accessmodifiers/>[C#] 存取修飾詞筆記</a></li>
