@@ -1,0 +1,332 @@
+<!doctype html><html lang=zh-tw dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>時區與時間：前後端溝通、RFC3339/ISO8601 差異與 JavaScript 實戰 | Mars's Blog</title>
+<meta name=keywords content="時區溝通,時間序列化,RFC3339,ISO8601,UTC,JavaScript">
+<meta name=description content="深入解析時區與時間格式，說明前後端如何正確溝通時間，RFC3339 與 ISO8601 差異、JavaScript 實用範例，以及 UTC 概念與常見時區問題解法。">
+<meta name=author content>
+<link rel=canonical href=https://mars23003.github.io/blog/posts/frontend/timezone-communication/>
+<link crossorigin=anonymous href=/blog/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/blog/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-HNR9M4TL13','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+<link rel=icon href=https://mars23003.github.io/blog/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://mars23003.github.io/blog/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://mars23003.github.io/blog/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://mars23003.github.io/blog/apple-touch-icon.png>
+<link rel=mask-icon href=https://mars23003.github.io/blog/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNR9M4TL13"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="時區與時間：前後端溝通、RFC3339/ISO8601 差異與 JavaScript 實戰">
+<meta property="og:description" content="深入解析時區與時間格式，說明前後端如何正確溝通時間，RFC3339 與 ISO8601 差異、JavaScript 實用範例，以及 UTC 概念與常見時區問題解法。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mars23003.github.io/blog/posts/frontend/timezone-communication/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2025-05-21T10:00:00+08:00">
+<meta property="article:modified_time" content="2025-05-21T10:00:00+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="時區與時間：前後端溝通、RFC3339/ISO8601 差異與 JavaScript 實戰">
+<meta name=twitter:description content="深入解析時區與時間格式，說明前後端如何正確溝通時間，RFC3339 與 ISO8601 差異、JavaScript 實用範例，以及 UTC 概念與常見時區問題解法。">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"時區與時間：前後端溝通、RFC3339/ISO8601 差異與 JavaScript 實戰","item":"https://mars23003.github.io/blog/posts/frontend/timezone-communication/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"時區與時間：前後端溝通、RFC3339/ISO8601 差異與 JavaScript 實戰","name":"時區與時間：前後端溝通、RFC3339\/ISO8601 差異與 JavaScript 實戰","description":"深入解析時區與時間格式，說明前後端如何正確溝通時間，RFC3339 與 ISO8601 差異、JavaScript 實用範例，以及 UTC 概念與常見時區問題解法。","keywords":["時區溝通","時間序列化","RFC3339","ISO8601","UTC","JavaScript"],"articleBody":"前言 在現代 Web 系統中，時間與時區的處理是前後端溝通常見的痛點。若處理不當，容易導致資料錯亂、顯示誤差、跨國用戶體驗不佳。本文將說明：\n 前後端如何正確傳遞與解析時間 RFC3339 與 ISO8601 差異 JavaScript 時區處理範例 UTC 概念與常見誤區 實務解法與範例  一、前後端時間溝通的原則  統一格式：建議所有 API 傳遞時間皆用字串，並採用標準格式（如 ISO8601/RFC3339）。 明確時區：時間字串必須帶時區資訊（如 Z 代表 UTC，或 +08:00 代表台北）。 儲存與運算用 UTC，顯示時再轉換：資料庫與後端儲存、運算皆用 UTC，前端顯示時再依用戶時區轉換。  範例：API 傳遞時間 { \"createdAt\": \"2025-05-21T09:30:00Z\" } 二、RFC3339 與 ISO8601 差異  ISO8601：國際標準時間格式，範例：2025-05-21T09:30:00+08:00 RFC3339：是 ISO8601 的子集，專為網路傳輸設計，格式更嚴謹，常見於 JSON、API。     格式 範例 說明     ISO8601 2025-05-21T09:30:00+08:00 可省略秒數、時區格式彈性   RFC3339 2025-05-21T09:30:00Z 必須完整、嚴格規範    注意：RFC3339 格式必須有 T、時區（Z 或 ±hh:mm），且不可省略。\n三、JavaScript 時區處理範例 1. 取得當前 UTC 時間 const nowUtc = new Date().toISOString(); // \"2025-05-21T02:00:00.000Z\" 2. 解析 RFC3339/ISO8601 字串 const str = \"2025-05-21T09:30:00+08:00\"; const date = new Date(str); console.log(date.toISOString()); // 自動轉為 UTC 3. 轉換為本地時區顯示 const utcStr = \"2025-05-21T01:00:00Z\"; const local = new Date(utcStr); console.log(local.toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })); 4. 取得指定時區時間（需用函式庫如 dayjs、luxon） // 以 dayjs + timezone plugin 為例 import dayjs from 'dayjs'; import utc from 'dayjs/plugin/utc'; import timezone from 'dayjs/plugin/timezone'; dayjs.extend(utc); dayjs.extend(timezone); const utcTime = dayjs.utc('2025-05-21T01:00:00Z'); const taipeiTime = utcTime.tz('Asia/Taipei').format('YYYY-MM-DD HH:mm:ss'); console.log(taipeiTime); // 2025-05-21 09:00:00 四、什麼是 UTC？ UTC（協調世界時）是全球統一的時間標準，不受夏令時間、地區影響。所有時區都以 UTC 為基準（如台北為 UTC+8）。\n 2025-05-21T01:00:00Z 代表 2025/5/21 09:00 台北時間（Z 代表 UTC） 儲存、運算、API 傳遞皆建議用 UTC  五、常見時區問題與解法 問題1：前端顯示時間錯誤  原因：API 傳回無時區資訊，或前端未正確解析 解法：API 一律傳回帶時區的 ISO8601/RFC3339 字串，前端用 new Date(str) 解析  問題2：夏令時間錯亂  解法：一律用 UTC 儲存，顯示時用函式庫（如 dayjs、luxon）依用戶時區轉換  問題3：多國用戶時間顯示不一致  解法：API 傳 UTC，前端根據用戶瀏覽器自動轉換  實務範例：API 設計 { \"startTime\": \"2025-05-21T01:00:00Z\", // UTC  \"endTime\": \"2025-05-21T09:00:00+08:00\" // 台北時區 } 前端解析：\nconst start = new Date(apiData.startTime); const end = new Date(apiData.endTime); console.log(start.toLocaleString()); console.log(end.toLocaleString());  六、C# 後端如何判斷前端傳來的時間時區？ 前端傳送時間給 C# 後端時，若字串帶有時區資訊（如 2025-05-21T09:30:00+08:00 或 2025-05-21T01:30:00Z），後端可自動解析並判斷時區。若未帶時區，則需明確約定預設時區。\n常見時間字串格式  2025-05-21T09:30:00+08:00（台北時區，ISO8601/RFC3339 標準） 2025-05-21T01:30:00Z（UTC 時區，Z 代表 UTC） 2025-05-21T09:30:00（無時區，需約定）  C# 解析帶時區的時間字串 using System; public class TimezoneDemo { public static void Main() { // 帶時區的時間字串  string isoString = \"2025-05-21T09:30:00+08:00\"; DateTimeOffset dto = DateTimeOffset.Parse(isoString); Console.WriteLine($\"原始字串: {isoString}\"); Console.WriteLine($\"UTC 時間: {dto.UtcDateTime}\"); Console.WriteLine($\"本地時間: {dto.LocalDateTime}\"); Console.WriteLine($\"時區偏移: {dto.Offset}\"); } } 範例輸出 原始字串: 2025-05-21T09:30:00+08:00 UTC 時間: 2025-05-21 01:30:00 本地時間: 2025-05-21 09:30:00 時區偏移: 08:00:00 判斷前端有無帶時區  若用 DateTimeOffset.TryParse 解析，若字串無時區，Offset 會是本地預設時區。 建議前端一律傳帶時區的 ISO8601/RFC3339 字串。  string input = \"2025-05-21T09:30:00\"; // 無時區 if(DateTimeOffset.TryParse(input, out var dto)) { Console.WriteLine($\"Offset: {dto.Offset}\"); // 若 Offset = 00:00:00 或本地時區，需依專案需求處理 } else { Console.WriteLine(\"格式錯誤\"); } 常見陷阱  前端未帶時區，後端無法判斷正確時間，建議 API 文件明確規範格式。 若需統一時區，建議後端收到後轉為 UTC 儲存。  總結  C# 後端可用 DateTimeOffset.Parse 直接解析帶時區的時間字串。 若字串無時區，需明確約定預設時區，或回傳錯誤提示前端。 儲存與運算建議一律轉為 UTC。    延伸閱讀：\n Microsoft Docs：DateTimeOffset 結構 ISO8601 標準說明   結語 時區與時間格式的正確處理，是跨國、跨平台系統不可忽視的細節。建議：\n API 傳遞一律用 RFC3339/ISO8601，帶明確時區 儲存、運算皆用 UTC 顯示時再依用戶時區轉換 善用現代函式庫 dayjs、luxon 處理複雜時區    延伸閱讀：\n MDN：Date 物件 RFC3339 文件 ISO8601 維基百科 dayjs 官方文件   ","wordCount":"1647","inLanguage":"zh-tw","datePublished":"2025-05-21T10:00:00+08:00","dateModified":"2025-05-21T10:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/timezone-communication/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<div class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</div>
+</div>
+<ul id=menu>
+<li>
+<a href=https://mars23003.github.io/blog/ title=Home>
+<span>Home</span>
+</a>
+</li>
+<li>
+<a href=https://mars23003.github.io/blog/posts/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://mars23003.github.io/blog/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+<li>
+<a href=https://mars23003.github.io/blog/about/ title=About>
+<span>About</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<h1 class=post-title>
+時區與時間：前後端溝通、RFC3339/ISO8601 差異與 JavaScript 實戰
+</h1>
+<div class=post-description>
+深入解析時區與時間格式，說明前後端如何正確溝通時間，RFC3339 與 ISO8601 差異、JavaScript 實用範例，以及 UTC 概念與常見時區問題解法。
+</div>
+<div class=post-meta><span title="2025-05-21 10:00:00 +0800 +0800">May 21, 2025</span>
+</div>
+</header>
+<div class=post-content><h2 id=前言>前言<a hidden class=anchor aria-hidden=true href=#前言>#</a></h2>
+<p>在現代 Web 系統中，時間與時區的處理是前後端溝通常見的痛點。若處理不當，容易導致資料錯亂、顯示誤差、跨國用戶體驗不佳。本文將說明：</p>
+<ul>
+<li>前後端如何正確傳遞與解析時間</li>
+<li>RFC3339 與 ISO8601 差異</li>
+<li>JavaScript 時區處理範例</li>
+<li>UTC 概念與常見誤區</li>
+<li>實務解法與範例</li>
+</ul>
+<h2 id=一前後端時間溝通的原則>一、前後端時間溝通的原則<a hidden class=anchor aria-hidden=true href=#一前後端時間溝通的原則>#</a></h2>
+<ol>
+<li><strong>統一格式</strong>：建議所有 API 傳遞時間皆用字串，並採用標準格式（如 ISO8601/RFC3339）。</li>
+<li><strong>明確時區</strong>：時間字串必須帶時區資訊（如 <code>Z</code> 代表 UTC，或 <code>+08:00</code> 代表台北）。</li>
+<li><strong>儲存與運算用 UTC，顯示時再轉換</strong>：資料庫與後端儲存、運算皆用 UTC，前端顯示時再依用戶時區轉換。</li>
+</ol>
+<h3 id=範例api-傳遞時間>範例：API 傳遞時間<a hidden class=anchor aria-hidden=true href=#範例api-傳遞時間>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+  <span class=nt>&#34;createdAt&#34;</span><span class=p>:</span> <span class=s2>&#34;2025-05-21T09:30:00Z&#34;</span>
+<span class=p>}</span>
+</code></pre></div><h2 id=二rfc3339-與-iso8601-差異>二、RFC3339 與 ISO8601 差異<a hidden class=anchor aria-hidden=true href=#二rfc3339-與-iso8601-差異>#</a></h2>
+<ul>
+<li><strong>ISO8601</strong>：國際標準時間格式，範例：<code>2025-05-21T09:30:00+08:00</code></li>
+<li><strong>RFC3339</strong>：是 ISO8601 的子集，專為網路傳輸設計，格式更嚴謹，常見於 JSON、API。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>範例</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO8601</td>
+<td>2025-05-21T09:30:00+08:00</td>
+<td>可省略秒數、時區格式彈性</td>
+</tr>
+<tr>
+<td>RFC3339</td>
+<td>2025-05-21T09:30:00Z</td>
+<td>必須完整、嚴格規範</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong>：RFC3339 格式必須有 <code>T</code>、時區（Z 或 ±hh:mm），且不可省略。</p>
+<h2 id=三javascript-時區處理範例>三、JavaScript 時區處理範例<a hidden class=anchor aria-hidden=true href=#三javascript-時區處理範例>#</a></h2>
+<h3 id=1-取得當前-utc-時間>1. 取得當前 UTC 時間<a hidden class=anchor aria-hidden=true href=#1-取得當前-utc-時間>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=kr>const</span> <span class=nx>nowUtc</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>().</span><span class=nx>toISOString</span><span class=p>();</span> <span class=c1>// &#34;2025-05-21T02:00:00.000Z&#34;
+</span></code></pre></div><h3 id=2-解析-rfc3339iso8601-字串>2. 解析 RFC3339/ISO8601 字串<a hidden class=anchor aria-hidden=true href=#2-解析-rfc3339iso8601-字串>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=kr>const</span> <span class=nx>str</span> <span class=o>=</span> <span class=s2>&#34;2025-05-21T09:30:00+08:00&#34;</span><span class=p>;</span>
+<span class=kr>const</span> <span class=nx>date</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>(</span><span class=nx>str</span><span class=p>);</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>date</span><span class=p>.</span><span class=nx>toISOString</span><span class=p>());</span> <span class=c1>// 自動轉為 UTC
+</span></code></pre></div><h3 id=3-轉換為本地時區顯示>3. 轉換為本地時區顯示<a hidden class=anchor aria-hidden=true href=#3-轉換為本地時區顯示>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=kr>const</span> <span class=nx>utcStr</span> <span class=o>=</span> <span class=s2>&#34;2025-05-21T01:00:00Z&#34;</span><span class=p>;</span>
+<span class=kr>const</span> <span class=nx>local</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>(</span><span class=nx>utcStr</span><span class=p>);</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>local</span><span class=p>.</span><span class=nx>toLocaleString</span><span class=p>(</span><span class=s1>&#39;zh-TW&#39;</span><span class=p>,</span> <span class=p>{</span> <span class=nx>timeZone</span><span class=o>:</span> <span class=s1>&#39;Asia/Taipei&#39;</span> <span class=p>}));</span>
+</code></pre></div><h3 id=4-取得指定時區時間需用函式庫如-dayjsluxon>4. 取得指定時區時間（需用函式庫如 dayjs、luxon）<a hidden class=anchor aria-hidden=true href=#4-取得指定時區時間需用函式庫如-dayjsluxon>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=c1>// 以 dayjs + timezone plugin 為例
+</span><span class=c1></span><span class=kr>import</span> <span class=nx>dayjs</span> <span class=nx>from</span> <span class=s1>&#39;dayjs&#39;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=nx>utc</span> <span class=nx>from</span> <span class=s1>&#39;dayjs/plugin/utc&#39;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=nx>timezone</span> <span class=nx>from</span> <span class=s1>&#39;dayjs/plugin/timezone&#39;</span><span class=p>;</span>
+<span class=nx>dayjs</span><span class=p>.</span><span class=nx>extend</span><span class=p>(</span><span class=nx>utc</span><span class=p>);</span>
+<span class=nx>dayjs</span><span class=p>.</span><span class=nx>extend</span><span class=p>(</span><span class=nx>timezone</span><span class=p>);</span>
+
+<span class=kr>const</span> <span class=nx>utcTime</span> <span class=o>=</span> <span class=nx>dayjs</span><span class=p>.</span><span class=nx>utc</span><span class=p>(</span><span class=s1>&#39;2025-05-21T01:00:00Z&#39;</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>taipeiTime</span> <span class=o>=</span> <span class=nx>utcTime</span><span class=p>.</span><span class=nx>tz</span><span class=p>(</span><span class=s1>&#39;Asia/Taipei&#39;</span><span class=p>).</span><span class=nx>format</span><span class=p>(</span><span class=s1>&#39;YYYY-MM-DD HH:mm:ss&#39;</span><span class=p>);</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>taipeiTime</span><span class=p>);</span> <span class=c1>// 2025-05-21 09:00:00
+</span></code></pre></div><h2 id=四什麼是-utc>四、什麼是 UTC？<a hidden class=anchor aria-hidden=true href=#四什麼是-utc>#</a></h2>
+<p>UTC（協調世界時）是全球統一的時間標準，不受夏令時間、地區影響。所有時區都以 UTC 為基準（如台北為 UTC+8）。</p>
+<ul>
+<li><code>2025-05-21T01:00:00Z</code> 代表 2025/5/21 09:00 台北時間（Z 代表 UTC）</li>
+<li>儲存、運算、API 傳遞皆建議用 UTC</li>
+</ul>
+<h2 id=五常見時區問題與解法>五、常見時區問題與解法<a hidden class=anchor aria-hidden=true href=#五常見時區問題與解法>#</a></h2>
+<h3 id=問題1前端顯示時間錯誤>問題1：前端顯示時間錯誤<a hidden class=anchor aria-hidden=true href=#問題1前端顯示時間錯誤>#</a></h3>
+<ul>
+<li><strong>原因</strong>：API 傳回無時區資訊，或前端未正確解析</li>
+<li><strong>解法</strong>：API 一律傳回帶時區的 ISO8601/RFC3339 字串，前端用 <code>new Date(str)</code> 解析</li>
+</ul>
+<h3 id=問題2夏令時間錯亂>問題2：夏令時間錯亂<a hidden class=anchor aria-hidden=true href=#問題2夏令時間錯亂>#</a></h3>
+<ul>
+<li><strong>解法</strong>：一律用 UTC 儲存，顯示時用函式庫（如 dayjs、luxon）依用戶時區轉換</li>
+</ul>
+<h3 id=問題3多國用戶時間顯示不一致>問題3：多國用戶時間顯示不一致<a hidden class=anchor aria-hidden=true href=#問題3多國用戶時間顯示不一致>#</a></h3>
+<ul>
+<li><strong>解法</strong>：API 傳 UTC，前端根據用戶瀏覽器自動轉換</li>
+</ul>
+<h3 id=實務範例api-設計>實務範例：API 設計<a hidden class=anchor aria-hidden=true href=#實務範例api-設計>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+  <span class=nt>&#34;startTime&#34;</span><span class=p>:</span> <span class=s2>&#34;2025-05-21T01:00:00Z&#34;</span><span class=p>,</span> <span class=c1>// UTC
+</span><span class=c1></span>  <span class=nt>&#34;endTime&#34;</span><span class=p>:</span> <span class=s2>&#34;2025-05-21T09:00:00+08:00&#34;</span> <span class=c1>// 台北時區
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></div><p>前端解析：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=kr>const</span> <span class=nx>start</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>(</span><span class=nx>apiData</span><span class=p>.</span><span class=nx>startTime</span><span class=p>);</span>
+<span class=kr>const</span> <span class=nx>end</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>(</span><span class=nx>apiData</span><span class=p>.</span><span class=nx>endTime</span><span class=p>);</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>start</span><span class=p>.</span><span class=nx>toLocaleString</span><span class=p>());</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>end</span><span class=p>.</span><span class=nx>toLocaleString</span><span class=p>());</span>
+</code></pre></div><hr>
+<h2 id=六c-後端如何判斷前端傳來的時間時區>六、C# 後端如何判斷前端傳來的時間時區？<a hidden class=anchor aria-hidden=true href=#六c-後端如何判斷前端傳來的時間時區>#</a></h2>
+<p>前端傳送時間給 C# 後端時，若字串帶有時區資訊（如 <code>2025-05-21T09:30:00+08:00</code> 或 <code>2025-05-21T01:30:00Z</code>），後端可自動解析並判斷時區。若未帶時區，則需明確約定預設時區。</p>
+<h3 id=常見時間字串格式>常見時間字串格式<a hidden class=anchor aria-hidden=true href=#常見時間字串格式>#</a></h3>
+<ul>
+<li><code>2025-05-21T09:30:00+08:00</code>（台北時區，ISO8601/RFC3339 標準）</li>
+<li><code>2025-05-21T01:30:00Z</code>（UTC 時區，Z 代表 UTC）</li>
+<li><code>2025-05-21T09:30:00</code>（無時區，需約定）</li>
+</ul>
+<h3 id=c-解析帶時區的時間字串>C# 解析帶時區的時間字串<a hidden class=anchor aria-hidden=true href=#c-解析帶時區的時間字串>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=k>using</span> <span class=nn>System</span><span class=p>;</span>
+
+<span class=k>public</span> <span class=k>class</span> <span class=nc>TimezoneDemo</span>
+<span class=p>{</span>
+    <span class=k>public</span> <span class=k>static</span> <span class=k>void</span> <span class=n>Main</span><span class=p>()</span>
+    <span class=p>{</span>
+        <span class=c1>// 帶時區的時間字串
+</span><span class=c1></span>        <span class=kt>string</span> <span class=n>isoString</span> <span class=p>=</span> <span class=s>&#34;2025-05-21T09:30:00+08:00&#34;</span><span class=p>;</span>
+        <span class=n>DateTimeOffset</span> <span class=n>dto</span> <span class=p>=</span> <span class=n>DateTimeOffset</span><span class=p>.</span><span class=n>Parse</span><span class=p>(</span><span class=n>isoString</span><span class=p>);</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>$&#34;原始字串: {isoString}&#34;</span><span class=p>);</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>$&#34;UTC 時間: {dto.UtcDateTime}&#34;</span><span class=p>);</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>$&#34;本地時間: {dto.LocalDateTime}&#34;</span><span class=p>);</span>
+        <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>$&#34;時區偏移: {dto.Offset}&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><h4 id=範例輸出>範例輸出<a hidden class=anchor aria-hidden=true href=#範例輸出>#</a></h4>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>原始字串: 2025-05-21T09:30:00+08:00
+UTC 時間: 2025-05-21 01:30:00
+本地時間: 2025-05-21 09:30:00
+時區偏移: 08:00:00
+</code></pre></div><h3 id=判斷前端有無帶時區>判斷前端有無帶時區<a hidden class=anchor aria-hidden=true href=#判斷前端有無帶時區>#</a></h3>
+<ul>
+<li>若用 <code>DateTimeOffset.TryParse</code> 解析，若字串無時區，Offset 會是本地預設時區。</li>
+<li>建議前端一律傳帶時區的 ISO8601/RFC3339 字串。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=kt>string</span> <span class=n>input</span> <span class=p>=</span> <span class=s>&#34;2025-05-21T09:30:00&#34;</span><span class=p>;</span> <span class=c1>// 無時區
+</span><span class=c1></span><span class=k>if</span><span class=p>(</span><span class=n>DateTimeOffset</span><span class=p>.</span><span class=n>TryParse</span><span class=p>(</span><span class=n>input</span><span class=p>,</span> <span class=k>out</span> <span class=kt>var</span> <span class=n>dto</span><span class=p>))</span>
+<span class=p>{</span>
+    <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>$&#34;Offset: {dto.Offset}&#34;</span><span class=p>);</span>
+    <span class=c1>// 若 Offset = 00:00:00 或本地時區，需依專案需求處理
+</span><span class=c1></span><span class=p>}</span>
+<span class=k>else</span>
+<span class=p>{</span>
+    <span class=n>Console</span><span class=p>.</span><span class=n>WriteLine</span><span class=p>(</span><span class=s>&#34;格式錯誤&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=常見陷阱>常見陷阱<a hidden class=anchor aria-hidden=true href=#常見陷阱>#</a></h3>
+<ul>
+<li>前端未帶時區，後端無法判斷正確時間，建議 API 文件明確規範格式。</li>
+<li>若需統一時區，建議後端收到後轉為 UTC 儲存。</li>
+</ul>
+<h3 id=總結>總結<a hidden class=anchor aria-hidden=true href=#總結>#</a></h3>
+<ul>
+<li>C# 後端可用 <code>DateTimeOffset.Parse</code> 直接解析帶時區的時間字串。</li>
+<li>若字串無時區，需明確約定預設時區，或回傳錯誤提示前端。</li>
+<li>儲存與運算建議一律轉為 UTC。</li>
+</ul>
+<hr>
+<blockquote>
+<p>延伸閱讀：</p>
+<ul>
+<li><a href=https://learn.microsoft.com/zh-tw/dotnet/api/system.datetimeoffset>Microsoft Docs：DateTimeOffset 結構</a></li>
+<li><a href=https://zh.wikipedia.org/wiki/ISO_8601>ISO8601 標準說明</a></li>
+</ul>
+</blockquote>
+<h2 id=結語>結語<a hidden class=anchor aria-hidden=true href=#結語>#</a></h2>
+<p>時區與時間格式的正確處理，是跨國、跨平台系統不可忽視的細節。建議：</p>
+<ul>
+<li>API 傳遞一律用 RFC3339/ISO8601，帶明確時區</li>
+<li>儲存、運算皆用 UTC</li>
+<li>顯示時再依用戶時區轉換</li>
+<li>善用現代函式庫 dayjs、luxon 處理複雜時區</li>
+</ul>
+<hr>
+<blockquote>
+<p>延伸閱讀：</p>
+<ul>
+<li><a href=https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Date>MDN：Date 物件</a></li>
+<li><a href=https://datatracker.ietf.org/doc/html/rfc3339>RFC3339 文件</a></li>
+<li><a href=https://zh.wikipedia.org/wiki/ISO_8601>ISO8601 維基百科</a></li>
+<li><a href=https://dayjs.gitee.io/>dayjs 官方文件</a></li>
+</ul>
+</blockquote>
+</div>
+<section class=post-related>
+<h2>延伸閱讀</h2>
+<div class=related-cards>
+<a class=related-card href=/blog/posts/frontend/js/fuse-js-javascript-fuzzy-search-engine/>
+<div class=related-info>
+<div class=related-title>深入了解 Fuse.js：JavaScript 模糊搜尋</div>
+<div class=related-desc>深入探討 Fuse.js，一個用於 JavaScript 的輕量級模糊搜尋引擎。本文介紹 Fuse.js 的基本概念，以 …</div>
+<div class=related-date>2024-04-29</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/js-blob-download/>
+<div class=related-info>
+<div class=related-title>[JavaScript] 如何使用JavaScript與blob下載檔案？</div>
+<div class=related-desc>如果您在開發網頁應用時需要實現PDF下載功能，那麼本文將向您介紹如何使用JavaScript和fetch API來下 …</div>
+<div class=related-date>2023-04-27</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/bind-apply-call/>
+<div class=related-info>
+<div class=related-title>[JavaScript] 讓你馬上了解bind、apply、call的用法</div>
+<div class=related-desc>在開發的時候如果需要指定this的物件時要怎麼辦呢?可以試試看bind、apply、call來解決你的問題......</div>
+<div class=related-date>2022-09-15</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/this/>
+<div class=related-info>
+<div class=related-title>[JavaScript] this是什麼?</div>
+<div class=related-desc>看過很多文章都有介紹this，總感覺好像怪怪的沒辦法很直覺的了解this這東西，本篇文章將會簡單介紹......</div>
+<div class=related-date>2022-09-14</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/iife/>
+<div class=related-info>
+<div class=related-title>[JavaScript] 立即執行函式(IIFE)是什麼?</div>
+<div class=related-desc>IIFE (Immediately Invoked Function Expression) …</div>
+<div class=related-date>2022-09-14</div>
+</div>
+</a>
+</div>
+</section>
+<style>.related-cards{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem}.related-card{display:flex;flex-direction:column;width:220px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,7%);text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s;overflow:hidden}.related-card:hover{box-shadow:0 6px 18px rgba(0,0,0,.13);transform:translateY(-4px)scale(1.03)}.related-thumb img{width:100%;height:120px;object-fit:cover;display:block}.related-info{padding:.8rem 1rem 1rem}.related-title{font-weight:700;font-size:1.08rem;margin-bottom:.4rem}.related-desc{color:#666;font-size:.95rem;margin-bottom:.5rem;min-height:2.2em}.related-date{font-size:.85rem;color:#aaa;text-align:right}</style>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://mars23003.github.io/blog/tags/%E6%99%82%E5%8D%80/>時區</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/%E6%99%82%E9%96%93%E6%A0%BC%E5%BC%8F/>時間格式</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/rfc3339/>RFC3339</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/iso8601/>ISO8601</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/javascript/>JavaScript</a></li>
+</ul>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>
+Powered by
+<a href=https://github.com/Mars23003>MarsLin</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+</body>
+</html>
