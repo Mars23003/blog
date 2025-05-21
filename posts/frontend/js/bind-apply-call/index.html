@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>[JavaScript] 讓你馬上了解bind、apply、call的用法 | Mars's Blog</title>
+<title>[JavaScript] 讓你馬上了解bind、apply、call的用法 | 馬爾斯的Blog</title>
 <meta name=keywords content="JavaScript,bind,apply,call,this">
 <meta name=description content="在開發的時候如果需要指定this的物件時要怎麼辦呢?可以試試看bind、apply、call來解決你的問題......">
 <meta name=author content="Mars">
@@ -36,14 +36,14 @@
 <meta name=twitter:title content="[JavaScript] 讓你馬上了解bind、apply、call的用法">
 <meta name=twitter:description content="在開發的時候如果需要指定this的物件時要怎麼辦呢?可以試試看bind、apply、call來解決你的問題......">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[JavaScript] 讓你馬上了解bind、apply、call的用法","item":"https://mars23003.github.io/blog/posts/frontend/js/bind-apply-call/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[JavaScript] 讓你馬上了解bind、apply、call的用法","name":"[JavaScript] 讓你馬上了解bind、apply、call的用法","description":"在開發的時候如果需要指定this的物件時要怎麼辦呢?可以試試看bind、apply、call來解決你的問題......","keywords":["JavaScript","bind","apply","call","this"],"articleBody":"前言 javaScript this 是會隨著當前的狀態而動態改變的， 複習一下以下程式碼的console.log的回傳。\nvar name = 'Mars'; const obj={ name:'Guest', fun:function(){ console.log(this.name); } }; obj.fun();//Guest  const useFun = obj.fun; useFun();//Mars  如果不熟悉的話建議複習一下[JavaScript] this是什麼?這篇文章。\n在開發的時候如果需要指定this的物件時要怎麼辦呢? bind、apply、call均可以達到目的，只是用法稍微不同。\nbind、apply、call 簡單整理 bind、apply、call都是function物件的方法，他們的用法都可以指定this、帶入參數。 這邊先做基本的表格整理，\n    bind apply call     指定this V V V   帶入參數 V V V   是否直接執行 X V V    bind bind與其他兩種方法的最大差異為是否直接執行，\nbind比較像是回傳一個新的function而已， 若要執行的話需要另外寫執行function的動作。\n1. 指定this、是否直接執行 以下面範例來解釋:\nconst obj={ name:'Mars', age:18 }; function fun(){ console.log('Name:'+this.name+'_Age:'+this.age); } fun();//未使用bind/apply/call，若對this不熟悉將可能出現使用問題  const funBind = fun.bind(obj);//透過bind綁定obj的物件給fun函式 funBind();//並透過新函式來呼叫  ----------------------------- Output: Name:_Age:undefined Name:Mars_Age:18  fun() : 單純執行find()未使用bind/apply/call，若對this不熟悉將可能出現使用問題。 const funBind = fun.bind(obj) : 透過bind綁定obj的物件給fun函式(指定this)。 funBind() : 並透過新函式來呼叫(需要另外呼叫來執行)。\n 2. 帶入參數 bind帶入參數會有一個限制，就是透過bind綁定過後的參數將不能更改。\nconst obj={ name:'Mars' }; function fun(age){ console.log('Name:'+this.name+'_Age:'+age); } const funBind = fun.bind(obj,18); funBind(); funBind(65);//嘗試更改Age ----------------------------- Output: Name:Mars_Age:18 Name:Mars_Age:18//還是一樣18  funBind(65) : 嘗試更改Age但是結果Age還是一樣18，代表不能更改。\n apply、call apply、call這兩個方法比較相近，直接一起來看， 直接來看程式碼:\nconst obj={ name:'Mars' }; function fun(age,sex){ console.log('Name:'+this.name+'_Age:'+age+'_Sex:'+sex); } fun.apply(obj,[18,'male']);//或fun.apply(obj,new Array(18,'male')); fun.call(obj,18,'male'); ----------------------------- Output: Name:Mars_Age:18_Sex:male Name:Mars_Age:18_Sex:male  fun.apply(obj,[18,‘male’]); 直接執行 並 指定this 然後參數需要用陣列的方式帶入。\n  fun.call(obj,18,‘male’);直接執行 並 指定this 然後參數直接帶入。\n ","wordCount":"920","inLanguage":"zh-tw","image":"https://mars23003.github.io/blog/image/js/bindApplyCall.jpg","datePublished":"2022-09-15T07:18:40+08:00","dateModified":"2022-09-15T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/bind-apply-call/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[JavaScript] 讓你馬上了解bind、apply、call的用法","name":"[JavaScript] 讓你馬上了解bind、apply、call的用法","description":"在開發的時候如果需要指定this的物件時要怎麼辦呢?可以試試看bind、apply、call來解決你的問題......","keywords":["JavaScript","bind","apply","call","this"],"articleBody":"前言 javaScript this 是會隨著當前的狀態而動態改變的， 複習一下以下程式碼的console.log的回傳。\nvar name = 'Mars'; const obj={ name:'Guest', fun:function(){ console.log(this.name); } }; obj.fun();//Guest  const useFun = obj.fun; useFun();//Mars  如果不熟悉的話建議複習一下[JavaScript] this是什麼?這篇文章。\n在開發的時候如果需要指定this的物件時要怎麼辦呢? bind、apply、call均可以達到目的，只是用法稍微不同。\nbind、apply、call 簡單整理 bind、apply、call都是function物件的方法，他們的用法都可以指定this、帶入參數。 這邊先做基本的表格整理，\n    bind apply call     指定this V V V   帶入參數 V V V   是否直接執行 X V V    bind bind與其他兩種方法的最大差異為是否直接執行，\nbind比較像是回傳一個新的function而已， 若要執行的話需要另外寫執行function的動作。\n1. 指定this、是否直接執行 以下面範例來解釋:\nconst obj={ name:'Mars', age:18 }; function fun(){ console.log('Name:'+this.name+'_Age:'+this.age); } fun();//未使用bind/apply/call，若對this不熟悉將可能出現使用問題  const funBind = fun.bind(obj);//透過bind綁定obj的物件給fun函式 funBind();//並透過新函式來呼叫  ----------------------------- Output: Name:_Age:undefined Name:Mars_Age:18  fun() : 單純執行find()未使用bind/apply/call，若對this不熟悉將可能出現使用問題。 const funBind = fun.bind(obj) : 透過bind綁定obj的物件給fun函式(指定this)。 funBind() : 並透過新函式來呼叫(需要另外呼叫來執行)。\n 2. 帶入參數 bind帶入參數會有一個限制，就是透過bind綁定過後的參數將不能更改。\nconst obj={ name:'Mars' }; function fun(age){ console.log('Name:'+this.name+'_Age:'+age); } const funBind = fun.bind(obj,18); funBind(); funBind(65);//嘗試更改Age ----------------------------- Output: Name:Mars_Age:18 Name:Mars_Age:18//還是一樣18  funBind(65) : 嘗試更改Age但是結果Age還是一樣18，代表不能更改。\n apply、call apply、call這兩個方法比較相近，直接一起來看， 直接來看程式碼:\nconst obj={ name:'Mars' }; function fun(age,sex){ console.log('Name:'+this.name+'_Age:'+age+'_Sex:'+sex); } fun.apply(obj,[18,'male']);//或fun.apply(obj,new Array(18,'male')); fun.call(obj,18,'male'); ----------------------------- Output: Name:Mars_Age:18_Sex:male Name:Mars_Age:18_Sex:male  fun.apply(obj,[18,‘male’]); 直接執行 並 指定this 然後參數需要用陣列的方式帶入。\n  fun.call(obj,18,‘male’);直接執行 並 指定this 然後參數直接帶入。\n ","wordCount":"920","inLanguage":"zh-tw","image":"https://mars23003.github.io/blog/image/js/bindApplyCall.jpg","datePublished":"2022-09-15T07:18:40+08:00","dateModified":"2022-09-15T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/bind-apply-call/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -254,13 +254,6 @@
 <div class=related-date>2024-04-29</div>
 </div>
 </a>
-<a class=related-card href=/blog/posts/frontend/js/js-blob-download/>
-<div class=related-info>
-<div class=related-title>[JavaScript] 如何使用JavaScript與blob下載檔案？</div>
-<div class=related-desc>如果您在開發網頁應用時需要實現PDF下載功能，那麼本文將向您介紹如何使用JavaScript和fetch API來下 …</div>
-<div class=related-date>2023-04-27</div>
-</div>
-</a>
 <a class=related-card href=/blog/posts/frontend/js/this/>
 <div class=related-info>
 <div class=related-title>[JavaScript] this是什麼?</div>
@@ -273,6 +266,13 @@
 <div class=related-title>[JavaScript] 立即執行函式(IIFE)是什麼?</div>
 <div class=related-desc>IIFE (Immediately Invoked Function Expression) …</div>
 <div class=related-date>2022-09-14</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/var-let-const/>
+<div class=related-info>
+<div class=related-title>[JavaScript] 不能不知道的 var、let、const 變數宣告</div>
+<div class=related-desc>不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......</div>
+<div class=related-date>2022-09-13</div>
 </div>
 </a>
 </div>
@@ -298,10 +298,10 @@
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

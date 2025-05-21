@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>[JavaScript] 不能不知道的 var、let、const 變數宣告 | Mars's Blog</title>
+<title>[JavaScript] 不能不知道的 var、let、const 變數宣告 | 馬爾斯的Blog</title>
 <meta name=keywords content="JavaScript,變數宣告,var,let,const">
 <meta name=description content="不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......">
 <meta name=author content="Mars">
@@ -34,14 +34,14 @@
 <meta name=twitter:title content="[JavaScript] 不能不知道的 var、let、const 變數宣告">
 <meta name=twitter:description content="不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[JavaScript] 不能不知道的 var、let、const 變數宣告","item":"https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[JavaScript] 不能不知道的 var、let、const 變數宣告","name":"[JavaScript] 不能不知道的 var、let、const 變數宣告","description":"不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......","keywords":["JavaScript","變數宣告","var","let","const"],"articleBody":"在ES6以前並無let、const、block scope(區塊作用域,可以當成{})的概念，當時都是使用var來宣告變數， 雖然這樣宣告起來很方便，但是往往會有忽略宣告變數的層級問題，導致全域環境受到汙染的狀況， 以下將會舉例來作簡單的解釋。\nvar  宣告在function內的var變數只在function(function scope)內有效。\n宣告在function外的話其作用範圍將會是全域作用域(global scope)。\n var i = \"aaa\";//定義一個全域i變數的字串\"aaa\"  for(var i=0; i3; i++){//透過一些區塊語句處理後將會影響到原有的全域變數  console.log(i,\"a\"); } console.log(i);// 3 可以輸入window來檢驗上述所說的， 在function scope以外的地方宣告var變數， 其作用於全域作用域(global scope)，如同上面的例子 當有重複命名或沒規劃好變數作用範圍之類的情況時將會汙染全域環境。\nlet  用let來宣告變數其作用的區域為區塊作用域(block scope)，可以當作大括號{}內的範圍為一個區塊。\n在區塊作用域(大括號{})以外的地方將存取不了該變數，將出現is not defined的錯誤。\n for(let i=0; i3; i++){//區塊內的let i  console.log(i); } //區塊外存取let i console.log(i);// error: i is not defined  let不會產生全域變數且在同一個區塊(block) let不能重複宣告(包含var同名變數宣告也不行)，否則會出錯 Identifier ‘i’ has already been declared  const 具備let所有的特性。 但是除了與let相同以外，const所有的特性又有額外的規範。\n 在宣告時就要為其賦值。 有常數的特性(即不可修改)。  ","wordCount":"662","inLanguage":"zh-tw","datePublished":"2022-09-13T07:18:40+08:00","dateModified":"2022-09-13T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[JavaScript] 不能不知道的 var、let、const 變數宣告","name":"[JavaScript] 不能不知道的 var、let、const 變數宣告","description":"不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......","keywords":["JavaScript","變數宣告","var","let","const"],"articleBody":"在ES6以前並無let、const、block scope(區塊作用域,可以當成{})的概念，當時都是使用var來宣告變數， 雖然這樣宣告起來很方便，但是往往會有忽略宣告變數的層級問題，導致全域環境受到汙染的狀況， 以下將會舉例來作簡單的解釋。\nvar  宣告在function內的var變數只在function(function scope)內有效。\n宣告在function外的話其作用範圍將會是全域作用域(global scope)。\n var i = \"aaa\";//定義一個全域i變數的字串\"aaa\"  for(var i=0; i3; i++){//透過一些區塊語句處理後將會影響到原有的全域變數  console.log(i,\"a\"); } console.log(i);// 3 可以輸入window來檢驗上述所說的， 在function scope以外的地方宣告var變數， 其作用於全域作用域(global scope)，如同上面的例子 當有重複命名或沒規劃好變數作用範圍之類的情況時將會汙染全域環境。\nlet  用let來宣告變數其作用的區域為區塊作用域(block scope)，可以當作大括號{}內的範圍為一個區塊。\n在區塊作用域(大括號{})以外的地方將存取不了該變數，將出現is not defined的錯誤。\n for(let i=0; i3; i++){//區塊內的let i  console.log(i); } //區塊外存取let i console.log(i);// error: i is not defined  let不會產生全域變數且在同一個區塊(block) let不能重複宣告(包含var同名變數宣告也不行)，否則會出錯 Identifier ‘i’ has already been declared  const 具備let所有的特性。 但是除了與let相同以外，const所有的特性又有額外的規範。\n 在宣告時就要為其賦值。 有常數的特性(即不可修改)。  ","wordCount":"662","inLanguage":"zh-tw","datePublished":"2022-09-13T07:18:40+08:00","dateModified":"2022-09-13T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/var-let-const/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -159,13 +159,6 @@
 <div class=related-date>2024-04-29</div>
 </div>
 </a>
-<a class=related-card href=/blog/posts/frontend/js/js-blob-download/>
-<div class=related-info>
-<div class=related-title>[JavaScript] 如何使用JavaScript與blob下載檔案？</div>
-<div class=related-desc>如果您在開發網頁應用時需要實現PDF下載功能，那麼本文將向您介紹如何使用JavaScript和fetch API來下 …</div>
-<div class=related-date>2023-04-27</div>
-</div>
-</a>
 <a class=related-card href=/blog/posts/frontend/js/bind-apply-call/>
 <div class=related-info>
 <div class=related-title>[JavaScript] 讓你馬上了解bind、apply、call的用法</div>
@@ -177,6 +170,13 @@
 <div class=related-info>
 <div class=related-title>[JavaScript] this是什麼?</div>
 <div class=related-desc>看過很多文章都有介紹this，總感覺好像怪怪的沒辦法很直覺的了解this這東西，本篇文章將會簡單介紹......</div>
+<div class=related-date>2022-09-14</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/iife/>
+<div class=related-info>
+<div class=related-title>[JavaScript] 立即執行函式(IIFE)是什麼?</div>
+<div class=related-desc>IIFE (Immediately Invoked Function Expression) …</div>
 <div class=related-date>2022-09-14</div>
 </div>
 </a>
@@ -203,10 +203,10 @@
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

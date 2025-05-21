@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析 | Mars's Blog</title>
+<title>[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析 | 馬爾斯的Blog</title>
 <meta name=keywords content="Factory Comparison,設計模式,抽象工廠模式,工廠方法模式,簡單工廠模式,工廠模式">
 <meta name=description content="本文介紹了三種常見的工廠模式：工廠方法模式、簡單工廠模式和抽象工廠模式，並進行了比較。比較項目包括：定義方式、產品種類、產品創建、產品擴充、彈性程度、複雜度和適用場景等。讀者可以從本文中了解到每種工廠模式的優缺點和適用場景，以及如何根據需求選擇最適合的工廠模式。">
 <meta name=author content="Mars">
@@ -34,14 +34,14 @@
 <meta name=twitter:title content="[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析">
 <meta name=twitter:description content="本文介紹了三種常見的工廠模式：工廠方法模式、簡單工廠模式和抽象工廠模式，並進行了比較。比較項目包括：定義方式、產品種類、產品創建、產品擴充、彈性程度、複雜度和適用場景等。讀者可以從本文中了解到每種工廠模式的優缺點和適用場景，以及如何根據需求選擇最適合的工廠模式。">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析","item":"https://mars23003.github.io/blog/posts/designpattern/factorycomparison/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析","name":"[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析","description":"本文介紹了三種常見的工廠模式：工廠方法模式、簡單工廠模式和抽象工廠模式，並進行了比較。比較項目包括：定義方式、產品種類、產品創建、產品擴充、彈性程度、複雜度和適用場景等。讀者可以從本文中了解到每種工廠模式的優缺點和適用場景，以及如何根據需求選擇最適合的工廠模式。","keywords":["Factory Comparison","設計模式","抽象工廠模式","工廠方法模式","簡單工廠模式","工廠模式"],"articleBody":"以下是抽象工廠模式、工廠方法模式和簡單工廠模式的比較表格：\n.tg {border-collapse:collapse;border-color:#aabcfe;border-spacing:0;}\r.tg td{background-color:#f2f5ff;border-color:#aabcfe;border-style:solid;border-width:1px;color:#669;\rfont-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}\r.tg th{background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:1px;color:#039;\rfont-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\r.tg .tg-cly1{text-align:left;vertical-align:middle}\r.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}\r.tg .tg-0lax{text-align:left;vertical-align:top}\r\r\r\r比較\r簡單工廠模式\r工廠方法模式\r抽象工廠模式\r\r\r\r\r定義\r一個工廠可以創建多種產品\r一個工廠可以創建一種產品\r一個工廠可以創建多種產品\r\r\r使用場景\r創建多個相似的產品\r創建一個相關的產品\r創建多個相關的產品\r\r\r工廠類型\r工廠\r工廠\r抽象工廠\r\r\r要求程度\r低\r中\r高\r\r\r擴展性\r不容易擴展\r容易擴展\r容易擴展\r\r\r彈性\r不太靈活\r靈活\r靈活\r\r\r可讀性\r良好\r較好\r較差\r\r\r\r以上表格列出了簡單工廠模式、工廠方法模式和抽象工廠模式的幾個主要比較項目。抽象工廠模式比工廠方法模式和簡單工廠模式更加靈活和擴展，因為它可以創建多個相關的產品。工廠方法模式和簡單工廠模式則較為簡單和易於使用，但擴展性和彈性較差。具體選擇哪種模式，需要根據實際需求來進行評估。\n","wordCount":"327","inLanguage":"zh-tw","datePublished":"2023-04-17T07:18:40+08:00","dateModified":"2023-04-17T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/designpattern/factorycomparison/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析","name":"[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析","description":"本文介紹了三種常見的工廠模式：工廠方法模式、簡單工廠模式和抽象工廠模式，並進行了比較。比較項目包括：定義方式、產品種類、產品創建、產品擴充、彈性程度、複雜度和適用場景等。讀者可以從本文中了解到每種工廠模式的優缺點和適用場景，以及如何根據需求選擇最適合的工廠模式。","keywords":["Factory Comparison","設計模式","抽象工廠模式","工廠方法模式","簡單工廠模式","工廠模式"],"articleBody":"以下是抽象工廠模式、工廠方法模式和簡單工廠模式的比較表格：\n.tg {border-collapse:collapse;border-color:#aabcfe;border-spacing:0;}\r.tg td{background-color:#f2f5ff;border-color:#aabcfe;border-style:solid;border-width:1px;color:#669;\rfont-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}\r.tg th{background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:1px;color:#039;\rfont-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\r.tg .tg-cly1{text-align:left;vertical-align:middle}\r.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}\r.tg .tg-0lax{text-align:left;vertical-align:top}\r\r\r\r比較\r簡單工廠模式\r工廠方法模式\r抽象工廠模式\r\r\r\r\r定義\r一個工廠可以創建多種產品\r一個工廠可以創建一種產品\r一個工廠可以創建多種產品\r\r\r使用場景\r創建多個相似的產品\r創建一個相關的產品\r創建多個相關的產品\r\r\r工廠類型\r工廠\r工廠\r抽象工廠\r\r\r要求程度\r低\r中\r高\r\r\r擴展性\r不容易擴展\r容易擴展\r容易擴展\r\r\r彈性\r不太靈活\r靈活\r靈活\r\r\r可讀性\r良好\r較好\r較差\r\r\r\r以上表格列出了簡單工廠模式、工廠方法模式和抽象工廠模式的幾個主要比較項目。抽象工廠模式比工廠方法模式和簡單工廠模式更加靈活和擴展，因為它可以創建多個相關的產品。工廠方法模式和簡單工廠模式則較為簡單和易於使用，但擴展性和彈性較差。具體選擇哪種模式，需要根據實際需求來進行評估。\n","wordCount":"327","inLanguage":"zh-tw","datePublished":"2023-04-17T07:18:40+08:00","dateModified":"2023-04-17T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/designpattern/factorycomparison/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -203,10 +203,10 @@
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

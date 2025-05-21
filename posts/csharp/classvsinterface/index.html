@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>C# 類別、抽象類別、介面的使用時機 | Mars's Blog</title>
+<title>C# 類別、抽象類別、介面的使用時機 | 馬爾斯的Blog</title>
 <meta name=keywords content="class,abstract class,interface,介面,類別,繼承,泛化,抽象">
 <meta name=description content="簡單比較類別、抽象類別、介面的差異與使用時機">
 <meta name=author content="Mars">
@@ -34,14 +34,14 @@
 <meta name=twitter:title content="C# 類別、抽象類別、介面的使用時機">
 <meta name=twitter:description content="簡單比較類別、抽象類別、介面的差異與使用時機">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"C# 類別、抽象類別、介面的使用時機","item":"https://mars23003.github.io/blog/posts/csharp/classvsinterface/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"C# 類別、抽象類別、介面的使用時機","name":"C# 類別、抽象類別、介面的使用時機","description":"簡單比較類別、抽象類別、介面的差異與使用時機","keywords":["class","abstract class","interface","介面","類別","繼承","泛化","抽象"],"articleBody":"  Class\n 類別名稱  Attribute：狀態 Method：方法   基本上都是使用類別來定義。儘量避免使用Struct結構。    Abstract Class\n 抽象類別名稱  Attribute：狀態 Method：方法   不能被實例化，只能被繼承。主要用於定義共享的介面或部分實作。 強制子類別實現剩餘的部分，促使繼承關係。    Interface\n 介面名稱  Method：方法   無法保存狀態，只能定義方法。 定義契約行為，介面可包含一組成員（方法、屬性、事件等）。 任何實作該介面的類別都必須實作這些成員。 介面的作用包括解耦合、分離介面與實作。    抽象類別主要提供共享功能和部分實作，而介面則定義規範和行為契約。\n繼承與泛化   繼承\n 是指一個類別可以從另一個類別中繼承屬性和方法。    泛化\n 泛化關係用於表示子類如何特化父類的所有特徵和行為。 例如，老虎是動物的一種，老虎擁有動物的共性特徵和特性。    類別層級的抽象性  越上層的類別理論上越抽象。 當繼承後實現更多功能時，類別會變得越具象。  在物件導向設計中，適當選擇使用類別、抽象類別和介面可以幫助組織程式碼、提高代碼的重用性和可擴展性。\n 參考 : Will保哥 C#語言特性課程 microsoft .Net\n ","wordCount":"454","inLanguage":"zh-tw","datePublished":"2024-05-13T07:18:40+08:00","dateModified":"2024-05-13T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/csharp/classvsinterface/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"C# 類別、抽象類別、介面的使用時機","name":"C# 類別、抽象類別、介面的使用時機","description":"簡單比較類別、抽象類別、介面的差異與使用時機","keywords":["class","abstract class","interface","介面","類別","繼承","泛化","抽象"],"articleBody":"  Class\n 類別名稱  Attribute：狀態 Method：方法   基本上都是使用類別來定義。儘量避免使用Struct結構。    Abstract Class\n 抽象類別名稱  Attribute：狀態 Method：方法   不能被實例化，只能被繼承。主要用於定義共享的介面或部分實作。 強制子類別實現剩餘的部分，促使繼承關係。    Interface\n 介面名稱  Method：方法   無法保存狀態，只能定義方法。 定義契約行為，介面可包含一組成員（方法、屬性、事件等）。 任何實作該介面的類別都必須實作這些成員。 介面的作用包括解耦合、分離介面與實作。    抽象類別主要提供共享功能和部分實作，而介面則定義規範和行為契約。\n繼承與泛化   繼承\n 是指一個類別可以從另一個類別中繼承屬性和方法。    泛化\n 泛化關係用於表示子類如何特化父類的所有特徵和行為。 例如，老虎是動物的一種，老虎擁有動物的共性特徵和特性。    類別層級的抽象性  越上層的類別理論上越抽象。 當繼承後實現更多功能時，類別會變得越具象。  在物件導向設計中，適當選擇使用類別、抽象類別和介面可以幫助組織程式碼、提高代碼的重用性和可擴展性。\n 參考 : Will保哥 C#語言特性課程 microsoft .Net\n ","wordCount":"454","inLanguage":"zh-tw","datePublished":"2024-05-13T07:18:40+08:00","dateModified":"2024-05-13T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/csharp/classvsinterface/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -195,10 +195,10 @@ Will保哥 C#語言特性課程
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

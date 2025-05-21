@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>深入了解 Fuse.js：JavaScript 模糊搜尋 | Mars's Blog</title>
+<title>深入了解 Fuse.js：JavaScript 模糊搜尋 | 馬爾斯的Blog</title>
 <meta name=keywords content="Fuse.js,模糊搜尋引擎,JavaScript搜尋,前端開發,模糊搜尋演算法">
 <meta name=description content="深入探討 Fuse.js，一個用於 JavaScript 的輕量級模糊搜尋引擎。本文介紹 Fuse.js 的基本概念，以及如何在前端開發中利用它實現模糊搜尋功能，提供了實用的範例和配置選項。">
 <meta name=author content="Mars">
@@ -34,14 +34,14 @@
 <meta name=twitter:title content="深入了解 Fuse.js：JavaScript 模糊搜尋">
 <meta name=twitter:description content="深入探討 Fuse.js，一個用於 JavaScript 的輕量級模糊搜尋引擎。本文介紹 Fuse.js 的基本概念，以及如何在前端開發中利用它實現模糊搜尋功能，提供了實用的範例和配置選項。">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"深入了解 Fuse.js：JavaScript 模糊搜尋","item":"https://mars23003.github.io/blog/posts/frontend/js/fuse-js-javascript-fuzzy-search-engine/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"深入了解 Fuse.js：JavaScript 模糊搜尋","name":"深入了解 Fuse.js：JavaScript 模糊搜尋","description":"深入探討 Fuse.js，一個用於 JavaScript 的輕量級模糊搜尋引擎。本文介紹 Fuse.js 的基本概念，以及如何在前端開發中利用它實現模糊搜尋功能，提供了實用的範例和配置選項。","keywords":["Fuse.js","模糊搜尋引擎","JavaScript搜尋","前端開發","模糊搜尋演算法"],"articleBody":"Fuse.js 模糊搜尋引擎 概念介紹 Fuse.js 是一個用於 JavaScript 的輕量級模糊搜尋套件。它可以快速地在數據集中執行模糊搜尋，並返回最相似的結果。Fuse.js 使用模糊搜尋來計算相似度，允許用戶在輸入時進行錯別字、拼寫錯誤等自動校正。\n範例使用 以下是 Fuse.js 的基本用法範例：\nimport Fuse from 'fuse.js'; //數據 const books = [ { title: \"JavaScript: The Good Parts\", author: \"Douglas Crockford\" }, { title: \"JavaScript: The Definitive Guide\", author: \"David Flanagan\" }]; // 初始化 Fuse 實例 const fuse = new Fuse(books, { keys: ['title', 'author'] }); // 執行搜尋 const result = fuse.search('java script'); // 搜尋關鍵字 // 返回搜尋結果 console.log(result); 配置設定 Fuse.js 提供了許多配置選項，用於自定義搜尋行為和結果排序。你可以配置搜尋權重、設置閥值、指定搜尋模式等，詳情可參考官方文件。\n","wordCount":"253","inLanguage":"zh-tw","datePublished":"2024-04-29T07:18:40+08:00","dateModified":"2024-04-29T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/fuse-js-javascript-fuzzy-search-engine/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"深入了解 Fuse.js：JavaScript 模糊搜尋","name":"深入了解 Fuse.js：JavaScript 模糊搜尋","description":"深入探討 Fuse.js，一個用於 JavaScript 的輕量級模糊搜尋引擎。本文介紹 Fuse.js 的基本概念，以及如何在前端開發中利用它實現模糊搜尋功能，提供了實用的範例和配置選項。","keywords":["Fuse.js","模糊搜尋引擎","JavaScript搜尋","前端開發","模糊搜尋演算法"],"articleBody":"Fuse.js 模糊搜尋引擎 概念介紹 Fuse.js 是一個用於 JavaScript 的輕量級模糊搜尋套件。它可以快速地在數據集中執行模糊搜尋，並返回最相似的結果。Fuse.js 使用模糊搜尋來計算相似度，允許用戶在輸入時進行錯別字、拼寫錯誤等自動校正。\n範例使用 以下是 Fuse.js 的基本用法範例：\nimport Fuse from 'fuse.js'; //數據 const books = [ { title: \"JavaScript: The Good Parts\", author: \"Douglas Crockford\" }, { title: \"JavaScript: The Definitive Guide\", author: \"David Flanagan\" }]; // 初始化 Fuse 實例 const fuse = new Fuse(books, { keys: ['title', 'author'] }); // 執行搜尋 const result = fuse.search('java script'); // 搜尋關鍵字 // 返回搜尋結果 console.log(result); 配置設定 Fuse.js 提供了許多配置選項，用於自定義搜尋行為和結果排序。你可以配置搜尋權重、設置閥值、指定搜尋模式等，詳情可參考官方文件。\n","wordCount":"253","inLanguage":"zh-tw","datePublished":"2024-04-29T07:18:40+08:00","dateModified":"2024-04-29T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/fuse-js-javascript-fuzzy-search-engine/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -130,13 +130,6 @@
 <div class=related-date>2025-05-21</div>
 </div>
 </a>
-<a class=related-card href=/blog/posts/frontend/js/js-blob-download/>
-<div class=related-info>
-<div class=related-title>[JavaScript] 如何使用JavaScript與blob下載檔案？</div>
-<div class=related-desc>如果您在開發網頁應用時需要實現PDF下載功能，那麼本文將向您介紹如何使用JavaScript和fetch API來下 …</div>
-<div class=related-date>2023-04-27</div>
-</div>
-</a>
 <a class=related-card href=/blog/posts/frontend/js/bind-apply-call/>
 <div class=related-info>
 <div class=related-title>[JavaScript] 讓你馬上了解bind、apply、call的用法</div>
@@ -156,6 +149,13 @@
 <div class=related-title>[JavaScript] 立即執行函式(IIFE)是什麼?</div>
 <div class=related-desc>IIFE (Immediately Invoked Function Expression) …</div>
 <div class=related-date>2022-09-14</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/var-let-const/>
+<div class=related-info>
+<div class=related-title>[JavaScript] 不能不知道的 var、let、const 變數宣告</div>
+<div class=related-desc>不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......</div>
+<div class=related-date>2022-09-13</div>
 </div>
 </a>
 </div>
@@ -184,10 +184,10 @@
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

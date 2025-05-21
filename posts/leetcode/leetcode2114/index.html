@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences | Mars's Blog</title>
+<title>[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences | 馬爾斯的Blog</title>
 <meta name=keywords content="Leetcode,C#">
 <meta name=description content="A sentence is a list of words that are separated by a single space with no leading or trailing spaces. You are given an array of strings sentences, where each sentences[i] represents a single sentence. Return the maximum number of words that appear in a single sentence.">
 <meta name=author content="Mars">
@@ -34,14 +34,14 @@
 <meta name=twitter:title content="[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences">
 <meta name=twitter:description content="A sentence is a list of words that are separated by a single space with no leading or trailing spaces. You are given an array of strings sentences, where each sentences[i] represents a single sentence. Return the maximum number of words that appear in a single sentence.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences","item":"https://mars23003.github.io/blog/posts/leetcode/leetcode2114/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences","name":"[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences","description":"A sentence is a list of words that are separated by a single space with no leading or trailing spaces. You are given an array of strings sentences, where each sentences[i] represents a single sentence. Return the maximum number of words that appear in a single sentence.","keywords":["Leetcode","C#"],"articleBody":"Example 1:\n Input: sentences = [“alice and bob love leetcode”, “i think so too”, “this is great thanks very much”] Output: 6 Explanation:\n  The first sentence, “alice and bob love leetcode”, has 5 words in total. The second sentence, “i think so too”, has 4 words in total. The third sentence, “this is great thanks very much”, has 6 words in total. Thus, the maximum number of words in a single sentence comes from the third sentence, which has 6 words.  Example 2:\n Input: sentences = [“please wait”, “continue to fight”, “continue to win”] Output: 3 Explanation: It is possible that multiple sentences contain the same number of words. In this example, the second and third sentences (underlined) have the same number of words.\n Constraints: 1 public class Solution { public int MostWordsFound(string[] sentences) { return sentences.Max(x = x.Count(char.IsWhiteSpace)) +1 ; } } ","wordCount":"182","inLanguage":"zh-tw","datePublished":"2022-08-25T07:18:40+08:00","dateModified":"2022-08-25T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/leetcode/leetcode2114/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences","name":"[Leetcode][C#] 2114. Maximum Number of Words Found in Sentences","description":"A sentence is a list of words that are separated by a single space with no leading or trailing spaces. You are given an array of strings sentences, where each sentences[i] represents a single sentence. Return the maximum number of words that appear in a single sentence.","keywords":["Leetcode","C#"],"articleBody":"Example 1:\n Input: sentences = [“alice and bob love leetcode”, “i think so too”, “this is great thanks very much”] Output: 6 Explanation:\n  The first sentence, “alice and bob love leetcode”, has 5 words in total. The second sentence, “i think so too”, has 4 words in total. The third sentence, “this is great thanks very much”, has 6 words in total. Thus, the maximum number of words in a single sentence comes from the third sentence, which has 6 words.  Example 2:\n Input: sentences = [“please wait”, “continue to fight”, “continue to win”] Output: 3 Explanation: It is possible that multiple sentences contain the same number of words. In this example, the second and third sentences (underlined) have the same number of words.\n Constraints: 1 public class Solution { public int MostWordsFound(string[] sentences) { return sentences.Max(x = x.Count(char.IsWhiteSpace)) +1 ; } } ","wordCount":"182","inLanguage":"zh-tw","datePublished":"2022-08-25T07:18:40+08:00","dateModified":"2022-08-25T07:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/leetcode/leetcode2114/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -125,10 +125,10 @@ All the words in sentences[i] are separated by a single space.</p>
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>VS2022 使用 EF Core Power Tools 的指南 | Mars's Blog</title>
+<title>VS2022 使用 EF Core Power Tools 的指南 | 馬爾斯的Blog</title>
 <meta name=keywords content="VS2022,EF Core Power Tools,Entity Framework Core,資料庫反向工程,DbContext 產生,資料庫設計">
 <meta name=description content="最完整的 Visual Studio 2022 EF Core Power Tools 外掛安裝與使用指南，教你如何快速進行資料庫反向工程與模型產生。">
 <meta name=author content="Mars">
@@ -34,14 +34,14 @@
 <meta name=twitter:title content="VS2022 使用 EF Core Power Tools 的指南">
 <meta name=twitter:description content="最完整的 Visual Studio 2022 EF Core Power Tools 外掛安裝與使用指南，教你如何快速進行資料庫反向工程與模型產生。">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"VS2022 使用 EF Core Power Tools 的指南","item":"https://mars23003.github.io/blog/posts/ide/vs2022-efcore-power-tools-tutorial/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"VS2022 使用 EF Core Power Tools 的指南","name":"VS2022 使用 EF Core Power Tools 的指南","description":"最完整的 Visual Studio 2022 EF Core Power Tools 外掛安裝與使用指南，教你如何快速進行資料庫反向工程與模型產生。","keywords":["VS2022","EF Core Power Tools","Entity Framework Core","資料庫反向工程","DbContext 產生","資料庫設計"],"articleBody":"VS2022 使用 EF Core Power Tools 的指南 什麼是 EF Core Power Tools？ EF Core Power Tools 是一款 Visual Studio 外掛，能協助開發者以視覺化方式進行 Entity Framework Core 的資料庫反向工程、DbContext 與模型產生、ER 圖檢視等，大幅提升資料庫開發效率。\n安裝 EF Core Power Tools  開啟 Visual Studio 2022。 點選上方選單「擴充功能」「管理擴充功能」。 搜尋 EF Core Power Tools，找到後點選「下載」。 重新啟動 Visual Studio 以完成安裝。  主要功能  資料庫反向工程：自動產生 DbContext 與實體類別。 ER 圖視覺化：可直接在 IDE 內檢視資料庫結構。 支援多種資料庫：如 SQL Server、SQLite、PostgreSQL、MySQL 等。 模型同步：可將資料庫結構變更同步至程式碼。  基本使用方式 1. 產生 DbContext 與實體類別  在方案總管中，右鍵點選專案  「EF Core Power Tools」「Reverse Engineer…」。 選擇資料來源（如 SQL Server），設定連線字串。 選擇要產生的資料表與選項，點選「OK」。 工具會自動產生 DbContext 與實體類別於指定資料夾。  2. 檢視 ER 圖  右鍵資料庫專案  「EF Core Power Tools」「View Entity Data Model (Read-only)」。 可視覺化檢視資料表、關聯與欄位。  3. 同步資料庫結構  若資料庫結構有變更，可重複 Reverse Engineer 步驟，選擇「更新現有模型」。  進階技巧  自訂產生選項：可調整命名慣例、資料型別對應、是否產生註解等。 支援多資料庫來源：可同時管理多個資料庫連線。 與 EF Core CLI 搭配：可結合 CLI 進行進階資料庫遷移與管理。  常見問題  產生的程式碼無法編譯？  請確認已安裝對應版本的 Entity Framework Core 相依套件。   找不到資料庫？  檢查連線字串與資料庫權限設定。    結語 EF Core Power Tools 是 VS2022 下開發 EF Core 專案的強大利器，能大幅提升資料庫開發與維護效率，推薦給所有 .NET 開發者！\n  參考連結：\n EF Core Power Tools 官方網站 Visual Studio Marketplace - EF Core Power Tools   ","wordCount":"713","inLanguage":"zh-tw","datePublished":"2025-05-19T08:30:00+08:00","dateModified":"2025-05-19T08:30:00+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/ide/vs2022-efcore-power-tools-tutorial/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"VS2022 使用 EF Core Power Tools 的指南","name":"VS2022 使用 EF Core Power Tools 的指南","description":"最完整的 Visual Studio 2022 EF Core Power Tools 外掛安裝與使用指南，教你如何快速進行資料庫反向工程與模型產生。","keywords":["VS2022","EF Core Power Tools","Entity Framework Core","資料庫反向工程","DbContext 產生","資料庫設計"],"articleBody":"VS2022 使用 EF Core Power Tools 的指南 什麼是 EF Core Power Tools？ EF Core Power Tools 是一款 Visual Studio 外掛，能協助開發者以視覺化方式進行 Entity Framework Core 的資料庫反向工程、DbContext 與模型產生、ER 圖檢視等，大幅提升資料庫開發效率。\n安裝 EF Core Power Tools  開啟 Visual Studio 2022。 點選上方選單「擴充功能」「管理擴充功能」。 搜尋 EF Core Power Tools，找到後點選「下載」。 重新啟動 Visual Studio 以完成安裝。  主要功能  資料庫反向工程：自動產生 DbContext 與實體類別。 ER 圖視覺化：可直接在 IDE 內檢視資料庫結構。 支援多種資料庫：如 SQL Server、SQLite、PostgreSQL、MySQL 等。 模型同步：可將資料庫結構變更同步至程式碼。  基本使用方式 1. 產生 DbContext 與實體類別  在方案總管中，右鍵點選專案  「EF Core Power Tools」「Reverse Engineer…」。 選擇資料來源（如 SQL Server），設定連線字串。 選擇要產生的資料表與選項，點選「OK」。 工具會自動產生 DbContext 與實體類別於指定資料夾。  2. 檢視 ER 圖  右鍵資料庫專案  「EF Core Power Tools」「View Entity Data Model (Read-only)」。 可視覺化檢視資料表、關聯與欄位。  3. 同步資料庫結構  若資料庫結構有變更，可重複 Reverse Engineer 步驟，選擇「更新現有模型」。  進階技巧  自訂產生選項：可調整命名慣例、資料型別對應、是否產生註解等。 支援多資料庫來源：可同時管理多個資料庫連線。 與 EF Core CLI 搭配：可結合 CLI 進行進階資料庫遷移與管理。  常見問題  產生的程式碼無法編譯？  請確認已安裝對應版本的 Entity Framework Core 相依套件。   找不到資料庫？  檢查連線字串與資料庫權限設定。    結語 EF Core Power Tools 是 VS2022 下開發 EF Core 專案的強大利器，能大幅提升資料庫開發與維護效率，推薦給所有 .NET 開發者！\n  參考連結：\n EF Core Power Tools 官方網站 Visual Studio Marketplace - EF Core Power Tools   ","wordCount":"713","inLanguage":"zh-tw","datePublished":"2025-05-19T08:30:00+08:00","dateModified":"2025-05-19T08:30:00+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/ide/vs2022-efcore-power-tools-tutorial/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -211,10 +211,10 @@ VS2022 使用 EF Core Power Tools 的指南
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

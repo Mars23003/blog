@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>用 Google Apps Script 製作台北股市爬蟲教學 | Mars's Blog</title>
+<title>用 Google Apps Script 製作台北股市爬蟲教學 | 馬爾斯的Blog</title>
 <meta name=keywords content="Google Apps Script,台股爬蟲,Google Sheet 自動化">
 <meta name=description content="教你如何用 Google Apps Script 快速建立台北股市即時資料爬蟲，並自動寫入 Google Sheet。">
 <meta name=author content>
@@ -34,14 +34,14 @@
 <meta name=twitter:title content="用 Google Apps Script 製作台北股市爬蟲教學">
 <meta name=twitter:description content="教你如何用 Google Apps Script 快速建立台北股市即時資料爬蟲，並自動寫入 Google Sheet。">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"用 Google Apps Script 製作台北股市爬蟲教學","item":"https://mars23003.github.io/blog/posts/google/google-apps-script-twse-crawler/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"用 Google Apps Script 製作台北股市爬蟲教學","name":"用 Google Apps Script 製作台北股市爬蟲教學","description":"教你如何用 Google Apps Script 快速建立台北股市即時資料爬蟲，並自動寫入 Google Sheet。","keywords":["Google Apps Script","台股爬蟲","Google Sheet 自動化"],"articleBody":"前言 Google Apps Script（GAS）是一個基於 JavaScript 的雲端自動化平台，非常適合用來串接 Google 服務與自動化日常任務。本篇指南將以「台北股市爬蟲」為例，帶你從零開始，實作一個自動抓取台股即時報價並寫入 Google Sheet 的小工具。\n步驟一：建立 Google Sheet 並開啟 Apps Script 編輯器  進入 Google Sheet，點選「擴充功能」→「應用程式腳本」。 進入編輯器後，將預設 Code.gs 內容清空。  步驟二：撰寫爬蟲主程式 以下程式碼會以公開台股 API（如 twse、yahoo finance）為例，抓取台積電（2330）即時報價：\nfunction fetchTWSEStock() { var url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_2330.tw\u0026json=1\u0026delay=0'; var response = UrlFetchApp.fetch(url); var data = JSON.parse(response.getContentText()); var stock = data.msgArray[0]; var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet(); sheet.appendRow([ new Date(), stock.c, // 股票代號  stock.n, // 股票名稱  stock.z, // 最新成交價  stock.v, // 成交量  stock.t, // 時間  ]); } 步驟三：設定排程自動執行  在 Apps Script 編輯器點選左側「鬧鐘」圖示（觸發器）。 新增觸發器，選擇 fetchTWSEStock，觸發事件設為「時間驅動」→「每小時」或「自訂」。  步驟四：延伸應用  可改抓多檔股票，或自訂股票清單。 可自動寄送 email 通知、推播 Line Notify。 可進行資料視覺化。  常見問題（FAQ） Q1：API 來源有哪些？\nA：可用台灣證交所（twse）、Yahoo Finance、聚財網等公開 API。\nQ2：遇到 CORS 或權限問題怎麼辦？\nA：GAS 伺服器端執行，不受 CORS 限制，但部分 API 需注意授權。\nQ3：如何自動化多檔股票？\nA：可用 for 迴圈遍歷股票代碼陣列，依序抓取並寫入。\n結語 Google Apps Script 結合 Google Sheet，能輕鬆打造屬於自己的台股自動化小工具。歡迎延伸應用到其他金融資料、報表自動化等場景！\n  延伸閱讀：\n Google Apps Script 官方指南 台灣證交所即時報價 API 文件 Google Sheet 自動化秘訣   ","wordCount":"637","inLanguage":"zh-tw","datePublished":"2025-05-20T10:00:00+08:00","dateModified":"2025-05-20T10:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/google/google-apps-script-twse-crawler/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"用 Google Apps Script 製作台北股市爬蟲教學","name":"用 Google Apps Script 製作台北股市爬蟲教學","description":"教你如何用 Google Apps Script 快速建立台北股市即時資料爬蟲，並自動寫入 Google Sheet。","keywords":["Google Apps Script","台股爬蟲","Google Sheet 自動化"],"articleBody":"前言 Google Apps Script（GAS）是一個基於 JavaScript 的雲端自動化平台，非常適合用來串接 Google 服務與自動化日常任務。本篇指南將以「台北股市爬蟲」為例，帶你從零開始，實作一個自動抓取台股即時報價並寫入 Google Sheet 的小工具。\n步驟一：建立 Google Sheet 並開啟 Apps Script 編輯器  進入 Google Sheet，點選「擴充功能」→「應用程式腳本」。 進入編輯器後，將預設 Code.gs 內容清空。  步驟二：撰寫爬蟲主程式 以下程式碼會以公開台股 API（如 twse、yahoo finance）為例，抓取台積電（2330）即時報價：\nfunction fetchTWSEStock() { var url = 'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_2330.tw\u0026json=1\u0026delay=0'; var response = UrlFetchApp.fetch(url); var data = JSON.parse(response.getContentText()); var stock = data.msgArray[0]; var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet(); sheet.appendRow([ new Date(), stock.c, // 股票代號  stock.n, // 股票名稱  stock.z, // 最新成交價  stock.v, // 成交量  stock.t, // 時間  ]); } 步驟三：設定排程自動執行  在 Apps Script 編輯器點選左側「鬧鐘」圖示（觸發器）。 新增觸發器，選擇 fetchTWSEStock，觸發事件設為「時間驅動」→「每小時」或「自訂」。  步驟四：延伸應用  可改抓多檔股票，或自訂股票清單。 可自動寄送 email 通知、推播 Line Notify。 可進行資料視覺化。  常見問題（FAQ） Q1：API 來源有哪些？\nA：可用台灣證交所（twse）、Yahoo Finance、聚財網等公開 API。\nQ2：遇到 CORS 或權限問題怎麼辦？\nA：GAS 伺服器端執行，不受 CORS 限制，但部分 API 需注意授權。\nQ3：如何自動化多檔股票？\nA：可用 for 迴圈遍歷股票代碼陣列，依序抓取並寫入。\n結語 Google Apps Script 結合 Google Sheet，能輕鬆打造屬於自己的台股自動化小工具。歡迎延伸應用到其他金融資料、報表自動化等場景！\n  延伸閱讀：\n Google Apps Script 官方指南 台灣證交所即時報價 API 文件 Google Sheet 自動化秘訣   ","wordCount":"637","inLanguage":"zh-tw","datePublished":"2025-05-20T10:00:00+08:00","dateModified":"2025-05-20T10:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/google/google-apps-script-twse-crawler/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -149,10 +149,10 @@ A：可用 for 迴圈遍歷股票代碼陣列，依序抓取並寫入。</p>
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>[JavaScript] this是什麼? | Mars's Blog</title>
+<title>[JavaScript] this是什麼? | 馬爾斯的Blog</title>
 <meta name=keywords content="JavaScript,this,window">
 <meta name=description content="看過很多文章都有介紹this，總感覺好像怪怪的沒辦法很直覺的了解this這東西，本篇文章將會簡單介紹......">
 <meta name=author content="Mars">
@@ -36,14 +36,14 @@
 <meta name=twitter:title content="[JavaScript] this是什麼?">
 <meta name=twitter:description content="看過很多文章都有介紹this，總感覺好像怪怪的沒辦法很直覺的了解this這東西，本篇文章將會簡單介紹......">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"[JavaScript] this是什麼?","item":"https://mars23003.github.io/blog/posts/frontend/js/this/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[JavaScript] this是什麼?","name":"[JavaScript] this是什麼?","description":"看過很多文章都有介紹this，總感覺好像怪怪的沒辦法很直覺的了解this這東西，本篇文章將會簡單介紹......","keywords":["JavaScript","this","window"],"articleBody":"前言 看過很多文章都有介紹this，總感覺沒辦法很直覺的了解this這東西，\n但在寫java、C#的時候，我們不會覺得this很難懂，this就是類別自身的概念， 回到javaScript上面，用上述方式解釋卻不太合適。\nthis跟window的關係? 當有人問你this是什麼的時候，打開F12輸入this後得到的是window， 這時要怎麼回答呢?\n 是window嗎?\n 這個回答想必其他人不會買單， 因為在嚴謹模式下是undefined，但是MDN非嚴謹模式下會將undefined、null置換為全域變數window。\nthis到底是什麼? 在函式中的this就是呼叫它的那個物件自身， 上圖內的兩個console.log的結果是否跟你們想的一樣呢?\n所以沒有其他的物件呼叫該函式的話，就會是window這個物件直接呼叫函式，故此時this就是window。 上圖內window.test(); 代表的是window呼叫test()意思。\n但如果有其他的物件呼叫函式的話，this就是該物件自身了。\nArrow function (箭頭函式) 與 this arrow function並沒有自己的this，它(this)是宣告當下的環境，就是離arrow function最近的那個外層物件了。\n整理   this就是呼叫方法的物件。 arrow function沒有自己的this，透過取得最近的那個物件來當this。   ","wordCount":"562","inLanguage":"zh-tw","image":"https://mars23003.github.io/blog/image/js/js-this.jpg","datePublished":"2022-09-14T08:18:40+08:00","dateModified":"2022-09-14T08:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/this/"},"publisher":{"@type":"Organization","name":"Mars's Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[JavaScript] this是什麼?","name":"[JavaScript] this是什麼?","description":"看過很多文章都有介紹this，總感覺好像怪怪的沒辦法很直覺的了解this這東西，本篇文章將會簡單介紹......","keywords":["JavaScript","this","window"],"articleBody":"前言 看過很多文章都有介紹this，總感覺沒辦法很直覺的了解this這東西，\n但在寫java、C#的時候，我們不會覺得this很難懂，this就是類別自身的概念， 回到javaScript上面，用上述方式解釋卻不太合適。\nthis跟window的關係? 當有人問你this是什麼的時候，打開F12輸入this後得到的是window， 這時要怎麼回答呢?\n 是window嗎?\n 這個回答想必其他人不會買單， 因為在嚴謹模式下是undefined，但是MDN非嚴謹模式下會將undefined、null置換為全域變數window。\nthis到底是什麼? 在函式中的this就是呼叫它的那個物件自身， 上圖內的兩個console.log的結果是否跟你們想的一樣呢?\n所以沒有其他的物件呼叫該函式的話，就會是window這個物件直接呼叫函式，故此時this就是window。 上圖內window.test(); 代表的是window呼叫test()意思。\n但如果有其他的物件呼叫函式的話，this就是該物件自身了。\nArrow function (箭頭函式) 與 this arrow function並沒有自己的this，它(this)是宣告當下的環境，就是離arrow function最近的那個外層物件了。\n整理   this就是呼叫方法的物件。 arrow function沒有自己的this，透過取得最近的那個物件來當this。   ","wordCount":"562","inLanguage":"zh-tw","image":"https://mars23003.github.io/blog/image/js/js-this.jpg","datePublished":"2022-09-14T08:18:40+08:00","dateModified":"2022-09-14T08:18:40+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/this/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://mars23003.github.io/blog/ accesskey=h title="Mars's Blog (Alt + H)">Mars's Blog</a>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
 <div class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -153,13 +153,6 @@
 <div class=related-date>2024-04-29</div>
 </div>
 </a>
-<a class=related-card href=/blog/posts/frontend/js/js-blob-download/>
-<div class=related-info>
-<div class=related-title>[JavaScript] 如何使用JavaScript與blob下載檔案？</div>
-<div class=related-desc>如果您在開發網頁應用時需要實現PDF下載功能，那麼本文將向您介紹如何使用JavaScript和fetch API來下 …</div>
-<div class=related-date>2023-04-27</div>
-</div>
-</a>
 <a class=related-card href=/blog/posts/frontend/js/bind-apply-call/>
 <div class=related-info>
 <div class=related-title>[JavaScript] 讓你馬上了解bind、apply、call的用法</div>
@@ -172,6 +165,13 @@
 <div class=related-title>[JavaScript] 立即執行函式(IIFE)是什麼?</div>
 <div class=related-desc>IIFE (Immediately Invoked Function Expression) …</div>
 <div class=related-date>2022-09-14</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/frontend/js/var-let-const/>
+<div class=related-info>
+<div class=related-title>[JavaScript] 不能不知道的 var、let、const 變數宣告</div>
+<div class=related-desc>不能不知道的 var、let、const 變數宣告方式，透過舉例來讓讀者輕鬆了解......</div>
+<div class=related-date>2022-09-13</div>
 </div>
 </a>
 </div>
@@ -197,10 +197,10 @@
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>Mars's Blog</a></span>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
 <span>
 Powered by
-<a href=https://github.com/Mars23003>MarsLin</a>
+<a href=https://github.com/Mars23003>馬爾斯</a>
 </span>
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
