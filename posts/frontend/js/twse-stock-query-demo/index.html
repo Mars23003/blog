@@ -3,11 +3,11 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>簡易番茄鐘（Pomodoro Timer）CodePen 實作分享 | 馬爾斯的Blog</title>
-<meta name=keywords content="番茄鐘,Pomodoro Timer,JavaScript,前端練習,CodePen">
-<meta name=description content="分享一個簡易番茄鐘（Pomodoro Timer）前端 side project。">
+<title>台北股市即時查詢前端展示（TWSE Stock Query Demo） | 馬爾斯的Blog</title>
+<meta name=keywords content="台北股市,TWSE API,即時股價,前端練習,股票查詢">
+<meta name=description content="分享一個可即時查詢台北股市（TWSE）股票資訊的前端 side project，支援輸入股票代碼查詢即時報價。">
 <meta name=author content="Mars">
-<link rel=canonical href=https://mars23003.github.io/blog/posts/frontend/js/pomodoro-timer-codepen/>
+<link rel=canonical href=https://mars23003.github.io/blog/posts/frontend/js/twse-stock-query-demo/>
 <link crossorigin=anonymous href=/blog/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as=style>
 <script defer crossorigin=anonymous src=/blog/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-HNR9M4TL13','auto'),ga('send','pageview'))</script>
@@ -24,17 +24,17 @@
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HNR9M4TL13"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="簡易番茄鐘（Pomodoro Timer）CodePen 實作分享">
-<meta property="og:description" content="分享一個簡易番茄鐘（Pomodoro Timer）前端 side project。">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="台北股市即時查詢前端展示（TWSE Stock Query Demo）">
+<meta property="og:description" content="分享一個可即時查詢台北股市（TWSE）股票資訊的前端 side project，支援輸入股票代碼查詢即時報價。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mars23003.github.io/blog/posts/frontend/js/pomodoro-timer-codepen/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2025-05-22T10:00:00+08:00">
-<meta property="article:modified_time" content="2025-05-22T10:00:00+08:00">
+<meta property="og:url" content="https://mars23003.github.io/blog/posts/frontend/js/twse-stock-query-demo/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2025-05-22T12:00:00+08:00">
+<meta property="article:modified_time" content="2025-05-22T12:00:00+08:00">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="簡易番茄鐘（Pomodoro Timer）CodePen 實作分享">
-<meta name=twitter:description content="分享一個簡易番茄鐘（Pomodoro Timer）前端 side project。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"簡易番茄鐘（Pomodoro Timer）CodePen 實作分享","item":"https://mars23003.github.io/blog/posts/frontend/js/pomodoro-timer-codepen/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"簡易番茄鐘（Pomodoro Timer）CodePen 實作分享","name":"簡易番茄鐘（Pomodoro Timer）CodePen 實作分享","description":"分享一個簡易番茄鐘（Pomodoro Timer）前端 side project。","keywords":["番茄鐘","Pomodoro Timer","JavaScript","前端練習","CodePen"],"articleBody":"簡易番茄鐘（Pomodoro Timer）CodePen 實作分享 這篇文章將分享一個簡單的番茄鐘（Pomodoro Timer）side project。\n作品介紹 番茄鐘是一種提升專注力的時間管理工具，常見於前端練習與 UI/UX 展示。這個 CodePen 範例提供基本的倒數計時、開始/暫停、重設等功能，適合初學者練習 JavaScript 與 DOM 操作。\n線上互動展示 See the Pen Draft Countdown by mars23003\r(@mars23003) on CodePen.\r  👉 你可以直接在上方 CodePen 互動操作番茄鐘，體驗倒數計時與重設功能。\n   延伸閱讀：\n CodePen 番茄鐘原始碼 什麼是番茄鐘？Pomodoro Technique 簡介   ","wordCount":"224","inLanguage":"zh-tw","datePublished":"2025-05-22T10:00:00+08:00","dateModified":"2025-05-22T10:00:00+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/pomodoro-timer-codepen/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+<meta name=twitter:title content="台北股市即時查詢前端展示（TWSE Stock Query Demo）">
+<meta name=twitter:description content="分享一個可即時查詢台北股市（TWSE）股票資訊的前端 side project，支援輸入股票代碼查詢即時報價。">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"台北股市即時查詢前端展示（TWSE Stock Query Demo）","item":"https://mars23003.github.io/blog/posts/frontend/js/twse-stock-query-demo/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"台北股市即時查詢前端展示（TWSE Stock Query Demo）","name":"台北股市即時查詢前端展示（TWSE Stock Query Demo）","description":"分享一個可即時查詢台北股市（TWSE）股票資訊的前端 side project，支援輸入股票代碼查詢即時報價。","keywords":["台北股市","TWSE API","即時股價","前端練習","股票查詢"],"articleBody":"台北股市即時查詢前端展示 這篇文章分享一個簡單的台北股市（TWSE）即時查詢前端 side project，支援輸入股票代碼查詢即時報價，適合前端練習與 API 串接展示。\n線上互動展示 輸入股票代碼： 查詢    async function fetchTWSEStock(stockId) { const url = `https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_${stockId}.tw\u0026json=1\u0026delay=0`; try { const res = await fetch(url); const data = await res.json(); if (!data.msgArray || !data.msgArray[0]) return null; return data.msgArray[0]; } catch { return null; } } function renderStockInfo(stock) { if (!stock) return '查無此股票或 API 無回應'; return ` ${stock.c} ${stock.n}\n現價：stock.y ? 'red' : stock.z ${stock.z} 元\n昨收：${stock.y} 元\n漲跌：${(parseFloat(stock.z) - parseFloat(stock.y)).toFixed(2)} 元\n成交量：${stock.v} 張\n時間：${stock.t}`; } const btn = document.getElementById('stock-query-btn'); const input = document.getElementById('stock-id'); const result = document.getElementById('stock-result'); btn.onclick = async () = { result.innerHTML = '查詢中...'; const stock = await fetchTWSEStock(input.value.trim()); result.innerHTML = renderStockInfo(stock); }; input.addEventListener('keydown', function(e) { if (e.key === 'Enter') btn.click(); }); // 預設查詢 btn.click();  主要功能  支援輸入股票代碼查詢 顯示即時股價、漲跌、成交量等資訊 串接 TWSE 公開 API 適合前端 API 練習與 UI 展示    延伸閱讀：\n TWSE 台灣證券交易所公開 API   ","wordCount":"354","inLanguage":"zh-tw","datePublished":"2025-05-22T12:00:00+08:00","dateModified":"2025-05-22T12:00:00+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/frontend/js/twse-stock-query-demo/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -76,12 +76,12 @@
 <header class=post-header>
 <div class=breadcrumbs><a href=https://mars23003.github.io/blog/>首頁</a>&nbsp;»&nbsp;<a href=https://mars23003.github.io/blog/posts/>文章 </a></div>
 <h1 class=post-title>
-簡易番茄鐘（Pomodoro Timer）CodePen 實作分享
+台北股市即時查詢前端展示（TWSE Stock Query Demo）
 </h1>
 <div class=post-description>
-分享一個簡易番茄鐘（Pomodoro Timer）前端 side project。
+分享一個可即時查詢台北股市（TWSE）股票資訊的前端 side project，支援輸入股票代碼查詢即時報價。
 </div>
-<div class=post-meta><span title="2025-05-22 10:00:00 +0800 +0800">May 22, 2025</span>&nbsp;·&nbsp;1 分鐘&nbsp;·&nbsp;224 字&nbsp;·&nbsp;Mars
+<div class=post-meta><span title="2025-05-22 12:00:00 +0800 +0800">May 22, 2025</span>&nbsp;·&nbsp;1 分鐘&nbsp;·&nbsp;354 字&nbsp;·&nbsp;Mars
 </div>
 </header> <script data-cfasync=false></script>
 <div class=toc>
@@ -91,39 +91,51 @@
 </summary>
 <div class=inner><nav id=TableOfContents>
 <ul>
-<li><a href=#作品介紹>作品介紹</a></li>
 <li><a href=#線上互動展示>線上互動展示</a></li>
+<li><a href=#主要功能>主要功能</a></li>
 </ul>
 </nav>
 </div>
 </details>
 </div>
-<div class=post-content><h1 id=簡易番茄鐘pomodoro-timercodepen-實作分享>簡易番茄鐘（Pomodoro Timer）CodePen 實作分享<a hidden class=anchor aria-hidden=true href=#簡易番茄鐘pomodoro-timercodepen-實作分享>#</a></h1>
-<p>這篇文章將分享一個簡單的番茄鐘（Pomodoro Timer）side project。</p>
-<h2 id=作品介紹>作品介紹<a hidden class=anchor aria-hidden=true href=#作品介紹>#</a></h2>
-<p>番茄鐘是一種提升專注力的時間管理工具，常見於前端練習與 UI/UX 展示。這個 CodePen 範例提供基本的倒數計時、開始/暫停、重設等功能，適合初學者練習 JavaScript 與 DOM 操作。</p>
+<div class=post-content><h1 id=台北股市即時查詢前端展示>台北股市即時查詢前端展示<a hidden class=anchor aria-hidden=true href=#台北股市即時查詢前端展示>#</a></h1>
+<p>這篇文章分享一個簡單的台北股市（TWSE）即時查詢前端 side project，支援輸入股票代碼查詢即時報價，適合前端練習與 API 串接展示。</p>
 <h2 id=線上互動展示>線上互動展示<a hidden class=anchor aria-hidden=true href=#線上互動展示>#</a></h2>
-<iframe height=458 style=width:100% scrolling=no title="Draft Countdown" src="https://codepen.io/mars23003/embed/LEEwBzy?height=458&theme-id=dark&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/mars23003/pen/LEEwBzy>Draft Countdown</a> by mars23003
-(<a href=https://codepen.io/mars23003>@mars23003</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
-<blockquote>
-<p>👉 你可以直接在上方 CodePen 互動操作番茄鐘，體驗倒數計時與重設功能。</p>
-</blockquote>
+<div id=twse-stock-query style="max-width:400px;padding:1em;border:1px solid #eee;border-radius:8px;background:#fafbfc;margin-bottom:2em">
+<label for=stock-id>輸入股票代碼：</label>
+<input id=stock-id type=text value=2330 maxlength=6 style=width:80px>
+<button id=stock-query-btn>查詢</button>
+<div id=stock-result style=margin-top:1em;font-size:1em></div>
+</div>
+<script>async function fetchTWSEStock(a){const b=`https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_${a}.tw&json=1&delay=0`;try{const c=await fetch(b),a=await c.json();return!a.msgArray||!a.msgArray[0]?null:a.msgArray[0]}catch{return null}}function renderStockInfo(a){return a?`
+    <b>${a.c} ${a.n}</b><br>
+    現價：<b style="color:${a.z>a.y?'red':a.z<a.y?'green':'#333'};font-size:1.2em;">${a.z}</b> 元<br>
+    昨收：${a.y} 元<br>
+    漲跌：${(parseFloat(a.z)-parseFloat(a.y)).toFixed(2)} 元<br>
+    成交量：${a.v} 張<br>
+    時間：${a.t}`:'<span style="color:red;">查無此股票或 API 無回應</span>'}const btn=document.getElementById('stock-query-btn'),input=document.getElementById('stock-id'),result=document.getElementById('stock-result');btn.onclick=async()=>{result.innerHTML='查詢中...';const a=await fetchTWSEStock(input.value.trim());result.innerHTML=renderStockInfo(a)},input.addEventListener('keydown',function(a){a.key==='Enter'&&btn.click()}),btn.click()</script>
+<h2 id=主要功能>主要功能<a hidden class=anchor aria-hidden=true href=#主要功能>#</a></h2>
+<ul>
+<li>支援輸入股票代碼查詢</li>
+<li>顯示即時股價、漲跌、成交量等資訊</li>
+<li>串接 TWSE 公開 API</li>
+<li>適合前端 API 練習與 UI 展示</li>
+</ul>
 <hr>
 <blockquote>
 <p>延伸閱讀：</p>
 <ul>
-<li><a href=https://codepen.io/mars23003/pen/LEEwBzy>CodePen 番茄鐘原始碼</a></li>
-<li><a href=https://zh.wikipedia.org/zh-tw/%E7%95%AA%E8%8C%84%E9%92%9F>什麼是番茄鐘？Pomodoro Technique 簡介</a></li>
+<li><a href=https://www.twse.com.tw/zh/page/trading/exchange/MI_INDEX.html>TWSE 台灣證券交易所公開 API</a></li>
 </ul>
 </blockquote>
 </div>
 <section class=post-related>
 <h2>延伸閱讀</h2>
 <div class=related-cards>
-<a class=related-card href=/blog/posts/frontend/js/twse-stock-query-demo/>
+<a class=related-card href=/blog/posts/frontend/js/pomodoro-timer-codepen/>
 <div class=related-info>
-<div class=related-title>台北股市即時查詢前端展示（TWSE Stock Query Demo）</div>
-<div class=related-desc>分享一個可即時查詢台北股市（TWSE）股票資訊的前端 side project，支援輸入股票代碼查詢即時報價。</div>
+<div class=related-title>簡易番茄鐘（Pomodoro Timer）CodePen 實作分享</div>
+<div class=related-desc>分享一個簡易番茄鐘（Pomodoro Timer）前端 side project。</div>
 <div class=related-date>2025-05-22</div>
 </div>
 </a>
@@ -161,21 +173,16 @@
 <footer class=post-footer>
 <ul class=post-tags>
 <li><a href=https://mars23003.github.io/blog/tags/javascript/>JavaScript</a></li>
-<li><a href=https://mars23003.github.io/blog/tags/%E7%95%AA%E8%8C%84%E9%90%98/>番茄鐘</a></li>
-<li><a href=https://mars23003.github.io/blog/tags/pomodoro/>Pomodoro</a></li>
-<li><a href=https://mars23003.github.io/blog/tags/codepen/>CodePen</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/%E5%8F%B0%E8%82%A1%E6%9F%A5%E8%A9%A2/>台股查詢</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/twse/>TWSE</a></li>
 <li><a href=https://mars23003.github.io/blog/tags/%E5%89%8D%E7%AB%AF%E5%B0%88%E6%A1%88/>前端專案</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/api/>API</a></li>
 </ul>
 <nav class=paginav>
-<a class=prev href=https://mars23003.github.io/blog/posts/frontend/js/twse-stock-query-demo/>
-<span class=title>« 上一頁</span>
-<br>
-<span>台北股市即時查詢前端展示（TWSE Stock Query Demo）</span>
-</a>
-<a class=next href=https://mars23003.github.io/blog/posts/google/gmail-mail-classification-guide/>
+<a class=next href=https://mars23003.github.io/blog/posts/frontend/js/pomodoro-timer-codepen/>
 <span class=title>下一頁 »</span>
 <br>
-<span>Gmail 信件分類全攻略：標籤、篩選器、自動化一次學會</span>
+<span>簡易番茄鐘（Pomodoro Timer）CodePen 實作分享</span>
 </a>
 </nav>
 </footer>
