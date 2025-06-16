@@ -72,73 +72,69 @@
 <main class=main>
 <article class=post-entry>
 <header class=entry-header>
-<h2>[C#]3分鐘帶你了解淺層複製(Shallow Cpoy)與深層複製(Deep Copy)
+<h2>[Design Pattern] 掌握設計模式：Builder Pattern原理與應用
 </h2>
 </header>
 <div class=entry-content>
-<p>淺層複製 當我們有物件需要複製時可以透過Object.MemberwiseClone()的方法來達成， 該方法屬於淺層複製，這樣會有什麼問題嗎? 若複製的物件中有ValueType的屬性,其欄位時將會複製該...</p>
+<p>Builder Pattern通常由Director、Builder和Product三個角色組成。其中Director負責調用Builder進行構建，而Builder則負責實際進行構建工作，最終產生Product。...</p>
 </div>
-<footer class=entry-footer><span title="2022-09-07 07:18:40 +0800 +0800">September 7, 2022</span>&nbsp;·&nbsp;1 分鐘&nbsp;·&nbsp;357 字&nbsp;·&nbsp;Mars</footer>
-<a class=entry-link aria-label="post link to [C#]3分鐘帶你了解淺層複製(Shallow Cpoy)與深層複製(Deep Copy)" href=https://mars23003.github.io/blog/posts/csharp/shallowcopy-and-deepcpoy/></a>
+<footer class=entry-footer><span title="2023-04-18 07:18:40 +0800 +0800">April 18, 2023</span>&nbsp;·&nbsp;3 分鐘&nbsp;·&nbsp;1070 字&nbsp;·&nbsp;Mars</footer>
+<a class=entry-link aria-label="post link to [Design Pattern] 掌握設計模式：Builder Pattern原理與應用" href=https://mars23003.github.io/blog/posts/designpattern/builderpattern/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>[HTML]HTML基本介紹
+<h2>[Design Pattern] 掌握設計模式：Abstract Factory Pattern原理與應用
 </h2>
 </header>
 <div class=entry-content>
-<p>基本介紹 HTML是什麼?其中文全名為「超文字標示語言」 透過標籤與內容來讓瀏覽器知道要怎麼呈現你的網頁。 下面是基本範例: &lt;!DOCTYPE html> &lt;html> &lt;head> &lt;title>頁面標題&lt;/title> &lt;/head> &lt;body> &lt;...</p>
+<p>Abstract Factory Pattern (抽象工廠模式) 是一種 Creational Design Pattern (創建型設計模式)。它提供一個介面，用於創建一系列相關或相互依賴的物件，而不需要指定其實體類別。這樣可以隔離實體類別的變化，使得程式碼更容易擴展和維護。 簡介 模式名稱：...</p>
 </div>
-<footer class=entry-footer><span title="2022-09-07 07:18:40 +0800 +0800">September 7, 2022</span>&nbsp;·&nbsp;1 分鐘&nbsp;·&nbsp;419 字&nbsp;·&nbsp;Mars</footer>
-<a class=entry-link aria-label="post link to [HTML]HTML基本介紹" href=https://mars23003.github.io/blog/posts/frontend/html/what-is-html/></a>
+<footer class=entry-footer><span title="2023-04-17 07:18:40 +0800 +0800">April 17, 2023</span>&nbsp;·&nbsp;2 分鐘&nbsp;·&nbsp;785 字&nbsp;·&nbsp;Mars</footer>
+<a class=entry-link aria-label="post link to [Design Pattern] 掌握設計模式：Abstract Factory Pattern原理與應用" href=https://mars23003.github.io/blog/posts/designpattern/abstractfactorypattern/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>[C#] 3分鐘帶你了解ValueType與ReferenceType
+<h2>[Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析
 </h2>
 </header>
 <div class=entry-content>
-<p>介紹 C# 中有兩種類型：ValueType(實值型別)和ReferenceType(參考型別)。 ValueType的變數則會直接存取資料，而ReferenceType的變數會存取資料的參考。 從記憶體配置了...</p>
+<p>以下是抽象工廠模式、工廠方法模式和簡單工廠模式的比較表格： .tg {border-collapse:collapse;border-color:#aabcfe;border-spacing:0;} .tg td{background-color:#f2f5ff;border-color:#aabcfe;border-style:solid;border-width:1px;color:#669; font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;} .tg th{background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:1px;color:#039; font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;} .tg .tg-cly1{text-align:left;vertical-align:middle} .tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top} .tg .tg-0lax{text-align:left;vertical-align:top} 比較 簡單工廠模式 工廠方法模式 抽象工廠模式 定義 一個工廠可以創建多種產品 一個工廠可以創建一種產品 一個工廠可以創...</p>
 </div>
-<footer class=entry-footer><span title="2022-09-06 07:18:40 +0800 +0800">September 6, 2022</span>&nbsp;·&nbsp;1 分鐘&nbsp;·&nbsp;419 字&nbsp;·&nbsp;Mars</footer>
-<a class=entry-link aria-label="post link to [C#] 3分鐘帶你了解ValueType與ReferenceType" href=https://mars23003.github.io/blog/posts/csharp/valuetype-and-referencetype/></a>
-</article>
-<article class=post-entry>
-<figure class=entry-cover><img loading=lazy src=https://mars23003.github.io/blog/image/csharp/in-ref-out.jpg alt=in、ref、out、params>
-</figure>
-<header class=entry-header>
-<h2>[C#] 方法參數in、ref、out、params關鍵字看這篇就夠了
-</h2>
-</header>
-<div class=entry-content>
-<p>簡單來認識in、ref、out、params的差異 params 指定該參數可以接受可變數目的引數。 in 指定該參數是傳址方式傳遞，但只會由所呼叫的方法讀取。 ref 指定該參數是傳址方式傳遞，且可以由所呼叫的方法讀取或寫入。...</p>
-</div>
-<footer class=entry-footer><span title="2022-09-02 07:18:40 +0800 +0800">September 2, 2022</span>&nbsp;·&nbsp;Mars</footer>
-<a class=entry-link aria-label="post link to [C#] 方法參數in、ref、out、params關鍵字看這篇就夠了" href=https://mars23003.github.io/blog/posts/csharp/methodparameters/></a>
+<footer class=entry-footer><span title="2023-04-17 07:18:40 +0800 +0800">April 17, 2023</span>&nbsp;·&nbsp;1 分鐘&nbsp;·&nbsp;327 字&nbsp;·&nbsp;Mars</footer>
+<a class=entry-link aria-label="post link to [Design Pattern] 透視工廠模式：簡單工廠、工廠方法、抽象工廠的差異分析" href=https://mars23003.github.io/blog/posts/designpattern/factorycomparison/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>[C#] 3分鐘帶你了解如何利用 NUnit 進行單元測試
+<h2>[C#] Lazy&lt;T> 類別：如何實現延遲初始化
 </h2>
 </header>
 <div class=entry-content>
-<p>一、單元測試特質 單元測試是一段自動化的程式碼。 呼叫測試的工作單元，並對該單元進行某些驗證。 單元測試使用單元測試框架進行撰寫。 單元測試撰寫容易，執行快速、可靠、易讀。 單元測試的執行結果是穩定一致的。 二、...</p>
+<p>Lazy 是 C# 中的一個泛型類別，它提供了一種方式來進行延遲初始化，即在需要使用之前不會初始化它。 可能的兩個使用情境: 當建立某個物件會耗費大量資源，而程式可能不使用它時。 當建立某個物件會耗費大量資源，而您想要延...</p>
 </div>
-<footer class=entry-footer><span title="2022-08-29 07:18:40 +0800 +0800">August 29, 2022</span>&nbsp;·&nbsp;1 分鐘&nbsp;·&nbsp;457 字&nbsp;·&nbsp;Mars</footer>
-<a class=entry-link aria-label="post link to [C#] 3分鐘帶你了解如何利用 NUnit 進行單元測試" href=https://mars23003.github.io/blog/posts/csharp/nunit/></a>
+<footer class=entry-footer><span title="2023-04-13 07:18:40 +0800 +0800">April 13, 2023</span>&nbsp;·&nbsp;3 分鐘&nbsp;·&nbsp;1375 字&nbsp;·&nbsp;Mars</footer>
+<a class=entry-link aria-label="post link to [C#] Lazy 類別：如何實現延遲初始化" href=https://mars23003.github.io/blog/posts/csharp/lazy/></a>
 </article>
 <article class=post-entry>
-<figure class=entry-cover><img loading=lazy src=https://mars23003.github.io/blog/image/hugocover.png alt>
-</figure>
 <header class=entry-header>
-<h2>[Hugo] 官方稱之為世界最快的架站框架?「Hugo」
+<h2>[Design Pattern] 掌握設計模式：Factory Method Pattern原理與應用
 </h2>
 </header>
 <div class=entry-content>
-<p>前言 現今的架站平台種類很多，除了常見的WordPress、Wix、weebly等架站平台外，若想體驗輕量化、快速的部屬，不妨可以試試看Hugo這個平台，官網號稱該產品是「The world’s fastest framework for building w...</p>
+<p>工廠方法模式（Factory Method Pattern）是一種創建型模式，旨在提供一種方式來創建物件，並隱藏實際創建物件的細節。以下是工廠模式的四個要素： 簡介 模式名稱： 工廠方法模式 問題： 需要一種方式來創建物件，...</p>
 </div>
-<footer class=entry-footer><span title="2022-08-29 07:18:40 +0800 +0800">August 29, 2022</span>&nbsp;·&nbsp;2 分鐘&nbsp;·&nbsp;502 字&nbsp;·&nbsp;Mars</footer>
-<a class=entry-link aria-label="post link to [Hugo] 官方稱之為世界最快的架站框架?「Hugo」" href=https://mars23003.github.io/blog/posts/hugo/hugo/></a>
+<footer class=entry-footer><span title="2023-04-13 07:18:40 +0800 +0800">April 13, 2023</span>&nbsp;·&nbsp;3 分鐘&nbsp;·&nbsp;1288 字&nbsp;·&nbsp;Mars</footer>
+<a class=entry-link aria-label="post link to [Design Pattern] 掌握設計模式：Factory Method Pattern原理與應用" href=https://mars23003.github.io/blog/posts/designpattern/factorymethodpattern/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>物件導向設計：SOLID原則的設計思想
+</h2>
+</header>
+<div class=entry-content>
+<p>簡介 當我們在進行物件導向程式設計時，經常會遇到設計上的困難和挑戰。為了能夠撰寫出易於擴展、易於維護的程式碼，我們需要掌握一些基本的原則。其中，SOLID原則是物件導向程式設計中最經典和最基本的原則。下...</p>
+</div>
+<footer class=entry-footer><span title="2023-04-11 07:18:40 +0800 +0800">April 11, 2023</span>&nbsp;·&nbsp;2 分鐘&nbsp;·&nbsp;935 字&nbsp;·&nbsp;Mars</footer>
+<a class=entry-link aria-label="post link to 物件導向設計：SOLID原則的設計思想" href=https://mars23003.github.io/blog/posts/designpattern/solid/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
