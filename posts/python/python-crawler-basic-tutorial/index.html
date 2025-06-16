@@ -1,0 +1,282 @@
+<!doctype html><html lang=zh-tw dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Python 爬蟲基礎教學：從入門到實作 | 馬爾斯的Blog</title>
+<meta name=keywords content="Python 爬蟲,requests,BeautifulSoup,資料擷取,自動化">
+<meta name=description content="帶你快速上手 Python 網路爬蟲，從安裝、基礎語法到實戰範例，適合新手入門。">
+<meta name=author content="Mars">
+<link rel=canonical href=https://mars23003.github.io/blog/posts/python/python-crawler-basic-tutorial/>
+<link crossorigin=anonymous href=/blog/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/blog/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-HNR9M4TL13','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+<link rel=icon href=https://mars23003.github.io/blog/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://mars23003.github.io/blog/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://mars23003.github.io/blog/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://mars23003.github.io/blog/apple-touch-icon.png>
+<link rel=mask-icon href=https://mars23003.github.io/blog/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNR9M4TL13"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HNR9M4TL13')</script><meta property="og:title" content="Python 爬蟲基礎教學：從入門到實作">
+<meta property="og:description" content="帶你快速上手 Python 網路爬蟲，從安裝、基礎語法到實戰範例，適合新手入門。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mars23003.github.io/blog/posts/python/python-crawler-basic-tutorial/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2025-06-16T10:40:00+08:00">
+<meta property="article:modified_time" content="2025-06-16T10:40:00+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Python 爬蟲基礎教學：從入門到實作">
+<meta name=twitter:description content="帶你快速上手 Python 網路爬蟲，從安裝、基礎語法到實戰範例，適合新手入門。">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"文章 ","item":"https://mars23003.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"Python 爬蟲基礎教學：從入門到實作","item":"https://mars23003.github.io/blog/posts/python/python-crawler-basic-tutorial/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python 爬蟲基礎教學：從入門到實作","name":"Python 爬蟲基礎教學：從入門到實作","description":"帶你快速上手 Python 網路爬蟲，從安裝、基礎語法到實戰範例，適合新手入門。","keywords":["Python 爬蟲","requests","BeautifulSoup","資料擷取","自動化"],"articleBody":"Python 爬蟲基礎教學：從入門到實作 1. 什麼是網路爬蟲？ 網路爬蟲（Web Crawler）是自動化擷取網頁資料的程式，常用於資料分析、內容彙整、價格比較等。\n2. 必備套件安裝 pip install requests beautifulsoup4 3. 基本爬蟲流程  發送 HTTP 請求取得網頁內容 解析 HTML，擷取需要的資料 儲存或處理資料  4. 實戰範例：爬取範例網頁標題 import requests from bs4 import BeautifulSoup url = 'https://example.com/' res = requests.get(url) soup = BeautifulSoup(res.text, 'html.parser') title = soup.find('title').text print('網頁標題：', title) 5. 進階技巧 (1) 偽裝瀏覽器 headers 有些網站會檢查 User-Agent，建議加上 headers：\nheaders = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36' } res = requests.get(url, headers=headers) (2) 批次爬取多頁（for 迴圈與分頁） for page in range(1, 6): url = f'https://example.com/list?page={page}' res = requests.get(url, headers=headers) soup = BeautifulSoup(res.text, 'html.parser') # 解析每頁內容 (3) 解析表格、清單、屬性資料 # 取得所有連結 for a in soup.find_all('a'): print(a['href']) # 解析表格 for row in soup.select('table tr'): cols = [td.text for td in row.find_all('td')] print(cols) (4) 處理中文編碼與例外錯誤 res.encoding = 'utf-8' # 或 res.apparent_encoding try: res = requests.get(url, timeout=10) res.raise_for_status() except Exception as e: print('錯誤:', e) (5) 爬取動態網頁（Selenium 實戰） 有些網頁內容需 JS 執行後才出現，可用 Selenium：\nfrom selenium import webdriver from selenium.webdriver.common.by import By from selenium.webdriver.chrome.options import Options options = Options() options.add_argument('--headless') driver = webdriver.Chrome(options=options) driver.get('https://example.com/') print(driver.title) elems = driver.find_elements(By.CSS_SELECTOR, 'div.item') for elem in elems: print(elem.text) driver.quit() (6) 反爬蟲對策與常見封鎖  加入隨機延遲（time.sleep + random） 代理伺服器（proxies 參數） 觀察網站 robots.txt 與 API 限制  (7) 資料儲存（CSV、JSON、資料庫） import csv, json # 儲存為 CSV with open('data.csv', 'w', newline='', encoding='utf-8') as f: writer = csv.writer(f) writer.writerow(['標題', '連結']) writer.writerow(['test', 'https://example.com']) # 儲存為 JSON with open('data.json', 'w', encoding='utf-8') as f: json.dump({'title': 'test'}, f, ensure_ascii=False) (8) 爬蟲專案結構與模組化  建議將爬蟲主程式、資料解析、資料儲存分開成模組 使用 logging、config 檔案管理  6. 法律與道德注意事項  僅爬取公開、允許擷取的資料 尊重網站 robots.txt 與 API 條款 不得用於非法用途或大量影響網站運作    本文適合 Python 新手快速入門爬蟲，進階可學習 Selenium、Scrapy、API 擷取、分散式爬蟲等技術。歡迎留言討論你的爬蟲經驗！\n ","wordCount":"774","inLanguage":"zh-tw","datePublished":"2025-06-16T10:40:00+08:00","dateModified":"2025-06-16T10:40:00+08:00","author":{"@type":"Person","name":"Mars"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mars23003.github.io/blog/posts/python/python-crawler-basic-tutorial/"},"publisher":{"@type":"Organization","name":"馬爾斯的Blog","logo":{"@type":"ImageObject","url":"https://mars23003.github.io/blog/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://mars23003.github.io/blog/ accesskey=h title="馬爾斯的Blog (Alt + H)">馬爾斯的Blog</a>
+<div class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</div>
+</div>
+<ul id=menu>
+<li>
+<a href=https://mars23003.github.io/blog/ title=Home>
+<span>Home</span>
+</a>
+</li>
+<li>
+<a href=https://mars23003.github.io/blog/posts/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://mars23003.github.io/blog/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+<li>
+<a href=https://mars23003.github.io/blog/about/ title=About>
+<span>About</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<h1 class=post-title>
+Python 爬蟲基礎教學：從入門到實作
+</h1>
+<div class=post-description>
+帶你快速上手 Python 網路爬蟲，從安裝、基礎語法到實戰範例，適合新手入門。
+</div>
+<div class=post-meta><span title="2025-06-16 10:40:00 +0800 +0800">June 16, 2025</span>&nbsp;·&nbsp;Mars
+</div>
+</header> <script data-cfasync=false></script>
+<div class=toc>
+<details open>
+<summary accesskey=c title="(Alt + C)">
+<span class=details>目錄</span>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#python-%e7%88%ac%e8%9f%b2%e5%9f%ba%e7%a4%8e%e6%95%99%e5%ad%b8%e5%be%9e%e5%85%a5%e9%96%80%e5%88%b0%e5%af%a6%e4%bd%9c aria-label="Python 爬蟲基礎教學：從入門到實作">Python 爬蟲基礎教學：從入門到實作</a><ul>
+<li>
+<a href=#1-%e4%bb%80%e9%ba%bc%e6%98%af%e7%b6%b2%e8%b7%af%e7%88%ac%e8%9f%b2 aria-label="1. 什麼是網路爬蟲？">1. 什麼是網路爬蟲？</a></li>
+<li>
+<a href=#2-%e5%bf%85%e5%82%99%e5%a5%97%e4%bb%b6%e5%ae%89%e8%a3%9d aria-label="2. 必備套件安裝">2. 必備套件安裝</a></li>
+<li>
+<a href=#3-%e5%9f%ba%e6%9c%ac%e7%88%ac%e8%9f%b2%e6%b5%81%e7%a8%8b aria-label="3. 基本爬蟲流程">3. 基本爬蟲流程</a></li>
+<li>
+<a href=#4-%e5%af%a6%e6%88%b0%e7%af%84%e4%be%8b%e7%88%ac%e5%8f%96%e7%af%84%e4%be%8b%e7%b6%b2%e9%a0%81%e6%a8%99%e9%a1%8c aria-label="4. 實戰範例：爬取範例網頁標題">4. 實戰範例：爬取範例網頁標題</a></li>
+<li>
+<a href=#5-%e9%80%b2%e9%9a%8e%e6%8a%80%e5%b7%a7 aria-label="5. 進階技巧">5. 進階技巧</a><ul>
+<li>
+<a href=#1-%e5%81%bd%e8%a3%9d%e7%80%8f%e8%a6%bd%e5%99%a8-headers aria-label="(1) 偽裝瀏覽器 headers">(1) 偽裝瀏覽器 headers</a></li>
+<li>
+<a href=#2-%e6%89%b9%e6%ac%a1%e7%88%ac%e5%8f%96%e5%a4%9a%e9%a0%81for-%e8%bf%b4%e5%9c%88%e8%88%87%e5%88%86%e9%a0%81 aria-label="(2) 批次爬取多頁（for 迴圈與分頁）">(2) 批次爬取多頁（for 迴圈與分頁）</a></li>
+<li>
+<a href=#3-%e8%a7%a3%e6%9e%90%e8%a1%a8%e6%a0%bc%e6%b8%85%e5%96%ae%e5%b1%ac%e6%80%a7%e8%b3%87%e6%96%99 aria-label="(3) 解析表格、清單、屬性資料">(3) 解析表格、清單、屬性資料</a></li>
+<li>
+<a href=#4-%e8%99%95%e7%90%86%e4%b8%ad%e6%96%87%e7%b7%a8%e7%a2%bc%e8%88%87%e4%be%8b%e5%a4%96%e9%8c%af%e8%aa%a4 aria-label="(4) 處理中文編碼與例外錯誤">(4) 處理中文編碼與例外錯誤</a></li>
+<li>
+<a href=#5-%e7%88%ac%e5%8f%96%e5%8b%95%e6%85%8b%e7%b6%b2%e9%a0%81selenium-%e5%af%a6%e6%88%b0 aria-label="(5) 爬取動態網頁（Selenium 實戰）">(5) 爬取動態網頁（Selenium 實戰）</a></li>
+<li>
+<a href=#6-%e5%8f%8d%e7%88%ac%e8%9f%b2%e5%b0%8d%e7%ad%96%e8%88%87%e5%b8%b8%e8%a6%8b%e5%b0%81%e9%8e%96 aria-label="(6) 反爬蟲對策與常見封鎖">(6) 反爬蟲對策與常見封鎖</a></li>
+<li>
+<a href=#7-%e8%b3%87%e6%96%99%e5%84%b2%e5%ad%98csvjson%e8%b3%87%e6%96%99%e5%ba%ab aria-label="(7) 資料儲存（CSV、JSON、資料庫）">(7) 資料儲存（CSV、JSON、資料庫）</a></li>
+<li>
+<a href=#8-%e7%88%ac%e8%9f%b2%e5%b0%88%e6%a1%88%e7%b5%90%e6%a7%8b%e8%88%87%e6%a8%a1%e7%b5%84%e5%8c%96 aria-label="(8) 爬蟲專案結構與模組化">(8) 爬蟲專案結構與模組化</a></li></ul>
+</li>
+<li>
+<a href=#6-%e6%b3%95%e5%be%8b%e8%88%87%e9%81%93%e5%be%b7%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85 aria-label="6. 法律與道德注意事項">6. 法律與道德注意事項</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><h1 id=python-爬蟲基礎教學從入門到實作>Python 爬蟲基礎教學：從入門到實作<a hidden class=anchor aria-hidden=true href=#python-爬蟲基礎教學從入門到實作>#</a></h1>
+<h2 id=1-什麼是網路爬蟲>1. 什麼是網路爬蟲？<a hidden class=anchor aria-hidden=true href=#1-什麼是網路爬蟲>#</a></h2>
+<p>網路爬蟲（Web Crawler）是自動化擷取網頁資料的程式，常用於資料分析、內容彙整、價格比較等。</p>
+<h2 id=2-必備套件安裝>2. 必備套件安裝<a hidden class=anchor aria-hidden=true href=#2-必備套件安裝>#</a></h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=n>pip</span> <span class=n>install</span> <span class=n>requests</span> <span class=n>beautifulsoup4</span>
+</code></pre></div><h2 id=3-基本爬蟲流程>3. 基本爬蟲流程<a hidden class=anchor aria-hidden=true href=#3-基本爬蟲流程>#</a></h2>
+<ol>
+<li>發送 HTTP 請求取得網頁內容</li>
+<li>解析 HTML，擷取需要的資料</li>
+<li>儲存或處理資料</li>
+</ol>
+<h2 id=4-實戰範例爬取範例網頁標題>4. 實戰範例：爬取範例網頁標題<a hidden class=anchor aria-hidden=true href=#4-實戰範例爬取範例網頁標題>#</a></h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>requests</span>
+<span class=kn>from</span> <span class=nn>bs4</span> <span class=kn>import</span> <span class=n>BeautifulSoup</span>
+
+<span class=n>url</span> <span class=o>=</span> <span class=s1>&#39;https://example.com/&#39;</span>
+<span class=n>res</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+<span class=n>soup</span> <span class=o>=</span> <span class=n>BeautifulSoup</span><span class=p>(</span><span class=n>res</span><span class=o>.</span><span class=n>text</span><span class=p>,</span> <span class=s1>&#39;html.parser&#39;</span><span class=p>)</span>
+<span class=n>title</span> <span class=o>=</span> <span class=n>soup</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s1>&#39;title&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>text</span>
+<span class=nb>print</span><span class=p>(</span><span class=s1>&#39;網頁標題：&#39;</span><span class=p>,</span> <span class=n>title</span><span class=p>)</span>
+</code></pre></div><h2 id=5-進階技巧>5. 進階技巧<a hidden class=anchor aria-hidden=true href=#5-進階技巧>#</a></h2>
+<h3 id=1-偽裝瀏覽器-headers>(1) 偽裝瀏覽器 headers<a hidden class=anchor aria-hidden=true href=#1-偽裝瀏覽器-headers>#</a></h3>
+<p>有些網站會檢查 User-Agent，建議加上 headers：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>headers</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=s1>&#39;User-Agent&#39;</span><span class=p>:</span> <span class=s1>&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#39;</span>
+<span class=p>}</span>
+<span class=n>res</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>headers</span><span class=o>=</span><span class=n>headers</span><span class=p>)</span>
+</code></pre></div><h3 id=2-批次爬取多頁for-迴圈與分頁>(2) 批次爬取多頁（for 迴圈與分頁）<a hidden class=anchor aria-hidden=true href=#2-批次爬取多頁for-迴圈與分頁>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>for</span> <span class=n>page</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>6</span><span class=p>):</span>
+    <span class=n>url</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;https://example.com/list?page=</span><span class=si>{</span><span class=n>page</span><span class=si>}</span><span class=s1>&#39;</span>
+    <span class=n>res</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>headers</span><span class=o>=</span><span class=n>headers</span><span class=p>)</span>
+    <span class=n>soup</span> <span class=o>=</span> <span class=n>BeautifulSoup</span><span class=p>(</span><span class=n>res</span><span class=o>.</span><span class=n>text</span><span class=p>,</span> <span class=s1>&#39;html.parser&#39;</span><span class=p>)</span>
+    <span class=c1># 解析每頁內容</span>
+</code></pre></div><h3 id=3-解析表格清單屬性資料>(3) 解析表格、清單、屬性資料<a hidden class=anchor aria-hidden=true href=#3-解析表格清單屬性資料>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># 取得所有連結</span>
+<span class=k>for</span> <span class=n>a</span> <span class=ow>in</span> <span class=n>soup</span><span class=o>.</span><span class=n>find_all</span><span class=p>(</span><span class=s1>&#39;a&#39;</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>a</span><span class=p>[</span><span class=s1>&#39;href&#39;</span><span class=p>])</span>
+<span class=c1># 解析表格</span>
+<span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>soup</span><span class=o>.</span><span class=n>select</span><span class=p>(</span><span class=s1>&#39;table tr&#39;</span><span class=p>):</span>
+    <span class=n>cols</span> <span class=o>=</span> <span class=p>[</span><span class=n>td</span><span class=o>.</span><span class=n>text</span> <span class=k>for</span> <span class=n>td</span> <span class=ow>in</span> <span class=n>row</span><span class=o>.</span><span class=n>find_all</span><span class=p>(</span><span class=s1>&#39;td&#39;</span><span class=p>)]</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>cols</span><span class=p>)</span>
+</code></pre></div><h3 id=4-處理中文編碼與例外錯誤>(4) 處理中文編碼與例外錯誤<a hidden class=anchor aria-hidden=true href=#4-處理中文編碼與例外錯誤>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>res</span><span class=o>.</span><span class=n>encoding</span> <span class=o>=</span> <span class=s1>&#39;utf-8&#39;</span>  <span class=c1># 或 res.apparent_encoding</span>
+<span class=k>try</span><span class=p>:</span>
+    <span class=n>res</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>timeout</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+    <span class=n>res</span><span class=o>.</span><span class=n>raise_for_status</span><span class=p>()</span>
+<span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;錯誤:&#39;</span><span class=p>,</span> <span class=n>e</span><span class=p>)</span>
+</code></pre></div><h3 id=5-爬取動態網頁selenium-實戰>(5) 爬取動態網頁（Selenium 實戰）<a hidden class=anchor aria-hidden=true href=#5-爬取動態網頁selenium-實戰>#</a></h3>
+<p>有些網頁內容需 JS 執行後才出現，可用 Selenium：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>selenium</span> <span class=kn>import</span> <span class=n>webdriver</span>
+<span class=kn>from</span> <span class=nn>selenium.webdriver.common.by</span> <span class=kn>import</span> <span class=n>By</span>
+<span class=kn>from</span> <span class=nn>selenium.webdriver.chrome.options</span> <span class=kn>import</span> <span class=n>Options</span>
+
+<span class=n>options</span> <span class=o>=</span> <span class=n>Options</span><span class=p>()</span>
+<span class=n>options</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--headless&#39;</span><span class=p>)</span>
+<span class=n>driver</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>Chrome</span><span class=p>(</span><span class=n>options</span><span class=o>=</span><span class=n>options</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;https://example.com/&#39;</span><span class=p>)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>driver</span><span class=o>.</span><span class=n>title</span><span class=p>)</span>
+<span class=n>elems</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>By</span><span class=o>.</span><span class=n>CSS_SELECTOR</span><span class=p>,</span> <span class=s1>&#39;div.item&#39;</span><span class=p>)</span>
+<span class=k>for</span> <span class=n>elem</span> <span class=ow>in</span> <span class=n>elems</span><span class=p>:</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>elem</span><span class=o>.</span><span class=n>text</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</code></pre></div><h3 id=6-反爬蟲對策與常見封鎖>(6) 反爬蟲對策與常見封鎖<a hidden class=anchor aria-hidden=true href=#6-反爬蟲對策與常見封鎖>#</a></h3>
+<ul>
+<li>加入隨機延遲（time.sleep + random）</li>
+<li>代理伺服器（proxies 參數）</li>
+<li>觀察網站 robots.txt 與 API 限制</li>
+</ul>
+<h3 id=7-資料儲存csvjson資料庫>(7) 資料儲存（CSV、JSON、資料庫）<a hidden class=anchor aria-hidden=true href=#7-資料儲存csvjson資料庫>#</a></h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>csv</span><span class=o>,</span> <span class=nn>json</span>
+<span class=c1># 儲存為 CSV</span>
+<span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data.csv&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>newline</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+    <span class=n>writer</span> <span class=o>=</span> <span class=n>csv</span><span class=o>.</span><span class=n>writer</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+    <span class=n>writer</span><span class=o>.</span><span class=n>writerow</span><span class=p>([</span><span class=s1>&#39;標題&#39;</span><span class=p>,</span> <span class=s1>&#39;連結&#39;</span><span class=p>])</span>
+    <span class=n>writer</span><span class=o>.</span><span class=n>writerow</span><span class=p>([</span><span class=s1>&#39;test&#39;</span><span class=p>,</span> <span class=s1>&#39;https://example.com&#39;</span><span class=p>])</span>
+<span class=c1># 儲存為 JSON</span>
+<span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data.json&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+    <span class=n>json</span><span class=o>.</span><span class=n>dump</span><span class=p>({</span><span class=s1>&#39;title&#39;</span><span class=p>:</span> <span class=s1>&#39;test&#39;</span><span class=p>},</span> <span class=n>f</span><span class=p>,</span> <span class=n>ensure_ascii</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</code></pre></div><h3 id=8-爬蟲專案結構與模組化>(8) 爬蟲專案結構與模組化<a hidden class=anchor aria-hidden=true href=#8-爬蟲專案結構與模組化>#</a></h3>
+<ul>
+<li>建議將爬蟲主程式、資料解析、資料儲存分開成模組</li>
+<li>使用 logging、config 檔案管理</li>
+</ul>
+<h2 id=6-法律與道德注意事項>6. 法律與道德注意事項<a hidden class=anchor aria-hidden=true href=#6-法律與道德注意事項>#</a></h2>
+<ul>
+<li>僅爬取公開、允許擷取的資料</li>
+<li>尊重網站 robots.txt 與 API 條款</li>
+<li>不得用於非法用途或大量影響網站運作</li>
+</ul>
+<hr>
+<blockquote>
+<p>本文適合 Python 新手快速入門爬蟲，進階可學習 Selenium、Scrapy、API 擷取、分散式爬蟲等技術。歡迎留言討論你的爬蟲經驗！</p>
+</blockquote>
+</div>
+<section class=post-related>
+<h2>延伸閱讀</h2>
+<div class=related-cards>
+<a class=related-card href=/blog/posts/python/python-crawler-tsmc-chart-tutorial/>
+<div class=related-info>
+<div class=related-title>Python 爬蟲實戰：取得台積電股價並繪製圖表</div>
+<div class=related-desc>教你用 Python 爬取台積電（2330.TW）股價，並用 matplotlib 畫出股價走勢圖，完整程式碼與說明。</div>
+<div class=related-date>2025-06-16</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/ai/levenshtein-distance-tutorial/>
+<div class=related-info>
+<div class=related-title>萊文斯坦距離（Levenshtein Distance）教學與 Python 實作</div>
+<div class=related-desc>詳細介紹 Levenshtein Distance（萊文斯坦距離）原理、應用場景，並附上 Python 實作與應用範例。</div>
+<div class=related-date>2025-06-16</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/python/levenshtein-distance-tutorial/>
+<div class=related-info>
+<div class=related-title>萊文斯坦距離（Levenshtein Distance）教學與 Python 實作</div>
+<div class=related-desc>詳細介紹 Levenshtein Distance（萊文斯坦距離）原理、應用場景，並附上 Python 實作與應用範例。</div>
+<div class=related-date>2025-06-16</div>
+</div>
+</a>
+<a class=related-card href=/blog/posts/google/google-apps-script-twse-crawler/>
+<div class=related-info>
+<div class=related-title>用 Google Apps Script 製作台北股市爬蟲教學</div>
+<div class=related-desc>教你如何用 Google Apps Script 快速建立台北股市即時資料爬蟲，並自動寫入 Google Sheet。</div>
+<div class=related-date>2025-05-20</div>
+</div>
+</a>
+</div>
+</section>
+<style>.related-cards{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem}.related-card{display:flex;flex-direction:column;width:220px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,7%);text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s;overflow:hidden}.related-card:hover{box-shadow:0 6px 18px rgba(0,0,0,.13);transform:translateY(-4px)scale(1.03)}.related-thumb img{width:100%;height:120px;object-fit:cover;display:block}.related-info{padding:.8rem 1rem 1rem}.related-title{font-weight:700;font-size:1.08rem;margin-bottom:.4rem}.related-desc{color:#666;font-size:.95rem;margin-bottom:.5rem;min-height:2.2em}.related-date{font-size:.85rem;color:#aaa;text-align:right}</style>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://mars23003.github.io/blog/tags/python/>Python</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/%E7%88%AC%E8%9F%B2/>爬蟲</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/%E8%B3%87%E6%96%99%E6%93%B7%E5%8F%96/>資料擷取</a></li>
+<li><a href=https://mars23003.github.io/blog/tags/%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2/>網路爬蟲</a></li>
+</ul>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2025 <a href=https://mars23003.github.io/blog/>馬爾斯的Blog</a></span>
+<span>
+Powered by
+<a href=https://github.com/Mars23003>馬爾斯</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+</body>
+</html>
